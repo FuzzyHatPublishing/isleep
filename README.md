@@ -4,8 +4,6 @@
 # isleep
 React Native Yoga Nidra app.
 
-### Link to Travis
-
 ### Developers
 * Tere Gallarreta
 * Shawn Tuttle
