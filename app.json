@@ -22,6 +22,9 @@
     },
     "ios": {
       "supportsTablet": true
+    },
+    "packagerOpts": {
+      "nonPersistent": true
     }
   }
 }
