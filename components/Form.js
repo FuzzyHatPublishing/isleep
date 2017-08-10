@@ -1,28 +1,29 @@
 import React from 'react';
-import { 
+import {
 	View,
 	StyleSheet
 } from 'react-native';
+import { nameChanged } from '../actions';
 import Button from './common/Button';
 import InputField from './common/InputField';
 
 export default class Form extends React.Component {
-	onPasswordChange(text) {
-		// this.props.passwordChanged(text)
-	}
-
 	onNameChange(text) {
-		// this.props.nameChanged(text)
+		this.props.nameChanged(text);
 	}
 
 	onEmailChange(text) {
 		// this.props.emailChanged(text)
 	}
 
+	onPasswordChange(text) {
+		// this.props.passwordChanged(text)
+	}
+
 	render() {
 		return(
 			<View style={styles.form}>
-				<InputField 
+				<InputField
 					autoFocus
 					label="First name"
 					placeholder="Enter first name"
@@ -30,7 +31,7 @@ export default class Form extends React.Component {
 					value={this.props.name}
 			 	/>
 
-				<InputField 
+				<InputField
 					label="Email"
 					placeholder="Enter email"
 					onChangeText={this.onEmailChange.bind(this)}
@@ -43,7 +44,7 @@ export default class Form extends React.Component {
 					placeholder="Enter password"
 					onChangeText={this.onPasswordChange.bind(this)}
 					value={this.props.password}
-					/> 
+					/>
 
 				<View style={styles.button}>
 					<Button>
@@ -71,8 +72,3 @@ const styles = StyleSheet.create ({
 	  marginTop: 40
 	}
 })
-
-
-
-
-
