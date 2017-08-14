@@ -1,18 +1,24 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { TabNavigator, TabBarBottom } from 'react-navigation';
+import { TabNavigator, TabBarBottom, StackNavigator } from 'react-navigation';
 
 import Colors from '../constants/Colors';
 
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import LogInScreen from '../screens/LogInScreen';
+import SignUpScreen from '../screens/SignUpScreen';
 
 export default TabNavigator(
   {
     Home: {
-      screen: HomeScreen,
+      screen: StackNavigator({
+        home: { screen: HomeScreen },
+        login: { screen: LogInScreen },
+        signup: { screen: SignUpScreen }
+      })
     },
     Links: {
       screen: LinksScreen,

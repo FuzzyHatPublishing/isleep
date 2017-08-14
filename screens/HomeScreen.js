@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import Welcome from '../components/Welcome';
 import UpdateProfileScreen from './UpdateProfileScreen';
+import Button from '../components/common/Button';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -16,9 +17,25 @@ export default class HomeScreen extends React.Component {
   };
 
   render() {
+    const { navigate } = this.props.navigation;
+
     return (
       <View style={styles.container}>
-        <UpdateProfileScreen />
+        <Welcome />
+        <View style={styles.twoButtons}>
+          <Button
+            onPress={() => navigate('login')}
+            title="Log In"
+          >
+            Login
+          </Button>
+          <Button
+            onPress={() => navigate('signup')}
+            title="Sign Up"
+          >
+            Sign up
+          </Button>
+        </View>
       </View>
     );
   }
@@ -53,5 +70,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  twoButtons: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 40
   }
 });
