@@ -146,156 +146,231 @@ exports[`renders the root without loading screen 1`] = `
                   }
                 >
                   <View
+                    onLayout={[Function]}
                     style={
-                      Object {
-                        "backgroundColor": "#fff",
-                        "flex": 1,
-                      }
+                      Array [
+                        Object {
+                          "flex": 1,
+                        },
+                        undefined,
+                      ]
                     }
                   >
                     <View
+                      onMoveShouldSetResponder={[Function]}
+                      onMoveShouldSetResponderCapture={[Function]}
+                      onResponderEnd={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderReject={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderStart={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                      onStartShouldSetResponderCapture={[Function]}
                       style={
-                        Object {
-                          "marginTop": 50,
-                        }
+                        Array [
+                          Object {
+                            "flex": 1,
+                            "flexDirection": "column-reverse",
+                          },
+                          Object {
+                            "backgroundColor": "#000",
+                          },
+                        ]
                       }
                     >
-                      <View>
-                        <Image
-                          source={1}
-                          style={
-                            Object {
-                              "height": 300,
-                              "width": 600,
-                            }
-                          }
-                        />
-                        <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          disabled={false}
-                          ellipsizeMode="tail"
-                          style={
-                            Object {
-                              "fontFamily": "Futura",
-                              "fontSize": 20,
-                              "paddingTop": 10,
-                              "textAlign": "center",
-                            }
-                          }
-                        >
-                          Welcome to your place of rest.
-                        </Text>
-                      </View>
                       <View
                         style={
                           Object {
-                            "alignItems": "center",
                             "flex": 1,
-                            "flexDirection": "row",
-                            "marginTop": 40,
                           }
                         }
                       >
                         <View
-                          accessibilityComponentType={undefined}
-                          accessibilityLabel={undefined}
-                          accessibilityTraits={undefined}
-                          accessible={true}
                           collapsable={undefined}
-                          hitSlop={undefined}
-                          isTVSelectable={true}
-                          nativeID={undefined}
-                          onLayout={undefined}
-                          onResponderGrant={[Function]}
-                          onResponderMove={[Function]}
-                          onResponderRelease={[Function]}
-                          onResponderTerminate={[Function]}
-                          onResponderTerminationRequest={[Function]}
-                          onStartShouldSetResponder={[Function]}
+                          pointerEvents="auto"
                           style={
                             Object {
-                              "backgroundColor": "#fff",
-                              "borderColor": "#990000",
-                              "borderRadius": 5,
-                              "borderWidth": 1,
-                              "flex": 1,
-                              "marginLeft": 5,
-                              "marginRight": 5,
+                              "backgroundColor": "#E9E9EF",
+                              "bottom": 0,
+                              "left": 0,
                               "opacity": 1,
+                              "position": "absolute",
+                              "right": 0,
+                              "shadowColor": "black",
+                              "shadowOffset": Object {
+                                "height": 0,
+                                "width": 0,
+                              },
+                              "shadowOpacity": 0.2,
+                              "shadowRadius": 5,
+                              "top": 0,
+                              "transform": Array [
+                                Object {
+                                  "translateX": 0,
+                                },
+                                Object {
+                                  "translateY": 0,
+                                },
+                              ],
                             }
                           }
-                          testID={undefined}
-                          tvParallaxProperties={undefined}
                         >
-                          <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            disabled={false}
-                            ellipsizeMode="tail"
+                          <View
                             style={
                               Object {
-                                "alignSelf": "center",
-                                "color": "#990000",
-                                "fontSize": 16,
-                                "fontWeight": "600",
-                                "paddingBottom": 10,
-                                "paddingTop": 10,
+                                "backgroundColor": "#fff",
+                                "flex": 1,
                               }
                             }
                           >
-                            Login
-                          </Text>
-                        </View>
-                        <View
-                          accessibilityComponentType={undefined}
-                          accessibilityLabel={undefined}
-                          accessibilityTraits={undefined}
-                          accessible={true}
-                          collapsable={undefined}
-                          hitSlop={undefined}
-                          isTVSelectable={true}
-                          nativeID={undefined}
-                          onLayout={undefined}
-                          onResponderGrant={[Function]}
-                          onResponderMove={[Function]}
-                          onResponderRelease={[Function]}
-                          onResponderTerminate={[Function]}
-                          onResponderTerminationRequest={[Function]}
-                          onStartShouldSetResponder={[Function]}
-                          style={
-                            Object {
-                              "backgroundColor": "#fff",
-                              "borderColor": "#990000",
-                              "borderRadius": 5,
-                              "borderWidth": 1,
-                              "flex": 1,
-                              "marginLeft": 5,
-                              "marginRight": 5,
-                              "opacity": 1,
-                            }
-                          }
-                          testID={undefined}
-                          tvParallaxProperties={undefined}
-                        >
-                          <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            disabled={false}
-                            ellipsizeMode="tail"
-                            style={
-                              Object {
-                                "alignSelf": "center",
-                                "color": "#990000",
-                                "fontSize": 16,
-                                "fontWeight": "600",
-                                "paddingBottom": 10,
-                                "paddingTop": 10,
+                            <View
+                              style={
+                                Object {
+                                  "marginTop": 50,
+                                }
                               }
-                            }
-                          >
-                            Sign up
-                          </Text>
+                            >
+                              <Image
+                                source={1}
+                                style={
+                                  Object {
+                                    "height": 300,
+                                    "width": 600,
+                                  }
+                                }
+                              />
+                              <Text
+                                accessible={true}
+                                allowFontScaling={true}
+                                disabled={false}
+                                ellipsizeMode="tail"
+                                style={
+                                  Object {
+                                    "fontFamily": "Futura",
+                                    "fontSize": 20,
+                                    "paddingTop": 10,
+                                    "textAlign": "center",
+                                  }
+                                }
+                              >
+                                Welcome to your place of rest.
+                              </Text>
+                            </View>
+                            <View
+                              style={
+                                Object {
+                                  "alignItems": "center",
+                                  "flex": 1,
+                                  "flexDirection": "row",
+                                  "marginTop": 40,
+                                }
+                              }
+                            >
+                              <View
+                                accessibilityComponentType={undefined}
+                                accessibilityLabel={undefined}
+                                accessibilityTraits={undefined}
+                                accessible={true}
+                                collapsable={undefined}
+                                hitSlop={undefined}
+                                isTVSelectable={true}
+                                nativeID={undefined}
+                                onLayout={undefined}
+                                onResponderGrant={[Function]}
+                                onResponderMove={[Function]}
+                                onResponderRelease={[Function]}
+                                onResponderTerminate={[Function]}
+                                onResponderTerminationRequest={[Function]}
+                                onStartShouldSetResponder={[Function]}
+                                style={
+                                  Object {
+                                    "backgroundColor": "#fff",
+                                    "borderColor": "#990000",
+                                    "borderRadius": 5,
+                                    "borderWidth": 1,
+                                    "flex": 1,
+                                    "marginLeft": 5,
+                                    "marginRight": 5,
+                                    "opacity": 1,
+                                  }
+                                }
+                                testID={undefined}
+                                tvParallaxProperties={undefined}
+                              >
+                                <Text
+                                  accessible={true}
+                                  allowFontScaling={true}
+                                  disabled={false}
+                                  ellipsizeMode="tail"
+                                  style={
+                                    Object {
+                                      "alignSelf": "center",
+                                      "color": "#990000",
+                                      "fontSize": 16,
+                                      "fontWeight": "600",
+                                      "paddingBottom": 10,
+                                      "paddingTop": 10,
+                                    }
+                                  }
+                                >
+                                  Login
+                                </Text>
+                              </View>
+                              <View
+                                accessibilityComponentType={undefined}
+                                accessibilityLabel={undefined}
+                                accessibilityTraits={undefined}
+                                accessible={true}
+                                collapsable={undefined}
+                                hitSlop={undefined}
+                                isTVSelectable={true}
+                                nativeID={undefined}
+                                onLayout={undefined}
+                                onResponderGrant={[Function]}
+                                onResponderMove={[Function]}
+                                onResponderRelease={[Function]}
+                                onResponderTerminate={[Function]}
+                                onResponderTerminationRequest={[Function]}
+                                onStartShouldSetResponder={[Function]}
+                                style={
+                                  Object {
+                                    "backgroundColor": "#fff",
+                                    "borderColor": "#990000",
+                                    "borderRadius": 5,
+                                    "borderWidth": 1,
+                                    "flex": 1,
+                                    "marginLeft": 5,
+                                    "marginRight": 5,
+                                    "opacity": 1,
+                                  }
+                                }
+                                testID={undefined}
+                                tvParallaxProperties={undefined}
+                              >
+                                <Text
+                                  accessible={true}
+                                  allowFontScaling={true}
+                                  disabled={false}
+                                  ellipsizeMode="tail"
+                                  style={
+                                    Object {
+                                      "alignSelf": "center",
+                                      "color": "#990000",
+                                      "fontSize": 16,
+                                      "fontWeight": "600",
+                                      "paddingBottom": 10,
+                                      "paddingTop": 10,
+                                    }
+                                  }
+                                >
+                                  Sign up
+                                </Text>
+                              </View>
+                            </View>
+                          </View>
                         </View>
                       </View>
                     </View>
