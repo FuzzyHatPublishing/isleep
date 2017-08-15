@@ -16,7 +16,8 @@ const RootStackNavigator = StackNavigator(
       headerTitleStyle: {
         fontWeight: 'normal',
       },
-    }),
+    },
+    { headerMode: 'screen' })
   }
 );
 

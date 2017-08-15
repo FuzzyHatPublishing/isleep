@@ -18,7 +18,8 @@ export default TabNavigator(
         home: { screen: HomeScreen },
         login: { screen: LogInScreen },
         signup: { screen: SignUpScreen }
-      })
+      },
+      { headerMode: 'none' })
     },
     Links: {
       screen: LinksScreen,
