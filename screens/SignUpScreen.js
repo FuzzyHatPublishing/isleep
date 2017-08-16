@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Platform } from 'react-native';
+import { Platform } from 'react-native';
 import { Icon } from 'react-native-elements';
 import Form from '../components/Form';
 
@@ -10,7 +10,7 @@ class SignUpScreen extends Component {
 			<Icon
 				name='navigate-before'
 				size={32}
-				onPress={ () => navigation.navigate('home')}
+				onPress={ () => navigation.navigate('home') }
 			/>,
 		headerStyle: { marginTop: Platform.OS === 'android' ? 24: 0 }
 	});
