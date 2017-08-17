@@ -3,11 +3,12 @@ import {
 	View,
 	StyleSheet
 } from 'react-native';
+import { connect } from 'react-redux';
 import { nameChanged } from '../actions';
 import Button from './common/Button';
 import InputField from './common/InputField';
 
-export default class Form extends React.Component {
+class Form extends React.Component {
 	onNameChange(text) {
 		this.props.nameChanged(text);
 	}
@@ -72,3 +73,10 @@ const styles = StyleSheet.create ({
 	  marginTop: 40
 	}
 })
+
+const mapStateToProps = ({ auth }) => {
+	const { name } = auth;
+	return { name };
+};
+
+export default connect(mapStateToProps, { nameChanged })(Form);

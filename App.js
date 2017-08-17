@@ -1,5 +1,6 @@
 import React from 'react';
 import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font } from 'expo';
@@ -23,12 +24,9 @@ export default class App extends React.Component {
       return <AppLoading />;
     } else {
       return (
-        <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          {Platform.OS === 'android' &&
-            <View style={styles.statusBarUnderlay} />}
+        <Provider style={styles.container} store={store}>
           <RootNavigation />
-        </View>
+        </Provider>        
       );
     }
   }
