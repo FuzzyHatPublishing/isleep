@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Platform } from 'react-native';
 import { Icon } from 'react-native-elements';
-import Form from '../components/Form';
+import SignUpForm from '../components/SignUpForm';
 
 class SignUpScreen extends Component {
 	static navigationOptions = ({ navigation }) => ({
@@ -17,7 +17,7 @@ class SignUpScreen extends Component {
 
 	render() {
 		return(
-			<Form />
+			<SignUpForm />
 			)
 	}
 }
