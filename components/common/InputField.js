@@ -28,10 +28,10 @@ const InputField = ({ label, secureTextEntry, placeholder, onChangeText, value, 
 const styles = StyleSheet.create ({
 	inputBox: {
 		marginBottom: 20,
-		fontSize: 24
+		fontSize: 20
 	},
 	labelText: {
-		fontSize: 18
+		fontSize: 16
 	}
 })
 
