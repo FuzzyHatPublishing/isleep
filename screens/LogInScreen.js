@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, Platform } from 'react-native';
+import { Platform } from 'react-native';
 import { Icon } from 'react-native-elements';
+import LogInForm from '../components/LogInForm';
 
 class LogInScreen extends Component {
 	static navigationOptions = ({ navigation }) => ({
@@ -16,14 +17,7 @@ class LogInScreen extends Component {
 
 	render() {
 		return (
-			<View>
-				<Text>LogIn Screen</Text>
-				<Text>LogIn Screen</Text>
-				<Text>LogIn Screen</Text>
-				<Text>LogIn Screen</Text>
-				<Text>LogIn Screen</Text>
-				<Text>LogIn Screen</Text>
-			</View>
+			<LogInForm />
 		);
 	}
 }
