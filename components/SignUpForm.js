@@ -4,7 +4,7 @@ import {
 	StyleSheet
 } from 'react-native';
 import { connect } from 'react-redux';
-import { nameChanged } from '../actions';
+import { nameChanged, emailChanged, passwordChanged, confirmPasswordChanged } from '../actions';
 import Button from './common/Button';
 import InputField from './common/InputField';
 
@@ -14,11 +14,15 @@ class SignUpForm extends React.Component {
 	}
 
 	onEmailChange(text) {
-		// this.props.emailChanged(text)
+		this.props.emailChanged(text)
 	}
 
 	onPasswordChange(text) {
-		// this.props.passwordChanged(text)
+		this.props.passwordChanged(text)
+	}
+
+	onConfirmPasswordChange(text) {
+		this.props.confirmPasswordChanged(text)
 	}
 
 	render() {
@@ -45,6 +49,14 @@ class SignUpForm extends React.Component {
 					placeholder="Enter password"
 					onChangeText={this.onPasswordChange.bind(this)}
 					value={this.props.password}
+				/>
+
+				<InputField
+					secureTextEntry
+					label="Confirm password"
+					placeholder="Confirm password"
+					onChangeText={this.onConfirmPasswordChange.bind(this)}
+					value={this.props.confirmPassword}
 				/>
 
 				<View style={styles.button}>
@@ -75,8 +87,8 @@ const styles = StyleSheet.create ({
 })
 
 const mapStateToProps = ({ auth }) => {
-	const { name } = auth;
-	return { name };
+	const { name, email, password, confirmPassword } = auth;
+	return { name, email, password, confirmPassword };
 };
 
-export default connect(mapStateToProps, { nameChanged })(SignUpForm);
+export default connect(mapStateToProps, { nameChanged, emailChanged, passwordChanged, confirmPasswordChanged })(SignUpForm);
