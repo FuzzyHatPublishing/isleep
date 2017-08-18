@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { emailChanged } from '../actions';
+import { emailChanged, passwordChanged } from '../actions';
 import Button from './common/Button';
 import InputField from './common/InputField';
 
@@ -11,7 +11,7 @@ class LogInForm extends React.Component {
 	}
 
 	onPasswordChange(text) {
-		// this.props.passwordChanged(text)
+		this.props.passwordChanged(text)
 	}
 
 
@@ -63,8 +63,8 @@ const styles = StyleSheet.create ({
 })
 
 const mapStateToProps = ({ auth }) => {
-	const { email } = auth;
-	return { email };
+	const { email, password } = auth;
+	return { email, password };
 };
 
-export default connect(mapStateToProps, { emailChanged })(LogInForm);
+export default connect(mapStateToProps, { emailChanged, passwordChanged })(LogInForm);
