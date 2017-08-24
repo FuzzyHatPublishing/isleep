@@ -8,36 +8,28 @@ import {
 import Button from './common/Button';
 
 export default class Welcome extends React.Component {
+
+
   render() {
     return (
       <View style={styles.welcomeContainer}>
-        <View>
-          <Image
-            source={ require('../assets/images/silhouette.jpg') }
-            style={styles.welcomeImage}
-          />
-          <Text style={styles.welcomeText}>Welcome to your place of rest.</Text>
-        </View>
-        <View style={styles.twoButtons}>
-          <Button>
-            Login
-          </Button>
-          <Button>
-            Sign up
-          </Button>
-        </View>
+        <Image
+          source={ require('../assets/images/silhouette.jpg') }
+          style={styles.welcomeImage}
+        />
+        <Text style={styles.welcomeText}>Welcome to your place of rest.</Text>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create ({
-  twoButtons: {
-    flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 40
-  },
+  // twoButtons: {
+  //   flex: 1,
+  //   flexDirection: "row",
+  //   alignItems: "center",
+  //   marginTop: 40
+  // },
   welcomeContainer: {
     marginTop: 50
   },
