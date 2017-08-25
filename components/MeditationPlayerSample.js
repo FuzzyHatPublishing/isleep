@@ -12,8 +12,6 @@ import {
   TouchableHighlight,
   View
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-
 import { Asset, Audio, Font, Video } from 'expo';
 
 class Icon {
@@ -35,33 +33,69 @@ class PlaylistItem {
 
 const PLAYLIST = [
   new PlaylistItem(
-    'Short version',
-    require('../assets/sounds/test-audio.mp3'),
+    'Comfort Fit - “Sorry”',
+    'https://s3.amazonaws.com/exp-us-standard/audio/playlist-example/Comfort_Fit_-_03_-_Sorry.mp3',
     false
   ),
   new PlaylistItem(
-    'Long version',
-    require('../assets/sounds/test-audio.mp3'),
+    'Big Buck Bunny',
+    'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
+    true
+  ),
+  new PlaylistItem(
+    'Mildred Bailey – “All Of Me”',
+    'https://ia800304.us.archive.org/34/items/PaulWhitemanwithMildredBailey/PaulWhitemanwithMildredBailey-AllofMe.mp3',
+    false
+  ),
+  new PlaylistItem(
+    "Popeye - I don't scare",
+    'https://ia800501.us.archive.org/11/items/popeye_i_dont_scare/popeye_i_dont_scare_512kb.mp4',
+    true
+  ),
+  new PlaylistItem(
+    'Podington Bear - “Rubber Robot”',
+    'https://s3.amazonaws.com/exp-us-standard/audio/playlist-example/Podington_Bear_-_Rubber_Robot.mp3',
     false
   )
 ];
 
+const ICON_PLAY_BUTTON = new Icon(
+  require('./assets/images/play_button.png'),
+  34,
+  51
+);
+const ICON_PAUSE_BUTTON = new Icon(
+  require('./assets/images/pause_button.png'),
+  34,
+  51
+);
+const ICON_STOP_BUTTON = new Icon(
+  require('./assets/images/stop_button.png'),
+  22,
+  22
+);
+const ICON_FORWARD_BUTTON = new Icon(
+  require('./assets/images/forward_button.png'),
+  33,
+  25
+);
+const ICON_BACK_BUTTON = new Icon(
+  require('./assets/images/back_button.png'),
+  33,
+  25
+);
 
-const ICON_PLAY_BUTTON = {
-  name: 'ios-play'
-};
-const ICON_PAUSE_BUTTON = {
-  name: 'ios-pause'
-};
-const ICON_STOP_BUTTON = {
-	name: 'ios-square'
-	};
-const ICON_FORWARD_BUTTON = {
-	name: 'ios-fastforward'
-};
-const ICON_BACK_BUTTON = {
-	name: 'ios-rewind'
-};
+const ICON_LOOP_ALL_BUTTON = new Icon(
+  require('./assets/images/loop_all_button.png'),
+  77,
+  35
+);
+const ICON_LOOP_ONE_BUTTON = new Icon(
+  require('./assets/images/loop_one_button.png'),
+  77,
+  35
+);
+
 const ICON_MUTED_BUTTON = new Icon(
   require('./assets/images/muted_button.png'),
   67,
@@ -77,9 +111,9 @@ const ICON_TRACK_1 = new Icon(require('./assets/images/track_1.png'), 166, 5);
 const ICON_THUMB_1 = new Icon(require('./assets/images/thumb_1.png'), 18, 19);
 const ICON_THUMB_2 = new Icon(require('./assets/images/thumb_2.png'), 15, 19);
 
-// const LOOPING_TYPE_ALL = 0;
-// const LOOPING_TYPE_ONE = 1;
-// const LOOPING_TYPE_ICONS = { 0: ICON_LOOP_ALL_BUTTON, 1: ICON_LOOP_ONE_BUTTON };
+const LOOPING_TYPE_ALL = 0;
+const LOOPING_TYPE_ONE = 1;
+const LOOPING_TYPE_ICONS = { 0: ICON_LOOP_ALL_BUTTON, 1: ICON_LOOP_ONE_BUTTON };
 
 const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get('window');
 const BACKGROUND_COLOR = '#FFF8ED';
@@ -100,7 +134,7 @@ export default class App extends React.Component {
     this.state = {
       showVideo: false,
       playbackInstanceName: LOADING_STRING,
-      // loopingType: LOOPING_TYPE_ALL,
+      loopingType: LOOPING_TYPE_ALL,
       muted: false,
       playbackInstancePosition: null,
       playbackInstanceDuration: null,
@@ -143,14 +177,14 @@ export default class App extends React.Component {
       this.playbackInstance = null;
     }
 
-    const source = require('../assets/sounds/test-audio.mp3');
+    const source = { uri: PLAYLIST[this.index].uri };
     const initialStatus = {
       shouldPlay: playing,
       rate: this.state.rate,
       shouldCorrectPitch: this.state.shouldCorrectPitch,
       volume: this.state.volume,
       isMuted: this.state.muted,
-      // isLooping: this.state.loopingType === LOOPING_TYPE_ONE
+      isLooping: this.state.loopingType === LOOPING_TYPE_ONE
       // // UNCOMMENT THIS TO TEST THE OLD androidImplementation:
       // androidImplementation: 'MediaPlayer',
     };
@@ -207,12 +241,10 @@ export default class App extends React.Component {
         rate: status.rate,
         muted: status.isMuted,
         volume: status.volume,
-        // loopingType: status.isLooping ? LOOPING_TYPE_ONE : LOOPING_TYPE_ALL,
+        loopingType: status.isLooping ? LOOPING_TYPE_ONE : LOOPING_TYPE_ALL,
         shouldCorrectPitch: status.shouldCorrectPitch
       });
-      // if (status.didJustFinish && !status.isLooping) {
-      if (status.didJustFinish) {
-
+      if (status.didJustFinish && !status.isLooping) {
         this._advanceIndex(true);
         this._updatePlaybackInstanceForIndex(true);
       }
@@ -313,13 +345,13 @@ export default class App extends React.Component {
     }
   };
 
-  // _onLoopPressed = () => {
-  //   if (this.playbackInstance != null) {
-  //     this.playbackInstance.setIsLoopingAsync(
-  //       this.state.loopingType !== LOOPING_TYPE_ONE
-  //     );
-  //   }
-  // };
+  _onLoopPressed = () => {
+    if (this.playbackInstance != null) {
+      this.playbackInstance.setIsLoopingAsync(
+        this.state.loopingType !== LOOPING_TYPE_ONE
+      );
+    }
+  };
 
   _onVolumeSliderValueChange = value => {
     if (this.playbackInstance != null) {
@@ -424,7 +456,6 @@ export default class App extends React.Component {
   };
 
   render() {
-  	// console.log(ICON_PLAY_BUTTON)
     return !this.state.fontLoaded
       ? <View style={styles.emptyContainer} />
       : <View style={styles.container}>
@@ -511,10 +542,7 @@ export default class App extends React.Component {
               onPress={this._onBackPressed}
               disabled={this.state.isLoading}
             >
-              <Ionicons 
-              	name={ICON_BACK_BUTTON.name}
-              	size={32}
-              />
+              <Image style={styles.button} source={ICON_BACK_BUTTON.module} />
             </TouchableHighlight>
             <TouchableHighlight
               underlayColor={BACKGROUND_COLOR}
@@ -522,13 +550,13 @@ export default class App extends React.Component {
               onPress={this._onPlayPausePressed}
               disabled={this.state.isLoading}
             >
-              <Ionicons
-              	name={
-              		this.state.isPlaying
-              		? ICON_PAUSE_BUTTON.name
-              		: ICON_PLAY_BUTTON.name
-              	}
-              	size={32}
+              <Image
+                style={styles.button}
+                source={
+                  this.state.isPlaying
+                    ? ICON_PAUSE_BUTTON.module
+                    : ICON_PLAY_BUTTON.module
+                }
               />
             </TouchableHighlight>
             <TouchableHighlight
@@ -537,10 +565,7 @@ export default class App extends React.Component {
               onPress={this._onStopPressed}
               disabled={this.state.isLoading}
             >
-              <Ionicons 
-              	name={ICON_STOP_BUTTON.name} 
-              	size={30}
-            	/>
+              <Image style={styles.button} source={ICON_STOP_BUTTON.module} />
             </TouchableHighlight>
             <TouchableHighlight
               underlayColor={BACKGROUND_COLOR}
@@ -548,9 +573,9 @@ export default class App extends React.Component {
               onPress={this._onForwardPressed}
               disabled={this.state.isLoading}
             >
-              <Ionicons
-                name={ICON_FORWARD_BUTTON.name}
-                size={32}
+              <Image
+                style={styles.button}
+                source={ICON_FORWARD_BUTTON.module}
               />
             </TouchableHighlight>
           </View>
@@ -583,7 +608,16 @@ export default class App extends React.Component {
                 onValueChange={this._onVolumeSliderValueChange}
               />
             </View>
-          
+            <TouchableHighlight
+              underlayColor={BACKGROUND_COLOR}
+              style={styles.wrapper}
+              onPress={this._onLoopPressed}
+            >
+              <Image
+                style={styles.button}
+                source={LOOPING_TYPE_ICONS[this.state.loopingType].module}
+              />
+            </TouchableHighlight>
           </View>
           <View
             style={[
@@ -769,7 +803,7 @@ const styles = StyleSheet.create({
     paddingRight: 20
   },
   button: {
-    // backgroundColor: BACKGROUND_COLOR
+    backgroundColor: BACKGROUND_COLOR
   },
   buttonsContainerBase: {
     flex: 1,
@@ -796,7 +830,7 @@ const styles = StyleSheet.create({
     maxWidth: DEVICE_WIDTH / 2.0
   },
   volumeSlider: {
-    width: DEVICE_WIDTH / 2.0 - 20
+    width: DEVICE_WIDTH / 2.0 - ICON_MUTED_BUTTON.width
   },
   buttonsContainerBottomRow: {
     maxHeight: ICON_THUMB_1.height,
