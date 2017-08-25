@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 
-class MeditationScreen extends Component {
+class MeditationPlayerScreen extends Component {
+	static navigationOptions = {
+    title: 'Meditation',
+  };
 	render() {
 		return (
 			<View>
@@ -16,4 +19,4 @@ class MeditationScreen extends Component {
 	}
 }
 
-export default MeditationScreen;
+export default MeditationPlayerScreen;
