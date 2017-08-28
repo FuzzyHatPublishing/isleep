@@ -16,15 +16,6 @@ import { Ionicons } from '@expo/vector-icons';
 
 import { Asset, Audio, Font, Video } from 'expo';
 
-class Icon {
-  constructor(module, width, height) {
-    this.module = module;
-    this.width = width;
-    this.height = height;
-    Asset.fromModule(this.module).downloadAsync();
-  }
-}
-
 class PlaylistItem {
   constructor(name, uri, isVideo) {
     this.name = name;
@@ -45,7 +36,6 @@ const PLAYLIST = [
     false
   )
 ];
-
 
 const ICON_PLAY_BUTTON = {
   name: 'ios-play'
@@ -70,16 +60,9 @@ const ICON_UNMUTED_BUTTON = {
   name: 'ios-volume-up'
 };
 
-// const ICON_TRACK_1 = new Icon(require('./assets/images/track_1.png'), 166, 5);
 const ICON_TRACK_1 = require('../assets/images/line.png');
 const ICON_THUMB_1 = require('../assets/images/dot.png');
 
-// const ICON_THUMB_1 = new Icon(require('./assets/images/thumb_1.png'), 18, 19);
-// const ICON_THUMB_2 = new Icon(require('./assets/images/thumb_2.png'), 15, 19);
-
-// const LOOPING_TYPE_ALL = 0;
-// const LOOPING_TYPE_ONE = 1;
-// const LOOPING_TYPE_ICONS = { 0: ICON_LOOP_ALL_BUTTON, 1: ICON_LOOP_ONE_BUTTON };
 
 const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get('window');
 const BACKGROUND_COLOR = '#FFF8ED';
@@ -98,7 +81,6 @@ export default class App extends React.Component {
     this.shouldPlayAtEndOfSeek = false;
     this.playbackInstance = null;
     this.state = {
-      showVideo: false,
       playbackInstanceName: LOADING_STRING,
       // loopingType: LOOPING_TYPE_ALL,
       muted: false,
@@ -109,12 +91,10 @@ export default class App extends React.Component {
       isBuffering: false,
       isLoading: true,
       fontLoaded: false,
-      shouldCorrectPitch: true,
       volume: 1.0,
       rate: 1.0,
       videoWidth: DEVICE_WIDTH,
       videoHeight: VIDEO_CONTAINER_HEIGHT,
-      poster: false,
       fullscreen: false
     };
   }
@@ -129,6 +109,7 @@ export default class App extends React.Component {
     });
     (async () => {
       await Font.loadAsync({
+        // I don't think we want this font, but left in case want another font.
         'cutive-mono-regular': require('./assets/fonts/CutiveMono-Regular.ttf')
       });
       this.setState({ fontLoaded: true });
@@ -145,8 +126,6 @@ export default class App extends React.Component {
     const source = require('../assets/sounds/test-audio.mp3');
     const initialStatus = {
       shouldPlay: playing,
-      rate: this.state.rate,
-      shouldCorrectPitch: this.state.shouldCorrectPitch,
       volume: this.state.volume,
       isMuted: this.state.muted,
       // isLooping: this.state.loopingType === LOOPING_TYPE_ONE
@@ -179,7 +158,6 @@ export default class App extends React.Component {
   _updateScreenForLoading(isLoading) {
     if (isLoading) {
       this.setState({
-        showVideo: false,
         isPlaying: false,
         playbackInstanceName: LOADING_STRING,
         playbackInstanceDuration: null,
@@ -189,7 +167,6 @@ export default class App extends React.Component {
     } else {
       this.setState({
         playbackInstanceName: PLAYLIST[this.index].name,
-        showVideo: PLAYLIST[this.index].isVideo,
         isLoading: false
       });
     }
@@ -206,8 +183,6 @@ export default class App extends React.Component {
         rate: status.rate,
         muted: status.isMuted,
         volume: status.volume,
-        // loopingType: status.isLooping ? LOOPING_TYPE_ONE : LOOPING_TYPE_ALL,
-        shouldCorrectPitch: status.shouldCorrectPitch
       });
       // if (status.didJustFinish && !status.isLooping) {
       if (status.didJustFinish) {
@@ -326,23 +301,6 @@ export default class App extends React.Component {
     }
   };
 
-  _trySetRate = async (rate, shouldCorrectPitch) => {
-    if (this.playbackInstance != null) {
-      try {
-        await this.playbackInstance.setRateAsync(rate, shouldCorrectPitch);
-      } catch (error) {
-        // Rate changing could not be performed, possibly because the client's Android API is too old.
-      }
-    }
-  };
-
-  _onRateSliderSlidingComplete = async value => {
-    this._trySetRate(value * RATE_SCALE, this.state.shouldCorrectPitch);
-  };
-
-  _onPitchCorrectionPressed = async value => {
-    this._trySetRate(this.state.rate, !this.state.shouldCorrectPitch);
-  };
 
   _onSeekSliderValueChange = value => {
     if (this.playbackInstance != null && !this.isSeeking) {
