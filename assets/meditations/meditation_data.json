@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "title": "Short Meditation",
+    "source": "../assets/sounds/test-audio.mp3"
+  },
+  {
+    "id": 2,
+    "title": "Long Meditation",
+    "source": "./sounds/test-audio.mp3"
+  }
+]

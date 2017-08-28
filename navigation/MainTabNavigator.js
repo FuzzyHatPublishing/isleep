@@ -4,9 +4,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { TabNavigator, TabBarBottom, StackNavigator } from 'react-navigation';
 
 import Colors from '../constants/Colors';
-
 import HomeScreen from '../screens/HomeScreen';
-import MeditationPlayerScreen from '../screens/MeditationPlayerScreen';
+import MeditationListScreen from '../screens/MeditationListScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import LogInScreen from '../screens/LogInScreen';
 import SignUpScreen from '../screens/SignUpScreen';
@@ -21,8 +20,8 @@ export default TabNavigator(
       },
       { headerMode: 'none' })
     },
-    MeditationPlayer: {
-      screen: MeditationPlayerScreen,
+    MeditationList: {
+      screen: MeditationListScreen,
     },
     Settings: {
       screen: SettingsScreen,
@@ -39,7 +38,7 @@ export default TabNavigator(
               ? `ios-information-circle${focused ? '' : '-outline'}`
               : 'md-information-circle';
             break;
-          case 'MeditationPlayer':
+          case 'MeditationList':
             iconName = Platform.OS === 'ios'
               ? `ios-headset${focused ? '' : '-outline'}`
               : 'md-headset';
