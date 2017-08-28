@@ -62,20 +62,20 @@ const ICON_FORWARD_BUTTON = {
 const ICON_BACK_BUTTON = {
 	name: 'ios-rewind'
 };
-const ICON_MUTED_BUTTON = new Icon(
-  require('./assets/images/muted_button.png'),
-  67,
-  58
-);
-const ICON_UNMUTED_BUTTON = new Icon(
-  require('./assets/images/unmuted_button.png'),
-  67,
-  58
-);
+const ICON_MUTED_BUTTON = {
+  name: 'ios-volume-off'
+};
 
-const ICON_TRACK_1 = new Icon(require('./assets/images/track_1.png'), 166, 5);
-const ICON_THUMB_1 = new Icon(require('./assets/images/thumb_1.png'), 18, 19);
-const ICON_THUMB_2 = new Icon(require('./assets/images/thumb_2.png'), 15, 19);
+const ICON_UNMUTED_BUTTON = {
+  name: 'ios-volume-up'
+};
+
+// const ICON_TRACK_1 = new Icon(require('./assets/images/track_1.png'), 166, 5);
+const ICON_TRACK_1 = require('../assets/images/line.png');
+const ICON_THUMB_1 = require('../assets/images/dot.png');
+
+// const ICON_THUMB_1 = new Icon(require('./assets/images/thumb_1.png'), 18, 19);
+// const ICON_THUMB_2 = new Icon(require('./assets/images/thumb_2.png'), 15, 19);
 
 // const LOOPING_TYPE_ALL = 0;
 // const LOOPING_TYPE_ONE = 1;
@@ -431,7 +431,7 @@ export default class App extends React.Component {
           <View />
           <View style={styles.nameContainer}>
             <Text
-              style={[styles.text, { ...Font.style('cutive-mono-regular') }]}
+              style={[styles.text]}
             >
               {this.state.playbackInstanceName}
             </Text>
@@ -441,20 +441,12 @@ export default class App extends React.Component {
             <Video
               ref={this._mountVideo}
               style={[
-                styles.video,
-                {
-                  opacity: this.state.showVideo ? 1.0 : 0.0,
-                  width: this.state.videoWidth,
-                  height: this.state.videoHeight
-                }
+                styles.video
               ]}
-              resizeMode={Video.RESIZE_MODE_CONTAIN}
               onPlaybackStatusUpdate={this._onPlaybackStatusUpdate}
               onLoadStart={this._onLoadStart}
               onLoad={this._onLoad}
               onError={this._onError}
-              onFullscreenUpdate={this._onFullscreenUpdate}
-              onReadyForDisplay={this._onReadyForDisplay}
               useNativeControls={this.state.useNativeControls}
             />
           </View>
@@ -479,8 +471,7 @@ export default class App extends React.Component {
               <Text
                 style={[
                   styles.text,
-                  styles.buffering,
-                  { ...Font.style('cutive-mono-regular') }
+                  styles.buffering
                 ]}
               >
                 {this.state.isBuffering ? BUFFERING_STRING : ''}
@@ -488,8 +479,7 @@ export default class App extends React.Component {
               <Text
                 style={[
                   styles.text,
-                  styles.timestamp,
-                  { ...Font.style('cutive-mono-regular') }
+                  styles.timestamp
                 ]}
               >
                 {this._getTimestamp()}
@@ -513,7 +503,7 @@ export default class App extends React.Component {
             >
               <Ionicons 
               	name={ICON_BACK_BUTTON.name}
-              	size={32}
+              	size={36}
               />
             </TouchableHighlight>
             <TouchableHighlight
@@ -528,7 +518,7 @@ export default class App extends React.Component {
               		? ICON_PAUSE_BUTTON.name
               		: ICON_PLAY_BUTTON.name
               	}
-              	size={32}
+              	size={36}
               />
             </TouchableHighlight>
             <TouchableHighlight
@@ -539,7 +529,7 @@ export default class App extends React.Component {
             >
               <Ionicons 
               	name={ICON_STOP_BUTTON.name} 
-              	size={30}
+              	size={32}
             	/>
             </TouchableHighlight>
             <TouchableHighlight
@@ -550,10 +540,11 @@ export default class App extends React.Component {
             >
               <Ionicons
                 name={ICON_FORWARD_BUTTON.name}
-                size={32}
+                size={36}
               />
             </TouchableHighlight>
           </View>
+          
           <View
             style={[
               styles.buttonsContainerBase,
@@ -566,146 +557,28 @@ export default class App extends React.Component {
                 style={styles.wrapper}
                 onPress={this._onMutePressed}
               >
-                <Image
-                  style={styles.button}
-                  source={
+                <Ionicons
+                  name={
                     this.state.muted
-                      ? ICON_MUTED_BUTTON.module
-                      : ICON_UNMUTED_BUTTON.module
+                      ? ICON_MUTED_BUTTON.name
+                      : ICON_UNMUTED_BUTTON.name
                   }
+                  size={42}
                 />
               </TouchableHighlight>
               <Slider
                 style={styles.volumeSlider}
                 trackImage={ICON_TRACK_1.module}
-                thumbImage={ICON_THUMB_2.module}
+                thumbImage={ICON_THUMB_1.module}
                 value={1}
                 onValueChange={this._onVolumeSliderValueChange}
               />
             </View>
           
           </View>
-          <View
-            style={[
-              styles.buttonsContainerBase,
-              styles.buttonsContainerBottomRow
-            ]}
-          >
-            <TouchableHighlight
-              underlayColor={BACKGROUND_COLOR}
-              style={styles.wrapper}
-              onPress={() =>
-                this._trySetRate(1.0, this.state.shouldCorrectPitch)}
-            >
-              <View style={styles.button}>
-                <Text
-                  style={[
-                    styles.text,
-                    { ...Font.style('cutive-mono-regular') }
-                  ]}
-                >
-                  Rate:
-                </Text>
-              </View>
-            </TouchableHighlight>
-            <Slider
-              style={styles.rateSlider}
-              trackImage={ICON_TRACK_1.module}
-              thumbImage={ICON_THUMB_1.module}
-              value={this.state.rate / RATE_SCALE}
-              onSlidingComplete={this._onRateSliderSlidingComplete}
-            />
-            <TouchableHighlight
-              underlayColor={BACKGROUND_COLOR}
-              style={styles.wrapper}
-              onPress={this._onPitchCorrectionPressed}
-            >
-              <View style={styles.button}>
-                <Text
-                  style={[
-                    styles.text,
-                    { ...Font.style('cutive-mono-regular') }
-                  ]}
-                >
-                  PC: {this.state.shouldCorrectPitch ? 'yes' : 'no'}
-                </Text>
-              </View>
-            </TouchableHighlight>
-          </View>
+          
           <View />
-          {this.state.showVideo
-            ? <View>
-                <View
-                  style={[
-                    styles.buttonsContainerBase,
-                    styles.buttonsContainerTextRow
-                  ]}
-                >
-                  <View />
-                  <TouchableHighlight
-                    underlayColor={BACKGROUND_COLOR}
-                    style={styles.wrapper}
-                    onPress={this._onPosterPressed}
-                  >
-                    <View style={styles.button}>
-                      <Text
-                        style={[
-                          styles.text,
-                          { ...Font.style('cutive-mono-regular') }
-                        ]}
-                      >
-                        Poster: {this.state.poster ? 'yes' : 'no'}
-                      </Text>
-                    </View>
-                  </TouchableHighlight>
-                  <View />
-                  <TouchableHighlight
-                    underlayColor={BACKGROUND_COLOR}
-                    style={styles.wrapper}
-                    onPress={this._onFullscreenPressed}
-                  >
-                    <View style={styles.button}>
-                      <Text
-                        style={[
-                          styles.text,
-                          { ...Font.style('cutive-mono-regular') }
-                        ]}
-                      >
-                        Fullscreen
-                      </Text>
-                    </View>
-                  </TouchableHighlight>
-                  <View />
-                </View>
-                <View style={styles.space} />
-                <View
-                  style={[
-                    styles.buttonsContainerBase,
-                    styles.buttonsContainerTextRow
-                  ]}
-                >
-                  <View />
-                  <TouchableHighlight
-                    underlayColor={BACKGROUND_COLOR}
-                    style={styles.wrapper}
-                    onPress={this._onUseNativeControlsPressed}
-                  >
-                    <View style={styles.button}>
-                      <Text
-                        style={[
-                          styles.text,
-                          { ...Font.style('cutive-mono-regular') }
-                        ]}
-                      >
-                        Native Controls:{' '}
-                        {this.state.useNativeControls ? 'yes' : 'no'}
-                      </Text>
-                    </View>
-                  </TouchableHighlight>
-                  <View />
-                </View>
-              </View>
-            : null}
+          
         </View>;
   }
 }
@@ -778,12 +651,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   buttonsContainerTopRow: {
-    maxHeight: ICON_PLAY_BUTTON.height,
+    maxHeight: 40,
     minWidth: DEVICE_WIDTH / 2.0,
     maxWidth: DEVICE_WIDTH / 2.0
   },
   buttonsContainerMiddleRow: {
-    maxHeight: ICON_MUTED_BUTTON.height,
+    maxHeight: 100,
     alignSelf: 'stretch',
     paddingRight: 20
   },
@@ -792,20 +665,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    minWidth: DEVICE_WIDTH / 2.0,
-    maxWidth: DEVICE_WIDTH / 2.0
+    minWidth: DEVICE_WIDTH / 1.3,
+    maxWidth: DEVICE_WIDTH / 1.3,
+    marginLeft: 15
   },
   volumeSlider: {
-    width: DEVICE_WIDTH / 2.0 - 20
-  },
-  buttonsContainerBottomRow: {
-    maxHeight: ICON_THUMB_1.height,
-    alignSelf: 'stretch',
-    paddingRight: 20,
-    paddingLeft: 20
-  },
-  rateSlider: {
-    width: DEVICE_WIDTH / 2.0
+    width: DEVICE_WIDTH / 1.4,
+    marginLeft: 5
   },
   buttonsContainerTextRow: {
     maxHeight: FONT_SIZE,
