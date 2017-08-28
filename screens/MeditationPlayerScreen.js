@@ -110,7 +110,7 @@ export default class App extends React.Component {
     (async () => {
       await Font.loadAsync({
         // I don't think we want this font, but left in case want another font.
-        'cutive-mono-regular': require('./assets/fonts/CutiveMono-Regular.ttf')
+        'cutive-mono-regular': require('../assets/fonts/CutiveMono-Regular.ttf')
       });
       this.setState({ fontLoaded: true });
     })();
