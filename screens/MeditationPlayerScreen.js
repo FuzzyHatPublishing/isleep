@@ -115,7 +115,6 @@ export default class App extends React.Component {
       videoWidth: DEVICE_WIDTH,
       videoHeight: VIDEO_CONTAINER_HEIGHT,
       poster: false,
-      useNativeControls: false,
       fullscreen: false
     };
   }
@@ -407,24 +406,7 @@ export default class App extends React.Component {
     return '';
   }
 
-  _onPosterPressed = () => {
-    this.setState({ poster: !this.state.poster });
-  };
-
-  _onUseNativeControlsPressed = () => {
-    this.setState({ useNativeControls: !this.state.useNativeControls });
-  };
-
-  _onFullscreenPressed = () => {
-    try {
-      this._video.presentIOSFullscreenPlayer();
-    } catch (error) {
-      console.log(error.toString());
-    }
-  };
-
   render() {
-  	// console.log(ICON_PLAY_BUTTON)
     return !this.state.fontLoaded
       ? <View style={styles.emptyContainer} />
       : <View style={styles.container}>
@@ -447,7 +429,6 @@ export default class App extends React.Component {
               onLoadStart={this._onLoadStart}
               onLoad={this._onLoad}
               onError={this._onError}
-              useNativeControls={this.state.useNativeControls}
             />
           </View>
           <View
@@ -544,7 +525,7 @@ export default class App extends React.Component {
               />
             </TouchableHighlight>
           </View>
-          
+
           <View
             style={[
               styles.buttonsContainerBase,
