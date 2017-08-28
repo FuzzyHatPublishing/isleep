@@ -287,14 +287,6 @@ export default class App extends React.Component {
     }
   };
 
-  // _onLoopPressed = () => {
-  //   if (this.playbackInstance != null) {
-  //     this.playbackInstance.setIsLoopingAsync(
-  //       this.state.loopingType !== LOOPING_TYPE_ONE
-  //     );
-  //   }
-  // };
-
   _onVolumeSliderValueChange = value => {
     if (this.playbackInstance != null) {
       this.playbackInstance.setVolumeAsync(value);
@@ -441,8 +433,9 @@ export default class App extends React.Component {
               disabled={this.state.isLoading}
             >
               <Ionicons 
+                style={styles.ionicons}
               	name={ICON_BACK_BUTTON.name}
-              	size={36}
+              	size={40}
               />
             </TouchableHighlight>
             <TouchableHighlight
@@ -452,12 +445,13 @@ export default class App extends React.Component {
               disabled={this.state.isLoading}
             >
               <Ionicons
+                style={styles.ionicons}
               	name={
               		this.state.isPlaying
               		? ICON_PAUSE_BUTTON.name
               		: ICON_PLAY_BUTTON.name
               	}
-              	size={36}
+              	size={40}
               />
             </TouchableHighlight>
             <TouchableHighlight
@@ -467,6 +461,7 @@ export default class App extends React.Component {
               disabled={this.state.isLoading}
             >
               <Ionicons 
+                style={styles.ionicons}
               	name={ICON_STOP_BUTTON.name} 
               	size={32}
             	/>
@@ -478,8 +473,9 @@ export default class App extends React.Component {
               disabled={this.state.isLoading}
             >
               <Ionicons
+                style={styles.ionicons}
                 name={ICON_FORWARD_BUTTON.name}
-                size={36}
+                size={40}
               />
             </TouchableHighlight>
           </View>
@@ -516,7 +512,6 @@ export default class App extends React.Component {
           
           </View>
           
-          <View />
           
         </View>;
   }
@@ -535,9 +530,13 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     backgroundColor: BACKGROUND_COLOR
   },
+  ionicons: {
+    paddingLeft: 10,
+    paddingRight: 10
+  },
   wrapper: {},
   nameContainer: {
-    height: FONT_SIZE
+    height: FONT_SIZE + 10
   },
   space: {
     height: FONT_SIZE
@@ -606,7 +605,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     minWidth: DEVICE_WIDTH / 1.3,
     maxWidth: DEVICE_WIDTH / 1.3,
-    marginLeft: 15
+    marginLeft: 20
   },
   volumeSlider: {
     width: DEVICE_WIDTH / 1.4,
