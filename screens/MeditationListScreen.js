@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
-import MeditationInfo from '../components/MeditationInfo';
+import { View, StyleSheet } from 'react-native';
+import Button from '../components/common/Button';
+
 
 class MeditationListScreen extends Component {
   static navigationOptions = {
@@ -15,18 +16,40 @@ class MeditationListScreen extends Component {
   }
 
   renderMeditations() {
+      const { navigate } = this.props.navigation;
+
       return this.state.meditations.map(meditation =>
-        <MeditationInfo key={meditation.id} meditation={meditation} />
+        <Button
+          key={meditation.id}
+          onPress={() => navigate('meditation', { meditation })}
+          title={ meditation.title }
+        >
+        {meditation.title}
+        </Button>
       );
   }
 
   render() {
+
     return (
-      <ScrollView>
+      <View style={styles.container}>
         {this.renderMeditations()}
-      </ScrollView>
+      </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  twoButtons: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 40
+  }
+});
 
 export default MeditationListScreen;

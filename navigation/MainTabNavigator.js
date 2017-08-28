@@ -6,6 +6,7 @@ import { TabNavigator, TabBarBottom, StackNavigator } from 'react-navigation';
 import Colors from '../constants/Colors';
 import HomeScreen from '../screens/HomeScreen';
 import MeditationListScreen from '../screens/MeditationListScreen';
+import MeditationPlayerScreen from '../screens/MeditationPlayerScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import LogInScreen from '../screens/LogInScreen';
 import SignUpScreen from '../screens/SignUpScreen';
@@ -21,7 +22,11 @@ export default TabNavigator(
       { headerMode: 'none' })
     },
     MeditationList: {
-      screen: MeditationListScreen,
+      screen: StackNavigator({
+        meditationList: { screen: MeditationListScreen },
+        meditation: { screen: MeditationPlayerScreen }
+      },
+      { headerMode: 'none' })
     },
     Settings: {
       screen: SettingsScreen,

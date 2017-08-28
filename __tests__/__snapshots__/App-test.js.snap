@@ -651,7 +651,7 @@ exports[`renders the root without loading screen 1`] = `
                   }
                 }
               >
-                MeditationPlayer
+                Meditations
               </Text>
             </View>
             <View
