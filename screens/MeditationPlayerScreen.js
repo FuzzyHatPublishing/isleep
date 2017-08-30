@@ -6,6 +6,7 @@ import React from 'react';
 import {
   Dimensions,
   Image,
+  Platform,
   Slider,
   StyleSheet,
   Text,
@@ -13,7 +14,7 @@ import {
   View
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-
+import { Icon } from 'react-native-elements';
 import { Asset, Audio, Font, Video } from 'expo';
 
 class PlaylistItem {
@@ -73,7 +74,18 @@ const BUFFERING_STRING = '...buffering...';
 const RATE_SCALE = 3.0;
 const VIDEO_CONTAINER_HEIGHT = DEVICE_HEIGHT * 2.0 / 5.0 - FONT_SIZE * 2;
 
-export default class App extends React.Component {
+class MeditationPlayerScreen extends React.Component {
+  static navigationOptions = ({ navigation }) => ({
+		title: 'Meditation',
+		headerLeft:
+			<Icon
+				name='navigate-before'
+				size={32}
+				onPress={ () => navigation.navigate('meditationList') }
+			/>,
+		headerStyle: { marginTop: Platform.OS === 'android' ? 24: 0 }
+	});
+
   constructor(props) {
     super(props);
     this.index = 0;
@@ -114,6 +126,8 @@ export default class App extends React.Component {
       });
       this.setState({ fontLoaded: true });
     })();
+    console.log("&&&&&&&&&&&&&&&&&&&&");
+    console.log(this.props.navigation.state.params.meditation.source);
   }
 
   async _loadNewPlaybackInstance(playing) {
@@ -432,7 +446,7 @@ export default class App extends React.Component {
               onPress={this._onBackPressed}
               disabled={this.state.isLoading}
             >
-              <Ionicons 
+              <Ionicons
                 style={styles.ionicons}
               	name={ICON_BACK_BUTTON.name}
               	size={40}
@@ -460,9 +474,9 @@ export default class App extends React.Component {
               onPress={this._onStopPressed}
               disabled={this.state.isLoading}
             >
-              <Ionicons 
+              <Ionicons
                 style={styles.ionicons}
-              	name={ICON_STOP_BUTTON.name} 
+              	name={ICON_STOP_BUTTON.name}
               	size={32}
             	/>
             </TouchableHighlight>
@@ -509,10 +523,10 @@ export default class App extends React.Component {
                 onValueChange={this._onVolumeSliderValueChange}
               />
             </View>
-          
+
           </View>
-          
-          
+
+
         </View>;
   }
 }
@@ -620,3 +634,5 @@ const styles = StyleSheet.create({
     maxWidth: DEVICE_WIDTH
   }
 });
+
+export default MeditationPlayerScreen;
