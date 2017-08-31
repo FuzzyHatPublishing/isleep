@@ -93,9 +93,9 @@ class MeditationPlayerScreen extends React.Component {
     this.shouldPlayAtEndOfSeek = false;
     this.playbackInstance = null;
     this.state = {
-      playbackInstanceName: LOADING_STRING,
-      // loopingType: LOOPING_TYPE_ALL,
+      meditationTrack: this.props.navigation.state.params.meditation,
       muted: false,
+      playbackInstanceName: LOADING_STRING,
       playbackInstancePosition: null,
       playbackInstanceDuration: null,
       shouldPlay: false,
@@ -126,8 +126,6 @@ class MeditationPlayerScreen extends React.Component {
       });
       this.setState({ fontLoaded: true });
     })();
-    console.log("&&&&&&&&&&&&&&&&&&&&");
-    console.log(this.props.navigation.state.params.meditation.source);
   }
 
   async _loadNewPlaybackInstance(playing) {
@@ -137,29 +135,22 @@ class MeditationPlayerScreen extends React.Component {
       this.playbackInstance = null;
     }
 
-    const source = require('../assets/sounds/test-audio.mp3');
+    
     const initialStatus = {
       shouldPlay: playing,
       volume: this.state.volume,
-      isMuted: this.state.muted,
-      // isLooping: this.state.loopingType === LOOPING_TYPE_ONE
-      // // UNCOMMENT THIS TO TEST THE OLD androidImplementation:
-      // androidImplementation: 'MediaPlayer',
+      isMuted: this.state.muted
     };
 
-    if (PLAYLIST[this.index].isVideo) {
-      this._video.setOnPlaybackStatusUpdate(this._onPlaybackStatusUpdate);
-      await this._video.loadAsync(source, initialStatus);
-      this.playbackInstance = this._video;
-      const status = await this._video.getStatusAsync();
-    } else {
-      const { sound, status } = await Audio.Sound.create(
-        source,
-        initialStatus,
-        this._onPlaybackStatusUpdate
-      );
-      this.playbackInstance = sound;
-    }
+    const source = this.state.meditationTrack.id == 1 ? require('../assets/sounds/test-audio.mp3') : require('../assets/sounds/test-audio-2.mp3');
+
+    const { sound, status } = await Audio.Sound.create(
+      source,
+      initialStatus,
+      this._onPlaybackStatusUpdate
+    );
+    this.playbackInstance = sound;
+    
 
     this._updateScreenForLoading(false);
   }
@@ -180,7 +171,7 @@ class MeditationPlayerScreen extends React.Component {
       });
     } else {
       this.setState({
-        playbackInstanceName: PLAYLIST[this.index].name,
+        playbackInstanceName: this.state.meditationTrack.title,
         isLoading: false
       });
     }
@@ -379,7 +370,7 @@ class MeditationPlayerScreen extends React.Component {
             <Text
               style={[styles.text]}
             >
-              {this.state.playbackInstanceName}
+              {this.state.meditationTrack.title}
             </Text>
           </View>
           <View style={styles.space} />
