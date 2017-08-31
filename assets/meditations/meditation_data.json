@@ -7,6 +7,6 @@
   {
     "id": 2,
     "title": "Long Meditation",
-    "source": "./sounds/test-audio.mp3"
+    "source": "../assets/sounds/test-audio-2.mp3"
   }
 ]
