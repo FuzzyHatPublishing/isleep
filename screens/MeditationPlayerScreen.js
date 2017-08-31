@@ -191,8 +191,7 @@ class MeditationPlayerScreen extends React.Component {
       });
       // if (status.didJustFinish && !status.isLooping) {
       if (status.didJustFinish) {
-
-        this._advanceIndex(true);
+        this._finishedMeditation(true);
         this._updatePlaybackInstanceForIndex(true);
       }
     } else {
@@ -240,10 +239,11 @@ class MeditationPlayerScreen extends React.Component {
     );
   };
 
-  _advanceIndex(forward) {
-    this.index =
-      (this.index + (forward ? 1 : PLAYLIST.length - 1)) % PLAYLIST.length;
-  }
+  _finishedMeditation = event => {
+    console.log(
+      `AUDIO UPDATE : Finished meditation`
+      );
+  };
 
   async _updatePlaybackInstanceForIndex(playing) {
     this._updateScreenForLoading(true);
@@ -274,14 +274,12 @@ class MeditationPlayerScreen extends React.Component {
 
   _onForwardPressed = () => {
     if (this.playbackInstance != null) {
-      this._advanceIndex(true);
       this._updatePlaybackInstanceForIndex(this.state.shouldPlay);
     }
   };
 
   _onBackPressed = () => {
     if (this.playbackInstance != null) {
-      this._advanceIndex(false);
       this._updatePlaybackInstanceForIndex(this.state.shouldPlay);
     }
   };
