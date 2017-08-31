@@ -150,7 +150,6 @@ class MeditationPlayerScreen extends React.Component {
       this._onPlaybackStatusUpdate
     );
     this.playbackInstance = sound;
-    
 
     this._updateScreenForLoading(false);
   }
@@ -189,10 +188,9 @@ class MeditationPlayerScreen extends React.Component {
         muted: status.isMuted,
         volume: status.volume,
       });
-      // if (status.didJustFinish && !status.isLooping) {
       if (status.didJustFinish) {
         this._finishedMeditation(true);
-        this._updatePlaybackInstanceForIndex(true);
+        // this._updatePlaybackInstanceForIndex(true);
       }
     } else {
       if (status.error) {
@@ -240,6 +238,7 @@ class MeditationPlayerScreen extends React.Component {
   };
 
   _finishedMeditation = event => {
+    this.playbackInstance = null;
     console.log(
       `AUDIO UPDATE : Finished meditation`
       );
@@ -375,14 +374,17 @@ class MeditationPlayerScreen extends React.Component {
           <View style={styles.videoContainer}>
             <Video
               ref={this._mountVideo}
-              style={[
-                styles.video
-              ]}
+              
               onPlaybackStatusUpdate={this._onPlaybackStatusUpdate}
               onLoadStart={this._onLoadStart}
               onLoad={this._onLoad}
               onError={this._onError}
             />
+              <Image
+                source={ require('../assets/images/silhouette.jpg') }
+                style={styles.welcomeImage}
+              />
+
           </View>
           <View
             style={[
@@ -621,6 +623,10 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     minWidth: DEVICE_WIDTH,
     maxWidth: DEVICE_WIDTH
+  },
+  welcomeImage: {
+    height: 300,
+    width: 600
   }
 });
 
