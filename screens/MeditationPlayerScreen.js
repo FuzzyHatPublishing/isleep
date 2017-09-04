@@ -126,8 +126,6 @@ class MeditationPlayerScreen extends React.Component {
       });
       this.setState({ fontLoaded: true });
     })();
-    console.log("&&&&&&&&&&&&&&&&&&&&");
-    console.log(this.props.navigation.state.params.meditation.source);
   }
 
   async _loadNewPlaybackInstance(playing) {

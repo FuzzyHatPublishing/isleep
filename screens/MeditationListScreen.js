@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Platform } from 'react-native';
-import { Icon } from 'react-native-elements';
-import Button from '../components/common/Button';
-
+import { Image, Platform, StyleSheet, Text, View } from 'react-native';
+import { Icon, List, ListItem } from 'react-native-elements';
 
 class MeditationListScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -23,25 +21,26 @@ class MeditationListScreen extends Component {
     this.setState({ meditations: meditationData });
   }
 
-  renderMeditations() {
-      const { navigate } = this.props.navigation;
-
-      return this.state.meditations.map(meditation =>
-        <Button
-          key={meditation.id}
-          onPress={() => navigate('meditation', { meditation })}
-          title={ meditation.title }
-        >
-        {meditation.title}
-        </Button>
-      );
-  }
-
   render() {
+    const { navigate } = this.props.navigation;
 
     return (
       <View style={styles.container}>
-        {this.renderMeditations()}
+        <Image
+          source={ require('../assets/images/meditating_arms.png') }
+          style={styles.imageStyle}
+        />
+        <List style={styles.listStyle}>
+          {
+            this.state.meditations.map((meditation) => (
+              <ListItem
+                key={meditation.id}
+                title={meditation.title}
+                onPress={() => navigate('meditation', {meditation}) }
+              />
+            ))
+          }
+        </List>
       </View>
     )
   }
@@ -52,11 +51,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  twoButtons: {
-    flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 40
+  imageStyle: {
+    height: 300,
+    width: null
   }
 });
 
