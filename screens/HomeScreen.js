@@ -8,7 +8,6 @@ import {
   View,
 } from 'react-native';
 import Welcome from '../components/Welcome';
-import UpdateProfileScreen from './UpdateProfileScreen';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
