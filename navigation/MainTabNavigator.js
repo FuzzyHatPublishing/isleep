@@ -8,16 +8,12 @@ import HomeScreen from '../screens/HomeScreen';
 import MeditationListScreen from '../screens/MeditationListScreen';
 import MeditationPlayerScreen from '../screens/MeditationPlayerScreen';
 import SettingsScreen from '../screens/SettingsScreen';
-import LogInScreen from '../screens/LogInScreen';
-import SignUpScreen from '../screens/SignUpScreen';
 
 export default TabNavigator(
   {
     Home: {
       screen: StackNavigator({
-        home: { screen: HomeScreen },
-        login: { screen: LogInScreen },
-        signup: { screen: SignUpScreen }
+        home: { screen: HomeScreen }
       },
       { headerMode: 'none' })
     },
