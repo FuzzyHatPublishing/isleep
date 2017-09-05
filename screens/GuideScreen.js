@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, Platform } from 'react-native';
+import {
+	View,
+	StyleSheet,
+	Text,
+	Platform,
+	Dimensions
+} from 'react-native';
 import { Icon } from 'react-native-elements';
 
 class GuideScreen extends Component {
@@ -23,36 +29,18 @@ class GuideScreen extends Component {
 
 	render() {
 		const { navigate } = this.props.navigation;
-		
+
 		return (
 			<View style={styles.grid}>
-				<View style={styles.row}>
-					<View style={[
-						styles.col,
-						styles.rowOne
-					]}>
-						<Text>Guide Screen</Text>
-					</View>
-					<View style={[
-						styles.col,
-						styles.rowTwo
-					]}>
-						<Text>Guide Screen Two</Text>
-					</View>
-				</View>
-				<View style={styles.row}>
-					<View style={[
-						styles.col,
-						styles.rowThree
-					]}>
-						<Text>Guide Screen Three</Text>
-					</View>
-					<View style={[
-						styles.col,
-						styles.rowFour
-					]}>
-						<Text>Guide Screen Four</Text>
-					</View>
+				<View style={styles.container}>
+					{
+						this.state.guideSubjects.map((subject) => (
+							<View style={styles.box} key={subject.id}>
+								<Text style={styles.title}>{subject.title}</Text>
+								<Text style={styles.subhead}>{subject.subhead}</Text>
+							</View>
+						))
+					}
 				</View>
 			</View>
 		);
@@ -61,18 +49,32 @@ class GuideScreen extends Component {
 
 const styles = StyleSheet.create({
 	grid: {
-		flex: 1
+		flex: 1,
+		backgroundColor: '#FAFAFA'
 	},
-	row: {
-		flexDirection: 'row'
+	container: {
+		flex: 1,
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		padding: 2
 	},
-	col: {
-		flexDirection: 'column'
+	box: {
+		margin: 2,
+		width: Dimensions.get('window').width / 2 -6,
+		height: 200,
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: '#FAFAFA',
+		borderWidth: 5,
+		borderColor: '#607D8B'
 	},
-	rowOne: { backgroundColor: 'blue'},
-	rowTwo: { backgroundColor: 'red'},
-	rowThree: { backgroundColor: 'green'},
-	rowFour: { backgroundColor: 'yellow'}
+	title: {
+		fontSize: 20,
+		paddingBottom: 10
+	},
+	subhead: {
+		fontSize: 16,
+	}
 })
 
 export default GuideScreen;
