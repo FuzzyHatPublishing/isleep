@@ -8,3 +8,7 @@ React Native Yoga Nidra app.
 * Tere Gallarreta
 * Shawn Tuttle
 
+### Tech and other credits
+* React Native
+* Expo
+* Player based off of [Expo's playlist example](https://github.com/expo/playlist-example)
