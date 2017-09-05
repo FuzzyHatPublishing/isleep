@@ -221,7 +221,8 @@ exports[`renders the root without loading screen 1`] = `
                           <View
                             style={
                               Object {
-                                "marginTop": 50,
+                                "flex": 1,
+                                "justifyContent": "space-between",
                               }
                             }
                           >
@@ -234,63 +235,12 @@ exports[`renders the root without loading screen 1`] = `
                                 }
                               }
                             />
-                            <Text
-                              accessible={true}
-                              allowFontScaling={true}
-                              disabled={false}
-                              ellipsizeMode="tail"
-                              style={
-                                Object {
-                                  "fontFamily": "Futura",
-                                  "fontSize": 20,
-                                  "paddingTop": 10,
-                                  "textAlign": "center",
-                                }
-                              }
-                            >
-                              Welcome to your place of rest.
-                            </Text>
-                          </View>
-                          <View
-                            style={
-                              Object {
-                                "alignItems": "center",
-                                "flex": 1,
-                                "flexDirection": "row",
-                                "marginTop": 40,
-                              }
-                            }
-                          >
                             <View
-                              accessibilityComponentType={undefined}
-                              accessibilityLabel={undefined}
-                              accessibilityTraits={undefined}
-                              accessible={true}
-                              collapsable={undefined}
-                              hitSlop={undefined}
-                              isTVSelectable={true}
-                              nativeID={undefined}
-                              onLayout={undefined}
-                              onResponderGrant={[Function]}
-                              onResponderMove={[Function]}
-                              onResponderRelease={[Function]}
-                              onResponderTerminate={[Function]}
-                              onResponderTerminationRequest={[Function]}
-                              onStartShouldSetResponder={[Function]}
                               style={
                                 Object {
-                                  "backgroundColor": "#fff",
-                                  "borderColor": "#990000",
-                                  "borderRadius": 5,
-                                  "borderWidth": 1,
-                                  "flex": 1,
-                                  "marginLeft": 5,
-                                  "marginRight": 5,
-                                  "opacity": 1,
+                                  "paddingBottom": 50,
                                 }
                               }
-                              testID={undefined}
-                              tvParallaxProperties={undefined}
                             >
                               <Text
                                 accessible={true}
@@ -299,49 +249,15 @@ exports[`renders the root without loading screen 1`] = `
                                 ellipsizeMode="tail"
                                 style={
                                   Object {
-                                    "alignSelf": "center",
-                                    "color": "#990000",
-                                    "fontSize": 16,
-                                    "fontWeight": "600",
-                                    "paddingBottom": 10,
+                                    "fontFamily": "Futura",
+                                    "fontSize": 24,
                                     "paddingTop": 10,
+                                    "textAlign": "center",
                                   }
                                 }
                               >
-                                Login
+                                Welcome to your
                               </Text>
-                            </View>
-                            <View
-                              accessibilityComponentType={undefined}
-                              accessibilityLabel={undefined}
-                              accessibilityTraits={undefined}
-                              accessible={true}
-                              collapsable={undefined}
-                              hitSlop={undefined}
-                              isTVSelectable={true}
-                              nativeID={undefined}
-                              onLayout={undefined}
-                              onResponderGrant={[Function]}
-                              onResponderMove={[Function]}
-                              onResponderRelease={[Function]}
-                              onResponderTerminate={[Function]}
-                              onResponderTerminationRequest={[Function]}
-                              onStartShouldSetResponder={[Function]}
-                              style={
-                                Object {
-                                  "backgroundColor": "#fff",
-                                  "borderColor": "#990000",
-                                  "borderRadius": 5,
-                                  "borderWidth": 1,
-                                  "flex": 1,
-                                  "marginLeft": 5,
-                                  "marginRight": 5,
-                                  "opacity": 1,
-                                }
-                              }
-                              testID={undefined}
-                              tvParallaxProperties={undefined}
-                            >
                               <Text
                                 accessible={true}
                                 allowFontScaling={true}
@@ -349,16 +265,14 @@ exports[`renders the root without loading screen 1`] = `
                                 ellipsizeMode="tail"
                                 style={
                                   Object {
-                                    "alignSelf": "center",
-                                    "color": "#990000",
-                                    "fontSize": 16,
-                                    "fontWeight": "600",
-                                    "paddingBottom": 10,
+                                    "fontFamily": "Futura",
+                                    "fontSize": 24,
                                     "paddingTop": 10,
+                                    "textAlign": "center",
                                   }
                                 }
                               >
-                                Sign up
+                                place of rest.
                               </Text>
                             </View>
                           </View>

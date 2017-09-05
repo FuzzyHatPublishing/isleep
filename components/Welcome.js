@@ -5,7 +5,6 @@ import {
   Text,
   View,
 } from 'react-native';
-import Button from './common/Button';
 
 export default class Welcome extends React.Component {
 
@@ -17,30 +16,32 @@ export default class Welcome extends React.Component {
           source={ require('../assets/images/silhouette.jpg') }
           style={styles.welcomeImage}
         />
-        <Text style={styles.welcomeText}>Welcome to your place of rest.</Text>
+        <View style={styles.textContainer}>
+          <Text style={styles.welcomeText}>Welcome to your</Text>
+          <Text style={styles.welcomeText}>place of rest.</Text>
+          
+        </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create ({
-  // twoButtons: {
-  //   flex: 1,
-  //   flexDirection: "row",
-  //   alignItems: "center",
-  //   marginTop: 40
-  // },
-  welcomeContainer: {
-    marginTop: 50
+  textContainer: {
+    paddingBottom: 50
   },
-  welcomeText: {
-    fontFamily: "Futura",
-    textAlign: "center",
-    fontSize: 20,
-    paddingTop: 10
+  welcomeContainer: {
+    flex: 1,
+    justifyContent: "space-between"
   },
   welcomeImage: {
     height: 300,
     width: 600
+  },
+  welcomeText: {
+    fontFamily: "Futura",
+    textAlign: "center",
+    fontSize: 24,
+    paddingTop: 10
   }
 })
