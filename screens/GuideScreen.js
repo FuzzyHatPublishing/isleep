@@ -14,8 +14,16 @@ class GuideScreen extends Component {
 		headerStyle: { marginTop: Platform.OS === 'android' ? 24 : 0 }
 	});
 
+	state = { guideSubjects: [] };
+
+	componentWillMount() {
+		let guideData = require('../assets/data/guide_data');
+		this.setState({ guideSubjects: guideData });
+	}
 
 	render() {
+		const { navigate } = this.props.navigation;
+		
 		return (
 			<View style={styles.grid}>
 				<View style={styles.row}>
