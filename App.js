@@ -8,6 +8,8 @@ import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
 import reducers from './reducers';
 
+const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+
 export default class App extends React.Component {
   state = {
     assetsAreLoaded: false,
@@ -18,7 +20,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
     if (!this.state.assetsAreLoaded && !this.props.skipLoadingScreen) {
       return <AppLoading />;
