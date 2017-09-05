@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, Platform } from 'react-native';
+import { View, StyleSheet, Text, Platform, Dimensions } from 'react-native';
 import { Icon } from 'react-native-elements';
 
 class GuideScreen extends Component {
@@ -26,34 +26,17 @@ class GuideScreen extends Component {
 		
 		return (
 			<View style={styles.grid}>
-				<View style={styles.row}>
-					<View style={[
-						styles.col,
-						styles.rowOne
-					]}>
-						<Text>Guide Screen</Text>
-					</View>
-					<View style={[
-						styles.col,
-						styles.rowTwo
-					]}>
-						<Text>Guide Screen Two</Text>
-					</View>
-				</View>
-				<View style={styles.row}>
-					<View style={[
-						styles.col,
-						styles.rowThree
-					]}>
-						<Text>Guide Screen Three</Text>
-					</View>
-					<View style={[
-						styles.col,
-						styles.rowFour
-					]}>
-						<Text>Guide Screen Four</Text>
-					</View>
-				</View>
+					{ 
+						this.state.guideSubjects.map((guideItem) => (
+						<View style={styles.box}>
+							<Text 
+								key={guideItem.id}
+							>
+								{guideItem.subject}
+							</Text>
+						</View>
+						))
+					}
 			</View>
 		);
 	}
@@ -61,18 +44,20 @@ class GuideScreen extends Component {
 
 const styles = StyleSheet.create({
 	grid: {
-		flex: 1
-	},
-	row: {
-		flexDirection: 'row'
-	},
-	col: {
-		flexDirection: 'column'
-	},
-	rowOne: { backgroundColor: 'blue'},
-	rowTwo: { backgroundColor: 'red'},
-	rowThree: { backgroundColor: 'green'},
-	rowFour: { backgroundColor: 'yellow'}
+    flex: 1,
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+    backgroundColor: '#fff',
+    padding: 2
+  },
+	box: { 
+		backgroundColor: '#e88024',
+		margin: 2,
+		width: Dimensions.get('window').width / 2 - 6,
+		height: Dimensions.get('window').width / 2 - 6,
+		justifyContent: 'center',
+		alignItems: 'center'
+	}
 })
 
 export default GuideScreen;
