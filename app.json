@@ -7,14 +7,14 @@
     "sdkVersion": "19.0.0",
     "version": "1.0.0",
     "orientation": "portrait",
-    "primaryColor": "#cccccc",
-    "icon": "./assets/icons/app-icon.png",
+    "primaryColor": "#FFCC99",
+    "icon": "./assets/icons/app-icon-eye.png",
     "notification": {
       "icon": "./assets/icons/notification-icon.png",
       "color": "#000000"
     },
     "loading": {
-      "icon": "./assets/icons/loading-icon.png",
+      "icon": "./assets/icons/app-icon-eye.png",
       "hideExponentText": false
     },
     "packagerOpts": {
