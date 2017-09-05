@@ -15,28 +15,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Icon } from 'react-native-elements';
-import { Asset, Audio, Font, Video } from 'expo';
-
-class PlaylistItem {
-  constructor(name, uri, isVideo) {
-    this.name = name;
-    this.uri = uri;
-    this.isVideo = isVideo;
-  }
-}
-
-const PLAYLIST = [
-  new PlaylistItem(
-    'Short version',
-    require('../assets/sounds/test-audio.mp3'),
-    false
-  ),
-  new PlaylistItem(
-    'Long version',
-    require('../assets/sounds/test-audio.mp3'),
-    false
-  )
-];
+import { Asset, Audio, Font, Video, LinearGradient } from 'expo';
 
 const ICON_PLAY_BUTTON = {
   name: 'ios-play'
@@ -66,13 +45,15 @@ const ICON_THUMB_1 = require('../assets/images/dot.png');
 
 
 const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get('window');
-const BACKGROUND_COLOR = '#FFF8ED';
+const BACKGROUND_COLOR = '#FFF';
 const DISABLED_OPACITY = 0.5;
 const FONT_SIZE = 14;
 const LOADING_STRING = '... loading ...';
 const BUFFERING_STRING = '...buffering...';
 const RATE_SCALE = 3.0;
-const VIDEO_CONTAINER_HEIGHT = DEVICE_HEIGHT * 2.0 / 5.0 - FONT_SIZE * 2;
+// const VIDEO_CONTAINER_HEIGHT = DEVICE_HEIGHT * 2.0 / 7.0 - FONT_SIZE * 2;
+const VIDEO_CONTAINER_HEIGHT = DEVICE_HEIGHT * .6;
+
 
 class MeditationPlayerScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -363,29 +344,27 @@ class MeditationPlayerScreen extends React.Component {
       ? <View style={styles.emptyContainer} />
       : <View style={styles.container}>
           <View />
-          <View style={styles.nameContainer}>
-            <Text
-              style={[styles.text]}
-            >
-              {this.state.meditationTrack.title}
-            </Text>
-          </View>
-          <View style={styles.space} />
+          
           <View style={styles.videoContainer}>
             <Video
               ref={this._mountVideo}
-              
               onPlaybackStatusUpdate={this._onPlaybackStatusUpdate}
               onLoadStart={this._onLoadStart}
               onLoad={this._onLoad}
               onError={this._onError}
             />
-              <Image
-                source={ require('../assets/images/silhouette.jpg') }
-                style={styles.welcomeImage}
+            <Image
+              source={ require('../assets/images/waterfall.png') }
+              style={styles.image}
+            >
+              <LinearGradient
+                colors={['transparent', 'rgba(255,255,255,0.8)']}
+                style={styles.linearGradient}
               />
+            </Image>  
 
           </View>
+
           <View
             style={[
               styles.playbackContainer,
@@ -394,15 +373,6 @@ class MeditationPlayerScreen extends React.Component {
               }
             ]}
           >
-            <Slider
-              style={styles.playbackSlider}
-              trackImage={ICON_TRACK_1.module}
-              thumbImage={ICON_THUMB_1.module}
-              value={this._getSeekSliderPosition()}
-              onValueChange={this._onSeekSliderValueChange}
-              onSlidingComplete={this._onSeekSliderSlidingComplete}
-              disabled={this.state.isLoading}
-            />
             <View style={styles.timestampRow}>
               <Text
                 style={[
@@ -421,102 +391,60 @@ class MeditationPlayerScreen extends React.Component {
                 {this._getTimestamp()}
               </Text>
             </View>
-          </View>
-          <View
-            style={[
-              styles.buttonsContainerBase,
-              styles.buttonsContainerTopRow,
-              {
-                opacity: this.state.isLoading ? DISABLED_OPACITY : 1.0
-              }
-            ]}
-          >
-            <TouchableHighlight
-              underlayColor={BACKGROUND_COLOR}
-              style={styles.wrapper}
-              onPress={this._onBackPressed}
-              disabled={this.state.isLoading}
-            >
-              <Ionicons
-                style={styles.ionicons}
-              	name={ICON_BACK_BUTTON.name}
-              	size={40}
-              />
-            </TouchableHighlight>
-            <TouchableHighlight
-              underlayColor={BACKGROUND_COLOR}
-              style={styles.wrapper}
-              onPress={this._onPlayPausePressed}
-              disabled={this.state.isLoading}
-            >
-              <Ionicons
-                style={styles.ionicons}
-              	name={
-              		this.state.isPlaying
-              		? ICON_PAUSE_BUTTON.name
-              		: ICON_PLAY_BUTTON.name
-              	}
-              	size={40}
-              />
-            </TouchableHighlight>
-            <TouchableHighlight
-              underlayColor={BACKGROUND_COLOR}
-              style={styles.wrapper}
-              onPress={this._onStopPressed}
-              disabled={this.state.isLoading}
-            >
-              <Ionicons
-                style={styles.ionicons}
-              	name={ICON_STOP_BUTTON.name}
-              	size={32}
-            	/>
-            </TouchableHighlight>
-            <TouchableHighlight
-              underlayColor={BACKGROUND_COLOR}
-              style={styles.wrapper}
-              onPress={this._onForwardPressed}
-              disabled={this.state.isLoading}
-            >
-              <Ionicons
-                style={styles.ionicons}
-                name={ICON_FORWARD_BUTTON.name}
-                size={40}
-              />
-            </TouchableHighlight>
-          </View>
 
-          <View
-            style={[
-              styles.buttonsContainerBase,
-              styles.buttonsContainerMiddleRow
-            ]}
-          >
             <View style={styles.volumeContainer}>
               <TouchableHighlight
                 underlayColor={BACKGROUND_COLOR}
                 style={styles.wrapper}
-                onPress={this._onMutePressed}
+                onPress={this._onPlayPausePressed}
+                disabled={this.state.isLoading}
               >
                 <Ionicons
+                  style={styles.ionicons}
                   name={
-                    this.state.muted
-                      ? ICON_MUTED_BUTTON.name
-                      : ICON_UNMUTED_BUTTON.name
+                    this.state.isPlaying
+                    ? ICON_PAUSE_BUTTON.name
+                    : ICON_PLAY_BUTTON.name
                   }
-                  size={42}
+                  size={36}
                 />
               </TouchableHighlight>
+              <TouchableHighlight
+                underlayColor={BACKGROUND_COLOR}
+                style={styles.wrapper}
+                onPress={this._onStopPressed}
+                disabled={this.state.isLoading}            
+              >
+                 <Ionicons
+                    style={styles.ionicons}
+                    name={ICON_STOP_BUTTON.name}
+                    size={28}
+                  />
+              </TouchableHighlight>
               <Slider
-                style={styles.volumeSlider}
+                style={styles.playbackSlider}
                 trackImage={ICON_TRACK_1.module}
                 thumbImage={ICON_THUMB_1.module}
-                value={1}
-                onValueChange={this._onVolumeSliderValueChange}
+                value={this._getSeekSliderPosition()}
+                onValueChange={this._onSeekSliderValueChange}
+                onSlidingComplete={this._onSeekSliderSlidingComplete}
+                disabled={this.state.isLoading}
               />
             </View>
 
+           <View
+              style={[
+                styles.buttonsContainerBase,
+                styles.buttonsContainerMiddleRow
+              ]}
+            >
+              <View style={styles.descriptionText}>
+                <Text>
+                  This is the short/long session that we will need to add a description to the meditaiton object for.
+                </Text>
+              </View>
+            </View>
           </View>
-
 
         </View>;
   }
@@ -525,7 +453,8 @@ class MeditationPlayerScreen extends React.Component {
 const styles = StyleSheet.create({
   emptyContainer: {
     alignSelf: 'stretch',
-    backgroundColor: BACKGROUND_COLOR
+    backgroundColor: BACKGROUND_COLOR,
+    backgroundColor: '#c9c7c7'
   },
   container: {
     flex: 1,
@@ -535,10 +464,6 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     backgroundColor: BACKGROUND_COLOR
   },
-  ionicons: {
-    paddingLeft: 10,
-    paddingRight: 10
-  },
   wrapper: {},
   nameContainer: {
     height: FONT_SIZE + 10
@@ -547,6 +472,7 @@ const styles = StyleSheet.create({
     height: FONT_SIZE
   },
   videoContainer: {
+    flex: 1,
     height: VIDEO_CONTAINER_HEIGHT
   },
   video: {
@@ -554,15 +480,23 @@ const styles = StyleSheet.create({
   },
   playbackContainer: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
+    // flexDirection: 'column',
     alignItems: 'center',
     alignSelf: 'stretch',
-    minHeight: ICON_THUMB_1.height * 2.0,
-    maxHeight: ICON_THUMB_1.height * 2.0
+    backgroundColor: '#c9c7c7',
+    // paddingTop: DEVICE_HEIGHT * .2,
+    // minHeight: ICON_THUMB_1.height,
+    // maxHeight: ICON_THUMB_1.height * 2.0
   },
   playbackSlider: {
-    alignSelf: 'stretch'
+    width: DEVICE_WIDTH * .6,
+
+    // alignSelf: 'stretch',
+    marginRight: 10,
+    marginLeft: 5
+  },
+  volumeSlider: {
+    width: DEVICE_WIDTH * .6
   },
   timestampRow: {
     flex: 1,
@@ -570,7 +504,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     alignSelf: 'stretch',
-    minHeight: FONT_SIZE
+    backgroundColor:'transparent',
+    maxHeight: FONT_SIZE * 2
   },
   text: {
     fontSize: FONT_SIZE,
@@ -584,49 +519,51 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     paddingRight: 20
   },
-  button: {
-    // backgroundColor: BACKGROUND_COLOR
-  },
   buttonsContainerBase: {
     flex: 1,
-    flexDirection: 'row',
+    // flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'center'
   },
   buttonsContainerTopRow: {
-    maxHeight: 40,
+    maxHeight: FONT_SIZE * 5,
+    minHeight: FONT_SIZE * 5,
+
     minWidth: DEVICE_WIDTH / 2.0,
     maxWidth: DEVICE_WIDTH / 2.0
   },
   buttonsContainerMiddleRow: {
-    maxHeight: 100,
-    alignSelf: 'stretch',
-    paddingRight: 20
+    maxHeight: FONT_SIZE * 5,
+    minHeight: FONT_SIZE * 5,
+    alignSelf: 'stretch'
+  },
+  ionicons: {
+    paddingLeft: 8,
+    paddingRight: 8
   },
   volumeContainer: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    minWidth: DEVICE_WIDTH / 1.3,
-    maxWidth: DEVICE_WIDTH / 1.3,
-    marginLeft: 20
+    minWidth: DEVICE_WIDTH / 1.2,
+    maxWidth: DEVICE_WIDTH / 1.2
   },
-  volumeSlider: {
-    width: DEVICE_WIDTH / 1.4,
-    marginLeft: 5
+  image: {
+    height: DEVICE_HEIGHT * .45,
+    width: DEVICE_WIDTH
   },
-  buttonsContainerTextRow: {
-    maxHeight: FONT_SIZE,
-    alignItems: 'center',
-    paddingRight: 20,
-    paddingLeft: 20,
-    minWidth: DEVICE_WIDTH,
-    maxWidth: DEVICE_WIDTH
+  linearGradient: {
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: DEVICE_HEIGHT * .45
   },
-  welcomeImage: {
-    height: 300,
-    width: 600
+  descriptionText: {
+    backgroundColor: '#fff',
+    padding: 5,
+    marginLeft: 3,
+    marginRight: 3
   }
 });
 
