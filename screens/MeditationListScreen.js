@@ -17,7 +17,7 @@ class MeditationListScreen extends Component {
   state = { meditations: [] };
 
   componentWillMount() {
-    let meditationData = require('../assets/meditations/meditation_data');
+    let meditationData = require('../assets/data/meditation_data');
     this.setState({ meditations: meditationData });
   }
 
