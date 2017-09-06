@@ -291,6 +291,10 @@ exports[`renders the root without loading screen 1`] = `
               style={null}
               testID={undefined}
             />
+            <View
+              style={null}
+              testID={undefined}
+            />
           </View>
           <View
             collapsable={undefined}
@@ -566,6 +570,138 @@ exports[`renders the root without loading screen 1`] = `
                 }
               >
                 Meditations
+              </Text>
+            </View>
+            <View
+              accessibilityComponentType={undefined}
+              accessibilityLabel={undefined}
+              accessibilityTraits={undefined}
+              accessible={true}
+              collapsable={undefined}
+              hitSlop={undefined}
+              nativeID={undefined}
+              onLayout={undefined}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "stretch",
+                  "backgroundColor": "rgba(0, 0, 0, 0)",
+                  "flex": 1,
+                  "justifyContent": "flex-end",
+                }
+              }
+              testID={undefined}
+            >
+              <View
+                style={
+                  Object {
+                    "flexGrow": 1,
+                  }
+                }
+              >
+                <View
+                  collapsable={undefined}
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "opacity": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={false}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "color": "#2f95dc",
+                          "fontSize": 28,
+                        },
+                        Object {
+                          "marginBottom": -3,
+                        },
+                        Object {
+                          "fontFamily": "ExponentFont-[object Object]-ionicons",
+                          "fontStyle": "normal",
+                          "fontWeight": "normal",
+                        },
+                      ]
+                    }
+                  >
+                    
+                  </Text>
+                </View>
+                <View
+                  collapsable={undefined}
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "bottom": 0,
+                      "justifyContent": "center",
+                      "left": 0,
+                      "opacity": 1,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={false}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "color": "#ccc",
+                          "fontSize": 28,
+                        },
+                        Object {
+                          "marginBottom": -3,
+                        },
+                        Object {
+                          "fontFamily": "ExponentFont-[object Object]-ionicons",
+                          "fontStyle": "normal",
+                          "fontWeight": "normal",
+                        },
+                      ]
+                    }
+                  >
+                    
+                  </Text>
+                </View>
+              </View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                collapsable={undefined}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "backgroundColor": "transparent",
+                    "color": "rgba(146, 146, 146, 1)",
+                    "fontSize": 10,
+                    "marginBottom": 1.5,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                iSleep Guide
               </Text>
             </View>
             <View
