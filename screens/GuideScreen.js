@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, Platform, Dimensions } from 'react-native';
+import {
+	View,
+	StyleSheet,
+	Text,
+	Platform,
+	Dimensions
+} from 'react-native';
 import { Icon } from 'react-native-elements';
 
 class GuideScreen extends Component {
@@ -23,20 +29,19 @@ class GuideScreen extends Component {
 
 	render() {
 		const { navigate } = this.props.navigation;
-		
+
 		return (
 			<View style={styles.grid}>
-					{ 
-						this.state.guideSubjects.map((guideItem) => (
-						<View style={styles.box}>
-							<Text 
-								key={guideItem.id}
-							>
-								{guideItem.subject}
-							</Text>
-						</View>
+				<View style={styles.container}>
+					{
+						this.state.guideSubjects.map((subject) => (
+							<View style={styles.box} key={subject.id}>
+								<Text style={styles.title}>{subject.title}</Text>
+								<Text style={styles.subhead}>{subject.subhead}</Text>
+							</View>
 						))
 					}
+				</View>
 			</View>
 		);
 	}
@@ -44,19 +49,31 @@ class GuideScreen extends Component {
 
 const styles = StyleSheet.create({
 	grid: {
-    flex: 1,
+		flex: 1,
+		backgroundColor: '#FAFAFA'
+	},
+	container: {
+		flex: 1,
 		flexDirection: 'row',
 		flexWrap: 'wrap',
-    backgroundColor: '#fff',
-    padding: 2
-  },
-	box: { 
-		backgroundColor: '#e88024',
+		padding: 2
+	},
+	box: {
 		margin: 2,
-		width: Dimensions.get('window').width / 2 - 6,
-		height: Dimensions.get('window').width / 2 - 6,
+		width: Dimensions.get('window').width / 2 -6,
+		height: 200,
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
+		backgroundColor: '#FAFAFA',
+		borderWidth: 5,
+		borderColor: '#607D8B'
+	},
+	title: {
+		fontSize: 20,
+		paddingBottom: 10
+	},
+	subhead: {
+		fontSize: 16,
 	}
 })
 
