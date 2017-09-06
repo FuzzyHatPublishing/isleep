@@ -10,6 +10,8 @@ import MeditationPlayerScreen from '../screens/MeditationPlayerScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import LogInScreen from '../screens/LogInScreen';
 import SignUpScreen from '../screens/SignUpScreen';
+import GuideScreen from '../screens/GuideScreen';
+import SubjectListScreen from '../screens/SubjectListScreen';
 
 export default TabNavigator(
   {
@@ -25,6 +27,13 @@ export default TabNavigator(
       screen: StackNavigator({
         meditationList: { screen: MeditationListScreen },
         meditation: { screen: MeditationPlayerScreen }
+      },
+      { headerMode: 'none' })
+    },
+    GuideList: {
+      screen: StackNavigator({
+        guideList: { screen: GuideScreen },
+        subjectList: { screen: SubjectListScreen }
       },
       { headerMode: 'none' })
     },
@@ -47,6 +56,11 @@ export default TabNavigator(
             iconName = Platform.OS === 'ios'
               ? `ios-headset${focused ? '' : '-outline'}`
               : 'md-headset';
+            break;
+          case 'GuideList':
+            iconName = Platform.OS === 'ios'
+              ? `ios-information-circle${focused ? '' : '-outline'}`
+              : 'md-information-circle';
             break;
           case 'Settings':
             iconName = Platform.OS === 'ios'
