@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Platform, StyleSheet } from 'react-native';
-import { Icon } from 'react-native-elements';
+import { Icon, List, ListItem } from 'react-native-elements';
 import Accordion from 'react-native-collapsible/Accordion';
 
 class SubjectListScreen extends Component {
@@ -25,9 +25,9 @@ class SubjectListScreen extends Component {
 
 	_renderHeader(section) {
     return (
-      <View style={styles.header}>
-        <Text style={styles.subject}>{section.subject}</Text>
-      </View>
+    	<View>
+      	<Text style={styles.subject}>{section.subject}</Text>
+    	</View>
     );
   }
 
@@ -42,26 +42,38 @@ class SubjectListScreen extends Component {
 	render() {
 		return (
 			<View>
-				<Text>{this.state.title}</Text>
-				<Accordion
-	        sections={this.state.subjectCollection}
-	        renderHeader={this._renderHeader}
-	        renderContent={this._renderContent}
-	      />
+				<Text style={styles.header}>{this.state.title}</Text>
+				<View style={styles.list}>
+					<Accordion
+		        sections={this.state.subjectCollection}
+		        renderHeader={this._renderHeader}
+		        renderContent={this._renderContent}
+		      />
+		    </View>
 	    </View>
 		);
 	}
 }
 
 const styles = StyleSheet.create({
+	list: {
+		marginTop: 20, 
+		borderTopWidth: 1, 
+		borderBottomWidth: 1, 
+		borderBottomColor: '#cbd2d9'
+	},
 	header: {
-		backgroundColor: 'tomato'
+		backgroundColor: 'green',
+		fontWeight: 'bold',
+		textAlign: 'center'
 	},
 	subject: {
-		backgroundColor: 'yellow'
+		backgroundColor: 'yellow',
+		padding: 5
 	},
 	content: {
-		backgroundColor: 'purple'
+		backgroundColor: 'purple',
+		padding: 5
 	}
 });
 
