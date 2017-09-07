@@ -38,6 +38,7 @@ class GuideScreen extends Component {
 						<TouchableHighlight 
 							style={styles.box} 
 							key={subject.id}
+							underlayColor={'#a3a1a1'}
 							onPress={ () => navigate('subjectList', {subject}) }
 							>
 							<Text style={styles.topic}>{subject.topic}</Text>

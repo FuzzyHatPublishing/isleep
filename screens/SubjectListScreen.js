@@ -45,6 +45,7 @@ class SubjectListScreen extends Component {
 				<Text style={styles.title}>{this.state.title}</Text>
 				<View style={styles.list}>
 					<Accordion
+						underlayColor={'#a3a1a1'}
 		        sections={this.state.subjectCollection}
 		        renderHeader={this._renderHeader}
 		        renderContent={this._renderContent}
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
 		padding: 8
 	},
 	content: {
-		backgroundColor: '#bbb',
+		backgroundColor: '#fff',
 		padding: 10
 	},
 	details: {
