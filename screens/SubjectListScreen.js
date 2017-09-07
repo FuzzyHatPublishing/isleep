@@ -25,7 +25,7 @@ class SubjectListScreen extends Component {
 
 	_renderHeader(section) {
     return (
-    	<View>
+    	<View style={styles.header}>
       	<Text style={styles.subject}>{section.subject}</Text>
     	</View>
     );
@@ -34,7 +34,7 @@ class SubjectListScreen extends Component {
   _renderContent(section) {
     return (
       <View style={styles.content}>
-        <Text>{section.details}</Text>
+        <Text style={styles.details}>{section.details}</Text>
       </View>
     );
   }
@@ -42,7 +42,7 @@ class SubjectListScreen extends Component {
 	render() {
 		return (
 			<View>
-				<Text style={styles.header}>{this.state.title}</Text>
+				<Text style={styles.title}>{this.state.title}</Text>
 				<View style={styles.list}>
 					<Accordion
 		        sections={this.state.subjectCollection}
@@ -57,23 +57,35 @@ class SubjectListScreen extends Component {
 
 const styles = StyleSheet.create({
 	list: {
-		marginTop: 20, 
+		marginTop: 12, 
 		borderTopWidth: 1, 
 		borderBottomWidth: 1, 
 		borderBottomColor: '#cbd2d9'
 	},
+	title: {
+		textAlign: 'center',
+		fontSize: 22
+	},
 	header: {
-		backgroundColor: 'green',
-		fontWeight: 'bold',
-		textAlign: 'center'
+		backgroundColor: 'transparent',
+		paddingTop: 10,
+		paddingRight: 10,
+		paddingBottom: 10,
+		borderBottomColor: '#bbb',
+		borderBottomWidth: 1
 	},
 	subject: {
-		backgroundColor: 'yellow',
-		padding: 5
+		fontSize: 16,
+		color: '#43484d',
+		marginLeft: 10,
+		padding: 8
 	},
 	content: {
-		backgroundColor: 'purple',
-		padding: 5
+		backgroundColor: '#bbb',
+		padding: 10
+	},
+	details: {
+		fontSize: 14
 	}
 });
 
