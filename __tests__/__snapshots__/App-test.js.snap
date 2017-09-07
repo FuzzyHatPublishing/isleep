@@ -366,7 +366,7 @@ exports[`renders the root without loading screen 1`] = `
                           "marginBottom": -3,
                         },
                         Object {
-                          "fontFamily": "ExponentFont-[object Object]-ionicons",
+                          "fontFamily": "ExponentFont-mock-ionicons",
                           "fontStyle": "normal",
                           "fontWeight": "normal",
                         },
@@ -406,7 +406,7 @@ exports[`renders the root without loading screen 1`] = `
                           "marginBottom": -3,
                         },
                         Object {
-                          "fontFamily": "ExponentFont-[object Object]-ionicons",
+                          "fontFamily": "ExponentFont-mock-ionicons",
                           "fontStyle": "normal",
                           "fontWeight": "normal",
                         },
@@ -498,7 +498,7 @@ exports[`renders the root without loading screen 1`] = `
                           "marginBottom": -3,
                         },
                         Object {
-                          "fontFamily": "ExponentFont-[object Object]-ionicons",
+                          "fontFamily": "ExponentFont-mock-ionicons",
                           "fontStyle": "normal",
                           "fontWeight": "normal",
                         },
@@ -538,7 +538,7 @@ exports[`renders the root without loading screen 1`] = `
                           "marginBottom": -3,
                         },
                         Object {
-                          "fontFamily": "ExponentFont-[object Object]-ionicons",
+                          "fontFamily": "ExponentFont-mock-ionicons",
                           "fontStyle": "normal",
                           "fontWeight": "normal",
                         },
@@ -630,7 +630,7 @@ exports[`renders the root without loading screen 1`] = `
                           "marginBottom": -3,
                         },
                         Object {
-                          "fontFamily": "ExponentFont-[object Object]-ionicons",
+                          "fontFamily": "ExponentFont-mock-ionicons",
                           "fontStyle": "normal",
                           "fontWeight": "normal",
                         },
@@ -670,7 +670,7 @@ exports[`renders the root without loading screen 1`] = `
                           "marginBottom": -3,
                         },
                         Object {
-                          "fontFamily": "ExponentFont-[object Object]-ionicons",
+                          "fontFamily": "ExponentFont-mock-ionicons",
                           "fontStyle": "normal",
                           "fontWeight": "normal",
                         },
