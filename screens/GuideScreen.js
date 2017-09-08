@@ -4,13 +4,14 @@ import {
 	StyleSheet,
 	Text,
 	Platform,
-	Dimensions
+	Dimensions,
+	TouchableHighlight
 } from 'react-native';
 import { Icon } from 'react-native-elements';
 
 class GuideScreen extends Component {
 	static navigationOptions = ({ navigation }) => ({
-		title: 'Guide',
+		title: 'iSleep Guide',
 		headerLeft:
 			<Icon
 				name='navigate-before'
@@ -32,16 +33,18 @@ class GuideScreen extends Component {
 
 		return (
 			<View style={styles.grid}>
-				<View style={styles.container}>
-					{
-						this.state.guideSubjects.map((subject) => (
-							<View style={styles.box} key={subject.id}>
-								<Text style={styles.title}>{subject.title}</Text>
-								<Text style={styles.subhead}>{subject.subhead}</Text>
-							</View>
-						))
-					}
-				</View>
+				{
+					this.state.guideSubjects.map((subject) => (
+						<TouchableHighlight 
+							style={styles.box} 
+							key={subject.id}
+							underlayColor={'#a3a1a1'}
+							onPress={ () => navigate('subjectList', {subject}) }
+							>
+							<Text style={styles.topic}>{subject.topic}</Text>
+						</TouchableHighlight>
+					))
+				}
 			</View>
 		);
 	}
@@ -50,10 +53,7 @@ class GuideScreen extends Component {
 const styles = StyleSheet.create({
 	grid: {
 		flex: 1,
-		backgroundColor: '#FAFAFA'
-	},
-	container: {
-		flex: 1,
+		backgroundColor: '#FAFAFA',
 		flexDirection: 'row',
 		flexWrap: 'wrap',
 		padding: 2
@@ -68,12 +68,9 @@ const styles = StyleSheet.create({
 		borderWidth: 5,
 		borderColor: '#607D8B'
 	},
-	title: {
+	topic: {
 		fontSize: 20,
 		paddingBottom: 10
-	},
-	subhead: {
-		fontSize: 16,
 	}
 })
 
