@@ -1,14 +1,8 @@
 import React from 'react';
-import { createStore, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
-import ReduxThunk from 'redux-thunk';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
-import reducers from './reducers';
-
-const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
 export default class App extends React.Component {
   state = {
@@ -25,9 +19,7 @@ export default class App extends React.Component {
       return <AppLoading />;
     } else {
       return (
-        <Provider style={styles.container} store={store}>
-          <RootNavigation />
-        </Provider>        
+        <RootNavigation />
       );
     }
   }
