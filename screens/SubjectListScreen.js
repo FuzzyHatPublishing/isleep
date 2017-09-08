@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Platform, StyleSheet } from 'react-native';
+import { View, ScrollView, Text, Platform, StyleSheet } from 'react-native';
 import { Icon, List, ListItem } from 'react-native-elements';
 import Accordion from 'react-native-collapsible/Accordion';
 
@@ -41,7 +41,7 @@ class SubjectListScreen extends Component {
 
 	render() {
 		return (
-			<View>
+			<ScrollView>
 				<Text style={styles.title}>{this.state.title}</Text>
 				<View style={styles.list}>
 					<Accordion
@@ -51,16 +51,16 @@ class SubjectListScreen extends Component {
 		        renderContent={this._renderContent}
 		      />
 		    </View>
-	    </View>
+	    </ScrollView>
 		);
 	}
 }
 
 const styles = StyleSheet.create({
 	list: {
-		marginTop: 12, 
-		borderTopWidth: 1, 
-		borderBottomWidth: 1, 
+		marginTop: 12,
+		borderTopWidth: 1,
+		borderBottomWidth: 1,
 		borderBottomColor: '#cbd2d9'
 	},
 	title: {
