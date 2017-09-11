@@ -12,6 +12,7 @@ import {
   StyleSheet,
   Text,
   TouchableHighlight,
+  TouchableOpacity,
   View
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -459,22 +460,24 @@ class MeditationPlayerScreen extends Component {
               animationType="fade"
               transparent={false}
               visible={this.state.modalVisible}
-              onRequestClose={() => {alert("On close go to Home screen")}}
-
+              onRequestClose={() => {
+                console.log("On close go to Home screen")
+              }}
               >
-              <View style={styles.modal}>
-                <Text>Enter a random string here</Text>
-                <TouchableHighlight onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible)
-                  navigate('home') 
-                }}>
-                  <Text>Hide the modal</Text>
-                </TouchableHighlight>
-              </View>
+              <TouchableOpacity
+                style={styles.container}
+                activeOpacity={1}
+                onPressOut={() => {
+                  this.setModalVisible(false)
+                  navigate('home')
+                }}
+              >
+                <View style={styles.modal}>
+                  <Text>Enter a random string here</Text>
+                </View>
+              </TouchableOpacity>
             </Modal>
           </View>
-
-
         </View>;
   }
 }
