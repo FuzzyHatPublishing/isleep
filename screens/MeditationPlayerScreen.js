@@ -2,10 +2,11 @@
  * @flow
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import {
   Dimensions,
   Image,
+  Modal,
   Platform,
   Slider,
   StyleSheet,
@@ -55,7 +56,7 @@ const RATE_SCALE = 3.0;
 const VIDEO_CONTAINER_HEIGHT = DEVICE_HEIGHT * .6;
 
 
-class MeditationPlayerScreen extends React.Component {
+class MeditationPlayerScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
 		title: 'Meditation',
 		headerLeft:
@@ -88,7 +89,8 @@ class MeditationPlayerScreen extends React.Component {
       rate: 1.0,
       videoWidth: DEVICE_WIDTH,
       videoHeight: VIDEO_CONTAINER_HEIGHT,
-      fullscreen: false
+      fullscreen: false,
+      modalVisible: false
     };
   }
 
@@ -171,7 +173,6 @@ class MeditationPlayerScreen extends React.Component {
       });
       if (status.didJustFinish) {
         this._finishedMeditation(true);
-        // this._updatePlaybackInstanceForIndex(true);
       }
     } else {
       if (status.error) {
@@ -220,6 +221,7 @@ class MeditationPlayerScreen extends React.Component {
 
   _finishedMeditation = event => {
     this.playbackInstance = null;
+    this.setModalVisible(!this.state.modalVisible);
     console.log(
       `AUDIO UPDATE : Finished meditation`
       );
@@ -339,6 +341,10 @@ class MeditationPlayerScreen extends React.Component {
     return '';
   }
 
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
+
   render() {
     return !this.state.fontLoaded
       ? <View style={styles.emptyContainer} />
@@ -445,6 +451,25 @@ class MeditationPlayerScreen extends React.Component {
               </View>
             </View>
           </View>
+
+          <View>
+            <Modal
+              animationType="fade"
+              transparent={false}
+              visible={this.state.modalVisible}
+              onRequestClose={() => {alert("On close go to Home screen")}}
+              >
+              <View style={styles.modal}>
+                <Text>Enter a random string here</Text>
+                <TouchableHighlight onPress={() => {
+                  this.setModalVisible(!this.state.modalVisible)
+                }}>
+                  <Text>Hide the modal</Text>
+                </TouchableHighlight>
+              </View>
+            </Modal>
+          </View>
+
 
         </View>;
   }
@@ -564,6 +589,13 @@ const styles = StyleSheet.create({
     padding: 5,
     marginLeft: 3,
     marginRight: 3
+  },
+  modal: {
+    flex: 1,
+    // marginTop: 22,
+    justifyContent: 'center',
+    alignItems: 'center',
+
   }
 });
 
