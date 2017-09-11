@@ -346,6 +346,13 @@ class MeditationPlayerScreen extends Component {
     this.setState({modalVisible: visible});
   }
 
+  getRandomClosingMessage() {
+    let messages = require('../assets/data/closing_message_data');
+    let randomMessage = messages[Math.floor(Math.random()*messages.length)];
+    console.log(randomMessage);
+    return randomMessage.message;
+  }
+
   render() {
     const { navigate } = this.props.navigation;
 
@@ -473,7 +480,7 @@ class MeditationPlayerScreen extends Component {
                 }}
               >
                 <View style={styles.modal}>
-                  <Text>Enter a random string here</Text>
+                  <Text style={styles.modalMessage}>{ this.getRandomClosingMessage() }</Text>
                 </View>
               </TouchableOpacity>
             </Modal>
@@ -599,10 +606,11 @@ const styles = StyleSheet.create({
   },
   modal: {
     flex: 1,
-    // marginTop: 22,
     justifyContent: 'center',
     alignItems: 'center',
-
+  },
+  modalMessage: {
+    fontSize: 22
   }
 });
 
