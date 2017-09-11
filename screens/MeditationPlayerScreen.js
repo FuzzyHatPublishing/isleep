@@ -63,7 +63,7 @@ class MeditationPlayerScreen extends Component {
 			<Icon
 				name='navigate-before'
 				size={32}
-				onPress={ () => navigation.navigate('meditationList') }
+				onPress={ () => navigation.navigate('meditationList') }  //.goBack()
 			/>,
 		headerStyle: { marginTop: Platform.OS === 'android' ? 24: 0 }
 	});
@@ -346,6 +346,8 @@ class MeditationPlayerScreen extends Component {
   }
 
   render() {
+    const { navigate } = this.props.navigation;
+
     return !this.state.fontLoaded
       ? <View style={styles.emptyContainer} />
       : <View style={styles.container}>
@@ -458,11 +460,13 @@ class MeditationPlayerScreen extends Component {
               transparent={false}
               visible={this.state.modalVisible}
               onRequestClose={() => {alert("On close go to Home screen")}}
+
               >
               <View style={styles.modal}>
                 <Text>Enter a random string here</Text>
                 <TouchableHighlight onPress={() => {
                   this.setModalVisible(!this.state.modalVisible)
+                  navigate('home') 
                 }}>
                   <Text>Hide the modal</Text>
                 </TouchableHighlight>
