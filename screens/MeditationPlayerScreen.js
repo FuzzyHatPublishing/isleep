@@ -91,7 +91,8 @@ class MeditationPlayerScreen extends Component {
       videoWidth: DEVICE_WIDTH,
       videoHeight: VIDEO_CONTAINER_HEIGHT,
       fullscreen: false,
-      modalVisible: false
+      modalVisible: false,
+      closingMessage: ''
     };
   }
 
@@ -119,7 +120,7 @@ class MeditationPlayerScreen extends Component {
       this.playbackInstance = null;
     }
 
-    
+
     const initialStatus = {
       shouldPlay: playing,
       volume: this.state.volume,
@@ -174,6 +175,7 @@ class MeditationPlayerScreen extends Component {
       });
       if (status.didJustFinish) {
         this._finishedMeditation(true);
+        this._getRandomClosingMessage();
       }
     } else {
       if (status.error) {
@@ -222,7 +224,7 @@ class MeditationPlayerScreen extends Component {
 
   _finishedMeditation = event => {
     this.playbackInstance = null;
-    this.setModalVisible(!this.state.modalVisible);
+    this._setModalVisible(!this.state.modalVisible);
     console.log(
       `AUDIO UPDATE : Finished meditation`
       );
@@ -342,15 +344,14 @@ class MeditationPlayerScreen extends Component {
     return '';
   }
 
-  setModalVisible(visible) {
+  _setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
 
-  getRandomClosingMessage() {
+  _getRandomClosingMessage() {
     let messages = require('../assets/data/closing_message_data');
     let randomMessage = messages[Math.floor(Math.random()*messages.length)];
-    console.log(randomMessage);
-    return randomMessage.message;
+    this.setState({closingMessage: randomMessage.message});
   }
 
   render() {
@@ -360,7 +361,7 @@ class MeditationPlayerScreen extends Component {
       ? <View style={styles.emptyContainer} />
       : <View style={styles.container}>
           <View />
-          
+
           <View style={styles.videoContainer}>
             <Video
               ref={this._mountVideo}
@@ -377,7 +378,7 @@ class MeditationPlayerScreen extends Component {
                 colors={['transparent', 'rgba(255,255,255,0.8)']}
                 style={styles.linearGradient}
               />
-            </Image>  
+            </Image>
 
           </View>
 
@@ -429,7 +430,7 @@ class MeditationPlayerScreen extends Component {
                 underlayColor={BACKGROUND_COLOR}
                 style={styles.wrapper}
                 onPress={this._onStopPressed}
-                disabled={this.state.isLoading}            
+                disabled={this.state.isLoading}
               >
                  <Ionicons
                     style={styles.ionicons}
@@ -475,12 +476,12 @@ class MeditationPlayerScreen extends Component {
                 style={styles.container}
                 activeOpacity={1}
                 onPressOut={() => {
-                  this.setModalVisible(false)
+                  this._setModalVisible(false)
                   navigate('home')
                 }}
               >
                 <View style={styles.modal}>
-                  <Text style={styles.modalMessage}>{ this.getRandomClosingMessage() }</Text>
+                  <Text style={styles.modalMessage}>{ this.state.closingMessage }</Text>
                 </View>
               </TouchableOpacity>
             </Modal>
