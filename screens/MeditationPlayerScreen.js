@@ -2,15 +2,17 @@
  * @flow
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import {
   Dimensions,
   Image,
+  Modal,
   Platform,
   Slider,
   StyleSheet,
   Text,
   TouchableHighlight,
+  TouchableOpacity,
   View
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -55,14 +57,14 @@ const RATE_SCALE = 3.0;
 const VIDEO_CONTAINER_HEIGHT = DEVICE_HEIGHT * .6;
 
 
-class MeditationPlayerScreen extends React.Component {
+class MeditationPlayerScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
 		title: 'Meditation',
 		headerLeft:
 			<Icon
 				name='navigate-before'
 				size={32}
-				onPress={ () => navigation.navigate('meditationList') }
+				onPress={ () => navigation.navigate('meditationList') }  //.goBack()
 			/>,
 		headerStyle: { marginTop: Platform.OS === 'android' ? 24: 0 }
 	});
@@ -88,7 +90,9 @@ class MeditationPlayerScreen extends React.Component {
       rate: 1.0,
       videoWidth: DEVICE_WIDTH,
       videoHeight: VIDEO_CONTAINER_HEIGHT,
-      fullscreen: false
+      fullscreen: false,
+      modalVisible: false,
+      closingMessage: ''
     };
   }
 
@@ -116,7 +120,7 @@ class MeditationPlayerScreen extends React.Component {
       this.playbackInstance = null;
     }
 
-    
+
     const initialStatus = {
       shouldPlay: playing,
       volume: this.state.volume,
@@ -171,7 +175,7 @@ class MeditationPlayerScreen extends React.Component {
       });
       if (status.didJustFinish) {
         this._finishedMeditation(true);
-        // this._updatePlaybackInstanceForIndex(true);
+        this._getRandomClosingMessage();
       }
     } else {
       if (status.error) {
@@ -220,6 +224,7 @@ class MeditationPlayerScreen extends React.Component {
 
   _finishedMeditation = event => {
     this.playbackInstance = null;
+    this._setModalVisible(!this.state.modalVisible);
     console.log(
       `AUDIO UPDATE : Finished meditation`
       );
@@ -339,12 +344,24 @@ class MeditationPlayerScreen extends React.Component {
     return '';
   }
 
+  _setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
+
+  _getRandomClosingMessage() {
+    let messages = require('../assets/data/closing_message_data');
+    let randomMessage = messages[Math.floor(Math.random()*messages.length)];
+    this.setState({closingMessage: randomMessage.message});
+  }
+
   render() {
+    const { navigate } = this.props.navigation;
+
     return !this.state.fontLoaded
       ? <View style={styles.emptyContainer} />
       : <View style={styles.container}>
           <View />
-          
+
           <View style={styles.videoContainer}>
             <Video
               ref={this._mountVideo}
@@ -361,7 +378,7 @@ class MeditationPlayerScreen extends React.Component {
                 colors={['transparent', 'rgba(255,255,255,0.8)']}
                 style={styles.linearGradient}
               />
-            </Image>  
+            </Image>
 
           </View>
 
@@ -413,7 +430,7 @@ class MeditationPlayerScreen extends React.Component {
                 underlayColor={BACKGROUND_COLOR}
                 style={styles.wrapper}
                 onPress={this._onStopPressed}
-                disabled={this.state.isLoading}            
+                disabled={this.state.isLoading}
               >
                  <Ionicons
                     style={styles.ionicons}
@@ -446,6 +463,29 @@ class MeditationPlayerScreen extends React.Component {
             </View>
           </View>
 
+          <View>
+            <Modal
+              animationType="fade"
+              transparent={false}
+              visible={this.state.modalVisible}
+              onRequestClose={() => {
+                console.log("On close go to Home screen")
+              }}
+              >
+              <TouchableOpacity
+                style={styles.container}
+                activeOpacity={1}
+                onPressOut={() => {
+                  this._setModalVisible(false)
+                  navigate('home')
+                }}
+              >
+                <View style={styles.modal}>
+                  <Text style={styles.modalMessage}>{ this.state.closingMessage }</Text>
+                </View>
+              </TouchableOpacity>
+            </Modal>
+          </View>
         </View>;
   }
 }
@@ -564,6 +604,14 @@ const styles = StyleSheet.create({
     padding: 5,
     marginLeft: 3,
     marginRight: 3
+  },
+  modal: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalMessage: {
+    fontSize: 22
   }
 });
 
