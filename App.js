@@ -1,26 +1,43 @@
 import React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { AsyncStorage, Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
+import TourScreen from './screens/TourScreen';
 
 export default class App extends React.Component {
-  state = {
-    assetsAreLoaded: false,
-  };
+  constructor() {
+    super();
+    this.state = {
+      assetsAreLoaded: false,
+      firstLaunch: null
+    }
+  }
+ 
+  componentDidMount() {
+    AsyncStorage.getItem("alreadyLaunched").then(value => {
+      if(value == null) {
+        AsyncStorage.setItem('alreadyLaunched', '1');
+        this.setState({firstLaunch: true});
+      }
+      else {
+        this.setState({firstLaunch: false});
+      }})
+  }
 
   componentWillMount() {
     this._loadAssetsAsync();
   }
 
   render() {
-
-    if (!this.state.assetsAreLoaded && !this.props.skipLoadingScreen) {
+    if (!this.state.assetsAreLoaded && !this.props.skipLoadingScreen || this.state.firstLaunch === null) {
       return <AppLoading />;
     } else {
-      return (
-        <RootNavigation />
-      );
+      if(this.state.firstLaunch == true) {
+        return <TourScreen />;
+      } else {
+        return  <RootNavigation />;
+      }
     }
   }
 
