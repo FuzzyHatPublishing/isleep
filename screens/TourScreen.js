@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Animated, Dimensions, StyleSheet, View, Text } from 'react-native';
+import { Animated, Dimensions, StyleSheet, View, Text, TouchableHighlight } from 'react-native';
 import { Constants } from 'expo';
+import RootNavigation from '../navigation/RootNavigation';
 
 const PAGE_WIDTH = Dimensions.get('window').width;
 const PAGES = [
@@ -27,21 +28,20 @@ const PAGES = [
 ]
 
 class TourScreen extends Component {
+ 
 	state = {
     scroll: new Animated.Value(0),
   };
 
-	render() {
-		const position = Animated.divide(this.state.scroll, PAGE_WIDTH);
-		console.log("*****");
-    console.log(this.state.scroll);
+  render() {
+    
+    const position = Animated.divide(this.state.scroll, PAGE_WIDTH);
     const backgroundColor = position.interpolate({
       inputRange: PAGES.map((_, i) => i),
       outputRange: PAGES.map(p => p.backgroundColor),
     });
-    console.log(PAGE_WIDTH)
 
-		return (
+    return (
 			<View style={styles.container}>
 				<Animated.View style={[ StyleSheet.absoluteFill, { backgroundColor, opacity: 0.8 } ]} />
 
@@ -65,10 +65,17 @@ class TourScreen extends Component {
 						</View>
 					))}
 				</Animated.ScrollView>
-
-				<View style={styles.button}>
-					<Text style={styles.buttonText}>{"Get Started"}</Text>
-				</View>
+        <TouchableHighlight
+          onPress={ () => this.props.navigation('home') }
+        >
+          <View style={styles.button}>
+            <Text 
+              style={styles.buttonText}
+            >
+              Get Started
+            </Text>
+  				</View>
+        </TouchableHighlight>
 			</View>
 		);
 	}

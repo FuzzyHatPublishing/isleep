@@ -10,12 +10,14 @@ import MeditationPlayerScreen from '../screens/MeditationPlayerScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import GuideScreen from '../screens/GuideScreen';
 import SubjectListScreen from '../screens/SubjectListScreen';
+import TourScreen from '../screens/TourScreen';
 
 export default TabNavigator(
   {
     Home: {
       screen: StackNavigator({
-        home: { screen: HomeScreen }
+        home: { screen: HomeScreen },
+        tour: { screen: TourScreen }
       },
       { headerMode: 'none' })
     },
