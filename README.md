@@ -1,4 +1,4 @@
-# isleep
+# iSleep
 Yoga Nidra (sleep yoga) app built with React Native
 
 iSleep is a React Native application that will allow users to reap the benefits of Yoga Nidra from their Android or Apple devices. The application enables users to access audio meditations that engage them in sleep yoga. A 45 minute meditation, if done well, is equivalent to getting about 4 hours of sleep. The initial release of iSleep aims to make the meditations accessible to a wider audience. In the future, users will be able to register for a personal account to keep track of their meditation sessions, and potentially integrate the app with wearable devices in order to keep track of their heart rate during meditation. 
