@@ -24,5 +24,15 @@ so
 [Forum/solution](https://github.com/npm/npm/issues/17146)
 ````
 
+To clear AsyncStorage item (preferred over clear();)
+````
+AsyncStorage.removeItem("alreadyLaunched")
+
+````
 #### For additional ideas:
 [RallyCoding with Stephen](https://rallycoding.com/blog/troubleshooting-react-native-startup/)
+
+#### Testing with Jest
+[How to test async storage with Jest](https://stackoverflow.com/questions/40952566/how-to-test-async-storage-with-jest)
+
+
