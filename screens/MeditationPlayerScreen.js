@@ -64,19 +64,23 @@ class MeditationPlayerScreen extends Component {
 			<Icon
 				name='navigate-before'
 				size={32}
-				onPress={ () => navigation.navigate('meditationList') }  //.goBack()
+				onPress={ () => navigation.goBack() }  //.goBack()
 			/>,
 		headerStyle: { marginTop: Platform.OS === 'android' ? 24: 0 }
 	});
 
   constructor(props) {
     super(props);
-    this.index = 0;
+
+    // this.index = 0;
     this.isSeeking = false;
     this.shouldPlayAtEndOfSeek = false;
     this.playbackInstance = null;
+    this.meditationTrack = this.props.navigation.state.params.meditation;
+
     this.state = {
-      meditationTrack: this.props.navigation.state.params.meditation,
+      // meditationTrack: this.props.navigation.state.params.meditation,
+      meditationTrack: null,
       muted: false,
       playbackInstanceName: LOADING_STRING,
       playbackInstancePosition: null,
@@ -94,7 +98,8 @@ class MeditationPlayerScreen extends Component {
       modalVisible: false,
       closingMessage: ''
     };
-  }
+
+  };
 
   componentDidMount() {
     Audio.setAudioModeAsync({
@@ -109,8 +114,15 @@ class MeditationPlayerScreen extends Component {
         // I don't think we want this font, but left in case want another font.
         'cutive-mono-regular': require('../assets/fonts/CutiveMono-Regular.ttf')
       });
-      this.setState({ fontLoaded: true });
+      this.setState({ 
+        fontLoaded: true,
+        _isMounted: true 
+      });
     })();
+  }
+
+  componentWillUnmount() {
+    // this.setState({ _isMounted: false });
   }
 
   async _loadNewPlaybackInstance(playing) {
@@ -120,14 +132,14 @@ class MeditationPlayerScreen extends Component {
       this.playbackInstance = null;
     }
 
-
+    console.log("In _loadNewPlaybackInstance")
+    const source = this.meditationTrack.id == 1 ? require('../assets/sounds/test-audio.mp3') : require('../assets/sounds/test-audio-2.mp3');
     const initialStatus = {
       shouldPlay: playing,
       volume: this.state.volume,
       isMuted: this.state.muted
     };
 
-    const source = this.state.meditationTrack.id == 1 ? require('../assets/sounds/test-audio.mp3') : require('../assets/sounds/test-audio-2.mp3');
 
     const { sound, status } = await Audio.Sound.create(
       source,
@@ -155,7 +167,7 @@ class MeditationPlayerScreen extends Component {
       });
     } else {
       this.setState({
-        playbackInstanceName: this.state.meditationTrack.title,
+        playbackInstanceName: this.meditationTrack.title,
         isLoading: false
       });
     }
@@ -174,7 +186,13 @@ class MeditationPlayerScreen extends Component {
         volume: status.volume,
       });
       if (status.didJustFinish) {
+        this.setState({ _isMounted: false });
+
+        console.log("status.didJustFinish")
+        this.playbackInstance = null
+        // this._updatePlaybackInstanceForIndex(false);
         this._finishedMeditation(true);
+
         this._getRandomClosingMessage();
       }
     } else {
@@ -224,6 +242,7 @@ class MeditationPlayerScreen extends Component {
 
   _finishedMeditation = event => {
     this.playbackInstance = null;
+    
     this._setModalVisible(!this.state.modalVisible);
     console.log(
       `AUDIO UPDATE : Finished meditation`
@@ -231,14 +250,16 @@ class MeditationPlayerScreen extends Component {
   };
 
   async _updatePlaybackInstanceForIndex(playing) {
-    this._updateScreenForLoading(true);
+    console.log("in _updatePlaybackInstanceForIndex")
+    if (this.state._isMounted) {
+      this._updateScreenForLoading(true);
+      this.setState({
+        videoWidth: DEVICE_WIDTH,
+        videoHeight: VIDEO_CONTAINER_HEIGHT
+      });
 
-    this.setState({
-      videoWidth: DEVICE_WIDTH,
-      videoHeight: VIDEO_CONTAINER_HEIGHT
-    });
-
-    this._loadNewPlaybackInstance(playing);
+      this._loadNewPlaybackInstance(playing);
+    }
   }
 
   _onPlayPausePressed = () => {
