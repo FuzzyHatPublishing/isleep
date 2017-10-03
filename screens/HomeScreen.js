@@ -9,9 +9,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 import Welcome from '../components/Welcome';
-import TourScreen from './TourScreen';
-import Temp from '../components/Temp';
 
 
 export default class HomeScreen extends React.Component {
@@ -19,44 +18,13 @@ export default class HomeScreen extends React.Component {
     header: null
   };
 
-  constructor() {
-    super();
-    this.state = {
-      firstLaunch: null
-    }
-  }
-
-  componentWillMount() {
-    AsyncStorage.removeItem("alreadyLaunched");
-  }
-  
-  componentDidMount() {
-    AsyncStorage.getItem("alreadyLaunched").then(value => {
-      if(value == null) {
-        AsyncStorage.setItem('alreadyLaunched', '1', (err, result) => {
-          console.log("error",err,"result",result);
-        });
-        this.setState({firstLaunch: true});
-      }
-      else {
-        this.setState({firstLaunch: false});
-      }})
-  }
-
   render() {
     const { navigate } = this.props.navigation;
-
-    if(this.state.firstLaunch == null) {
-      return <Temp />;  
-    } else if (this.state.firstLaunch == true) {
-      return <TourScreen navigation={navigate} />;
-    } else {
-      return  (
-        <View style={styles.container}>
-          <Welcome />
-        </View>
-      ); 
-    }
+    return (
+      <View style={styles.container}>
+        <Welcome />
+      </View>
+    )
   }
 
   _maybeRenderDevelopmentModeWarning() {

@@ -8,9 +8,11 @@ import TourScreen from './screens/TourScreen';
 export default class App extends React.Component {
   constructor() {
     super();
+    this.handler = this.handler.bind(this)
     this.state = {
       assetsAreLoaded: false,
-      firstLaunch: null
+      firstLaunch: null,
+      showTour: true
     }
   }
  
@@ -29,12 +31,20 @@ export default class App extends React.Component {
     this._loadAssetsAsync();
   }
 
+  handler(e) {
+    console.log("In handler in App.js")
+    e.preventDefault()
+    this.setState({
+      showTour: false
+    })
+  }
+
   render() {
     if (!this.state.assetsAreLoaded && !this.props.skipLoadingScreen || this.state.firstLaunch === null) {
       return <AppLoading />;
     } else {
-      if(this.state.firstLaunch == true) {
-        return <TourScreen />;
+      if(this.state.firstLaunch == true && this.state.showTour == true) {
+        return <TourScreen handler = {this.handler} />;
       } else {
         return  <RootNavigation />;
       }
