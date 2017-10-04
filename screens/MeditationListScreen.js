@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
 import { Image, Platform, StyleSheet, Text, View } from 'react-native';
-import { Icon, List, ListItem } from 'react-native-elements';
+import { List, ListItem } from 'react-native-elements';
 
 class MeditationListScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
 		title: 'Meditations',
-		headerLeft:
-			<Icon
-				name='navigate-before'
-				size={32}
-				onPress={ () => navigation.navigate('home') }
-			/>,
 		headerStyle: { marginTop: Platform.OS === 'android' ? 24: 0 }
 	});
 
