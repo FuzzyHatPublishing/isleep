@@ -12,12 +12,6 @@ import { Icon } from 'react-native-elements';
 class GuideScreen extends Component {
 	static navigationOptions = ({ navigation }) => ({
 		title: 'iSleep Guide',
-		headerLeft:
-			<Icon
-				name='navigate-before'
-				size={32}
-				onPress={ () => navigation.navigate('home') }
-			/>,
 		headerStyle: { marginTop: Platform.OS === 'android' ? 24 : 0 }
 	});
 

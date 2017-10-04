@@ -64,7 +64,7 @@ class MeditationPlayerScreen extends Component {
 			<Icon
 				name='navigate-before'
 				size={32}
-				onPress={ () => navigation.goBack() }  //.goBack()
+				onPress={ () => navigation.goBack() }
 			/>,
 		headerStyle: { marginTop: Platform.OS === 'android' ? 24: 0 }
 	});

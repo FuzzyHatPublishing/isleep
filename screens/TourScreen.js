@@ -66,7 +66,8 @@ class TourScreen extends Component {
 					))}
 				</Animated.ScrollView>
         <TouchableHighlight
-          onPress={ () => this.props.navigation('home') }
+          // onPress={ () => this.props.navigation('home') }
+          onPress = {this.props.handler}
         >
           <View style={styles.button}>
             <Text 
