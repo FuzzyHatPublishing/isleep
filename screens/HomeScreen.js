@@ -1,5 +1,7 @@
 import React from 'react';
 import {
+  AppLoading,
+  AsyncStorage,
   Image,
   Platform,
   StyleSheet,
@@ -7,7 +9,9 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 import Welcome from '../components/Welcome';
+
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -16,12 +20,11 @@ export default class HomeScreen extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
-
     return (
       <View style={styles.container}>
         <Welcome />
       </View>
-    );
+    )
   }
 
   _maybeRenderDevelopmentModeWarning() {

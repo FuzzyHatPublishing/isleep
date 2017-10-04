@@ -1,26 +1,53 @@
 import React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { AsyncStorage, Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
+import TourScreen from './screens/TourScreen';
 
 export default class App extends React.Component {
-  state = {
-    assetsAreLoaded: false,
-  };
+  constructor() {
+    super();
+    this.handler = this.handler.bind(this)
+    this.state = {
+      assetsAreLoaded: false,
+      firstLaunch: null,
+      showTour: true
+    }
+  }
+ 
+  componentDidMount() {
+    AsyncStorage.getItem("alreadyLaunched").then(value => {
+      if(value == null) {
+        AsyncStorage.setItem('alreadyLaunched', '1');
+        this.setState({firstLaunch: true});
+      }
+      else {
+        this.setState({firstLaunch: false});
+      }})
+  }
 
   componentWillMount() {
     this._loadAssetsAsync();
   }
 
-  render() {
+  handler(e) {
+    console.log("In handler in App.js")
+    e.preventDefault()
+    this.setState({
+      showTour: false
+    })
+  }
 
-    if (!this.state.assetsAreLoaded && !this.props.skipLoadingScreen) {
+  render() {
+    if (!this.state.assetsAreLoaded && !this.props.skipLoadingScreen || this.state.firstLaunch === null) {
       return <AppLoading />;
     } else {
-      return (
-        <RootNavigation />
-      );
+      if(this.state.firstLaunch == true && this.state.showTour == true) {
+        return <TourScreen handler = {this.handler} />;
+      } else {
+        return  <RootNavigation />;
+      }
     }
   }
 

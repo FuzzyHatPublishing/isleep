@@ -21,9 +21,13 @@ exp start
 ```
 Use the Expo app on your mobile device to scan the QR code. 
 
-### Credits
-* Player based off of [Expo's playlist example](https://github.com/expo/playlist-example)
-
 ### Developers
 * Tere Gallarreta
 * Shawn Tuttle
+
+### Tech and other credits
+* React Native
+* Expo
+* Player based off of [Expo's playlist example](https://github.com/expo/playlist-example)
+* Tour based off of [BeOnBoard's Animated slideshow](https://snack.expo.io/rJ5XGxDcW)
+* [First time launch tour inspiration](https://stackoverflow.com/questions/40715266/how-to-detect-first-launch-in-react-native/40729761#40729761)
