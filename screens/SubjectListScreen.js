@@ -10,7 +10,7 @@ class SubjectListScreen extends Component {
 			<Icon
 				name='navigate-before'
 				size={32}
-				onPress={ () => navigation.navigate('guideList') }
+				onPress={ () => navigation.goBack() }
 			/>,
 		headerStyle: { marginTop: Platform.OS === 'android' ? 24 : 0 }
 	});
