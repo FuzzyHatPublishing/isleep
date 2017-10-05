@@ -355,7 +355,7 @@ class MeditationPlayerScreen extends Component {
   }
 
   render() {
-    const { navigate } = this.props.navigation;
+    const { goBack } = this.props.navigation;
 
     return !this.state.fontLoaded
       ? <View style={styles.emptyContainer} />
@@ -477,7 +477,7 @@ class MeditationPlayerScreen extends Component {
                 activeOpacity={1}
                 onPressOut={() => {
                   this._setModalVisible(false)
-                  navigate('home')
+                  goBack();
                 }}
               >
                 <View style={styles.modal}>
