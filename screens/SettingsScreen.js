@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, SectionList, StyleSheet, Text, View } from 'react-native';
+import { AsyncStorage, Image, SectionList, StyleSheet, Text, View } from 'react-native';
 import { Constants } from 'expo';
 
 
@@ -21,6 +21,10 @@ export default class SettingsScreen extends React.Component {
       </SectionContent>
     );
   };
+
+  componentDidMount() {
+    AsyncStorage.removeItem("alreadyLaunched")
+  }
 
   render() {
     const { manifest } = Constants;
