@@ -39,7 +39,7 @@ const styles = StyleSheet.create ({
     width: 600
   },
   welcomeText: {
-    fontFamily: "Futura",
+    // fontFamily: "Futura",
     textAlign: "center",
     fontSize: 24,
     paddingTop: 10
