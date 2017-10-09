@@ -62,8 +62,8 @@ export default TabNavigator(
             break;
           case 'Settings':
             iconName = Platform.OS === 'ios'
-              ? `ios-options${focused ? '' : '-outline'}`
-              : 'md-options';
+              ? `ios-more${focused ? '' : '-outline'}`
+              : 'md-more';
         }
         return (
           <Ionicons

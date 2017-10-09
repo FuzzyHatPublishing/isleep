@@ -65,18 +65,14 @@ class TourScreen extends Component {
 						</View>
 					))}
 				</Animated.ScrollView>
-        <TouchableHighlight
-          // onPress={ () => this.props.navigation('home') }
-          onPress = {this.props.handler}
-        >
           <View style={styles.button}>
-            <Text 
-              style={styles.buttonText}
-            >
-              Get Started
-            </Text>
-  				</View>
-        </TouchableHighlight>
+            <TouchableHighlight onPress={() => {this.props.handler}}>          
+                <Text style={styles.buttonText}>
+                  Get Started
+                </Text>
+           </TouchableHighlight>
+        </View>
+        
 			</View>
 		);
 	}
@@ -120,6 +116,7 @@ const styles = StyleSheet.create({
     paddingBottom: 140,
   },
   button: {
+    flex: 1,
     backgroundColor: 'rgba(0,0,0, 0.3)',
     position: 'absolute',
     margin: 12,
@@ -137,6 +134,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontVariant: ['small-caps'],
   }
+
+
+
+  
 });
 
 export default TourScreen;
