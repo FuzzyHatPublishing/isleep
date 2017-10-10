@@ -46,6 +46,14 @@ class TourScreen extends Component {
       outputRange: PAGES.map(p => p.backgroundColor),
     });
 
+		function renderIf(condition, content) {
+	    if (condition) {
+	        return content;
+	    } else {
+	        return null;
+	    }
+		}
+
     return (
 			<View style={styles.container}>
 				<Animated.View style={[ StyleSheet.absoluteFill, { backgroundColor } ]} />
@@ -64,19 +72,20 @@ class TourScreen extends Component {
 							<View style={[ styles.card ]}>
 								<Text style={styles.message}>{page.message}</Text>
 								<Text style={styles.moreMessage}>{page.moreMessage}</Text>
-
+								{renderIf(i===4,
+									<View style={styles.button}>
+										<TouchableHighlight onPress={() => {this.props.handler()}}>
+											<Text style={styles.buttonText}>
+												Get Started
+											</Text>
+										</TouchableHighlight>
+									</View>
+                )}
 							</View>
-
 						</View>
 					))}
 				</Animated.ScrollView>
-          <View style={styles.button}>
-            <TouchableHighlight onPress={() => {this.props.handler()}}>
-              <Text style={styles.buttonText}>
-                Get Started
-              </Text>
-           </TouchableHighlight>
-        </View>
+
 			</View>
 		);
 	}
@@ -137,10 +146,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontVariant: ['small-caps'],
   }
-
-
-
-
 });
 
 export default TourScreen;
