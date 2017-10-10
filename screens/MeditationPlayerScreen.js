@@ -8,7 +8,7 @@ import {
   Image,
   // Modal,
   Platform,
-  // Slider,
+  Slider,
   StyleSheet,
   Text,
   TouchableHighlight,
@@ -24,14 +24,14 @@ import { Asset, Audio } from 'expo';
 // const ICON_PLAY_BUTTON = { name: 'ios-play' };
 // const ICON_PAUSE_BUTTON = { name: 'ios-pause' };
 
-// const ICON_TRACK_1 = require('../assets/images/line.png');
-// const ICON_THUMB_1 = require('../assets/images/dot.png');
+const ICON_TRACK_1 = require('../assets/images/line.png');
+const ICON_THUMB_1 = require('../assets/images/dot.png');
 
 const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get('window');
 const BACKGROUND_COLOR = '#000';
 const DISABLED_OPACITY = 0.5;
 const FONT_SIZE = 14;
-// const LOADING_STRING = '... loading ...';
+const LOADING_STRING = '... loading ...';
 // const BUFFERING_STRING = '...buffering...';
 
 
@@ -50,14 +50,17 @@ class MeditationPlayerScreen extends Component {
   constructor(props) {
     super(props);
     this.playbackInstance = null;
+    this.isSeeking = false;
+    this.shouldPlayAtEndOfSeek = false;
     this.state = {
       meditationTrack: this.props.navigation.state.params.meditation,
 
-      // playbackInstanceName: LOADING_STRING,
-      // playbackInstancePosition: null,
-      // playbackInstanceDuration: null,
+      playbackInstanceName: LOADING_STRING,
+      playbackInstancePosition: null,
+      playbackInstanceDuration: null,
       shouldPlay: false,
       isPlaying: false,
+      isLoading: true
     };
 
   }
@@ -74,9 +77,6 @@ class MeditationPlayerScreen extends Component {
     this._loadNewPlaybackInstance(false);
   }
 
-  
-  
-  
   async _loadNewPlaybackInstance(playing) {
     if (this.playbackInstance != null) {
       await this.playbackInstance.unloadAsync();
@@ -97,10 +97,28 @@ class MeditationPlayerScreen extends Component {
         this._onPlaybackStatusUpdate
       )
       this.playbackInstance = sound;
+      this._updateScreenForLoading(false);
     } catch(e) {
       console.log("Problem creating sound object: ", e)
     }
   } 
+
+ _updateScreenForLoading(isLoading) {
+    if (isLoading) {
+      this.setState({
+        isPlaying: false,
+        playbackInstanceName: LOADING_STRING,
+        playbackInstanceDuration: null,
+        playbackInstancePosition: null,
+        isLoading: true
+      });
+    } else {
+      this.setState({
+        playbackInstanceName: this.state.meditationTrack.title,
+        isLoading: false
+      });
+    }
+  }
 
   _onPlaybackStatusUpdate = status => { 
     if (!status.isLoaded) {
@@ -112,8 +130,8 @@ class MeditationPlayerScreen extends Component {
     } else {
       if (status.isLoaded) {
         this.setState({
-          // playbackInstancePosition: status.positionMillis,
-          // playbackInstanceDuration: status.durationMillis,
+          playbackInstancePosition: status.positionMillis,
+          playbackInstanceDuration: status.durationMillis,
           shouldPlay: status.shouldPlay,
           isPlaying: status.isPlaying,
           // isBuffering: status.isBuffering,
@@ -139,6 +157,39 @@ class MeditationPlayerScreen extends Component {
     }
   };
 
+  _getSeekSliderPosition() {
+    if (
+      this.playbackInstance != null &&
+      this.state.playbackInstancePosition != null &&
+      this.state.playbackInstanceDuration != null
+    ) {
+      return (
+        this.state.playbackInstancePosition /
+        this.state.playbackInstanceDuration
+      );
+    }
+    return 0;
+  };
+
+  _onSeekSliderValueChange = value => {
+    if (this.playbackInstance != null && !this.isSeeking) {
+      this.isSeeking = true;
+      this.shouldPlayAtEndOfSeek = this.state.shouldPlay;
+      this.playbackInstance.pauseAsync();
+    }
+  };
+
+  _onSeekSliderSlidingComplete = async value => {
+      if (this.playbackInstance != null) {
+        this.isSeeking = false;
+        const seekPosition = value * this.state.playbackInstanceDuration;
+        if (this.shouldPlayAtEndOfSeek) {
+          this.playbackInstance.playFromPositionAsync(seekPosition);
+        } else {
+          this.playbackInstance.setPositionAsync(seekPosition);
+        }
+      }
+    };
 
   render() {
     return(
@@ -150,11 +201,20 @@ class MeditationPlayerScreen extends Component {
           resizeMode='contain'
         />
         <Text style={styles.title}>
-          {this.state.meditationTrack.title}
+          {this.state.playbackInstanceName}
         </Text>
         <Text style={styles.title}>
           YOGA NIDRA
         </Text>
+        <Slider
+            style={styles.playbackSlider}
+            trackImage={ICON_TRACK_1.module}
+            thumbImage={ICON_THUMB_1.module}
+            value={this._getSeekSliderPosition()}
+            onValueChange={this._onSeekSliderValueChange}
+            onSlidingComplete={this._onSeekSliderSlidingComplete}
+            disabled={this.state.isLoading}
+          />
         <View style={styles.round}>
           <TouchableHighlight
               underlayColor={BACKGROUND_COLOR}
@@ -200,10 +260,15 @@ const styles = StyleSheet.create({
   title: {
     color: '#fff',
     fontWeight: 'bold',
-    fontSize: 20
+    fontSize: 20,
+    paddingBottom: 10
+  },
+  playbackSlider: {
+    width: DEVICE_WIDTH * .7
+    // marginRight: 10,
+    // marginLeft: 5
   },
   round: {
-    // flex: 1,
     height: 70,
     width: 70,
     borderRadius: 35,
