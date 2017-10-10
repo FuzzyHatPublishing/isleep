@@ -4,8 +4,8 @@
 
 import React, { Component } from 'react';
 import {
-  // Dimensions,
-  // Image,
+  Dimensions,
+  Image,
   // Modal,
   Platform,
   // Slider,
@@ -27,7 +27,7 @@ const ICON_PAUSE_BUTTON = { name: 'ios-pause' };
 const ICON_TRACK_1 = require('../assets/images/line.png');
 const ICON_THUMB_1 = require('../assets/images/dot.png');
 
-// const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get('window');
+const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get('window');
 const BACKGROUND_COLOR = '#FFF';
 const DISABLED_OPACITY = 0.5;
 const FONT_SIZE = 14;
@@ -148,35 +148,38 @@ class MeditationPlayerScreen extends Component {
   render() {
     return(
       <View style={styles.container}>
-
-        <View>
-          <Text>
-            It's audio time f'reals this time!
-          </Text>
-        </View>
-        <View>
+        
+        <Image
+          source={ require('../assets/images/meditation-on-beach.jpg') }
+          style={styles.image}
+          resizeMode='contain'
+        />
+        <Text style={styles.title}>
+          Title Meditation
+        </Text>
+        <View style={styles.round}>
           <TouchableHighlight
               underlayColor={BACKGROUND_COLOR}
               onPress={this._onPlayPausePressed}
               // disabled={this.state.isLoading}
             >
-              <View>
-                {this.state.isPlaying ? (
-                  <MaterialIcons
-                    name="pause"
-                    size={40}
-                    color="#56D5FA"
-                  />
-                ) : (
-                  <MaterialIcons
-                    name="play-arrow"
-                    size={40}
-                    color="#56D5FA"
-                  />
-                )}
-              </View>
-            </TouchableHighlight>
-          </View>
+            <View>
+              {this.state.isPlaying ? (
+                <MaterialIcons
+                  name="pause"
+                  size={60}
+                  color="#56D5FA"
+                />
+              ) : (
+                <MaterialIcons
+                  name="play-arrow"
+                  size={60}
+                  color="#56D5FA"
+                />
+              )}
+            </View>
+          </TouchableHighlight>
+        </View>
       </View>
     )
   }
@@ -184,7 +187,33 @@ class MeditationPlayerScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    // flexDirection: 'column',
+    alignItems: 'center',
+    // alignSelf: 'stretch',
+    paddingBottom: '10%',
+    backgroundColor: '#000'
+    // justifyContent: 'space-between'
+  },
+  image: {
+    flex: 1, 
+    // height: 100,
+    // width: 100,
+    height: DEVICE_WIDTH * .5,
+    width: DEVICE_WIDTH,
+    // height: undefined, 
+    // width: undefined
+  },
+  title: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 22
+  },
+  round: {
+    height: 100,
+    width: 100,
+    borderRadius: 50,
+    backgroundColor: 'gold'
   }
 });
 
