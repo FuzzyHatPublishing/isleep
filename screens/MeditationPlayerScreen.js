@@ -21,18 +21,18 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 import { Asset, Audio } from 'expo';
 
-const ICON_PLAY_BUTTON = { name: 'ios-play' };
-const ICON_PAUSE_BUTTON = { name: 'ios-pause' };
+// const ICON_PLAY_BUTTON = { name: 'ios-play' };
+// const ICON_PAUSE_BUTTON = { name: 'ios-pause' };
 
-const ICON_TRACK_1 = require('../assets/images/line.png');
-const ICON_THUMB_1 = require('../assets/images/dot.png');
+// const ICON_TRACK_1 = require('../assets/images/line.png');
+// const ICON_THUMB_1 = require('../assets/images/dot.png');
 
 const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get('window');
-const BACKGROUND_COLOR = '#FFF';
+const BACKGROUND_COLOR = '#000';
 const DISABLED_OPACITY = 0.5;
 const FONT_SIZE = 14;
-const LOADING_STRING = '... loading ...';
-const BUFFERING_STRING = '...buffering...';
+// const LOADING_STRING = '... loading ...';
+// const BUFFERING_STRING = '...buffering...';
 
 
 class MeditationPlayerScreen extends Component {
@@ -51,6 +51,8 @@ class MeditationPlayerScreen extends Component {
     super(props);
     this.playbackInstance = null;
     this.state = {
+      meditationTrack: this.props.navigation.state.params.meditation,
+
       // playbackInstanceName: LOADING_STRING,
       // playbackInstancePosition: null,
       // playbackInstanceDuration: null,
@@ -82,13 +84,12 @@ class MeditationPlayerScreen extends Component {
       this.playbackInstance = null;
     }
 
-    const source = require('../assets/sounds/test-audio.mp3');
     const initialStatus = {
       shouldPlay: playing
-      // rate: this.state.rate,
-      // volume: this.state.volume,
     };
 
+    const source = this.state.meditationTrack.id == 1 ? require('../assets/sounds/test-audio.mp3') : require('../assets/sounds/test-audio-2.mp3');
+    
     try  {
       const { sound, status } = await Audio.Sound.create(
         source,
@@ -99,15 +100,9 @@ class MeditationPlayerScreen extends Component {
     } catch(e) {
       console.log("Problem creating sound object: ", e)
     }
-
-    // console.log('in loadNew: playbackInstance after sound create ', this.playbackInstance )
-
-    // this._updateScreenForLoading(false);
   } 
 
   _onPlaybackStatusUpdate = status => { 
-    // console.log("jsut inside _onPlaybackStatusUpdate")
-    // console.log(this.playbackInstance)
     if (!status.isLoaded) {
       // Update your UI for the unloaded state
       if (status.error) {
@@ -155,7 +150,10 @@ class MeditationPlayerScreen extends Component {
           resizeMode='contain'
         />
         <Text style={styles.title}>
-          Title Meditation
+          {this.state.meditationTrack.title}
+        </Text>
+        <Text style={styles.title}>
+          YOGA NIDRA
         </Text>
         <View style={styles.round}>
           <TouchableHighlight
@@ -167,13 +165,13 @@ class MeditationPlayerScreen extends Component {
               {this.state.isPlaying ? (
                 <MaterialIcons
                   name="pause"
-                  size={60}
+                  size={50}
                   color="#56D5FA"
                 />
               ) : (
                 <MaterialIcons
                   name="play-arrow"
-                  size={60}
+                  size={50}
                   color="#56D5FA"
                 />
               )}
@@ -188,32 +186,32 @@ class MeditationPlayerScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // flexDirection: 'column',
     alignItems: 'center',
-    // alignSelf: 'stretch',
     paddingBottom: '10%',
-    backgroundColor: '#000'
+    backgroundColor: BACKGROUND_COLOR
+    // alignSelf: 'stretch',
     // justifyContent: 'space-between'
   },
   image: {
     flex: 1, 
-    // height: 100,
-    // width: 100,
     height: DEVICE_WIDTH * .5,
     width: DEVICE_WIDTH,
-    // height: undefined, 
-    // width: undefined
   },
   title: {
     color: '#fff',
     fontWeight: 'bold',
-    fontSize: 22
+    fontSize: 20
   },
   round: {
-    height: 100,
-    width: 100,
-    borderRadius: 50,
-    backgroundColor: 'gold'
+    // flex: 1,
+    height: 70,
+    width: 70,
+    borderRadius: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#fff',
+    backgroundColor: BACKGROUND_COLOR
   }
 });
 
