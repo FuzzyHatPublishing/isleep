@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Image, Platform, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
-import { List, ListItem } from 'react-native-elements';
 
 class MeditationListScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
