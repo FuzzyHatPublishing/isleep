@@ -24,8 +24,8 @@ import { Asset, Audio } from 'expo';
 // const ICON_PLAY_BUTTON = { name: 'ios-play' };
 // const ICON_PAUSE_BUTTON = { name: 'ios-pause' };
 
-const ICON_TRACK_1 = require('../assets/images/line.png');
-const ICON_THUMB_1 = require('../assets/images/dot.png');
+const ICON_TRACK = require('../assets/images/line-white-thin.png');
+const ICON_THUMB = require('../assets/images/dot-sm.png');
 
 const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get('window');
 const BACKGROUND_COLOR = '#000';
@@ -191,6 +191,47 @@ class MeditationPlayerScreen extends Component {
       }
     };
 
+  _getMMSSFromMillis(millis) {
+    const totalSeconds = millis / 1000;
+    const seconds = Math.floor(totalSeconds % 60);
+    const minutes = Math.floor(totalSeconds / 60);
+
+    const padWithZero = number => {
+      const string = number.toString();
+      if (number < 10) {
+        return '0' + string;
+      }
+      return string;
+    };
+    return padWithZero(minutes) + ':' + padWithZero(seconds);
+  }
+
+  _getTimestampIncr() {
+    if (
+      this.playbackInstance != null &&
+      this.state.playbackInstancePosition != null &&
+      this.state.playbackInstanceDuration != null
+    ) {
+      return `${this._getMMSSFromMillis(
+        this.state.playbackInstancePosition
+      )}`;
+    }
+    return '';
+  }
+
+  _getTimestampDecr() {
+    if (
+      this.playbackInstance != null &&
+      this.state.playbackInstancePosition != null &&
+      this.state.playbackInstanceDuration != null
+    ) {
+      return `${this._getMMSSFromMillis(
+        this.state.playbackInstanceDuration - this.state.playbackInstancePosition
+      )}`;
+    }
+    return '';
+  }
+
   render() {
     return(
       <View style={styles.container}>
@@ -206,15 +247,34 @@ class MeditationPlayerScreen extends Component {
         <Text style={styles.title}>
           YOGA NIDRA
         </Text>
+        <View style={styles.timestampRow}>
+          <Text
+            style={[
+              styles.text,
+              styles.timestamp
+            ]}
+          >
+            {this._getTimestampIncr()}
+          </Text>
         <Slider
             style={styles.playbackSlider}
-            trackImage={ICON_TRACK_1.module}
-            thumbImage={ICON_THUMB_1.module}
+            minimumTrackTintColor={'#555555'}
+            trackImage={ICON_TRACK.module}
+            thumbImage={ICON_THUMB.module}
             value={this._getSeekSliderPosition()}
             onValueChange={this._onSeekSliderValueChange}
             onSlidingComplete={this._onSeekSliderSlidingComplete}
             disabled={this.state.isLoading}
           />
+          <Text
+            style={[
+              styles.text,
+              styles.timestamp
+            ]}
+          >
+            {this._getTimestampDecr()}
+          </Text>
+        </View>
         <View style={styles.round}>
           <TouchableHighlight
               underlayColor={BACKGROUND_COLOR}
@@ -263,10 +323,20 @@ const styles = StyleSheet.create({
     fontSize: 20,
     paddingBottom: 10
   },
+  timestampRow: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    alignSelf: 'stretch',
+    maxHeight: FONT_SIZE * 2
+  },
+  text: {
+    color: '#fff',
+    fontSize: 12
+  },
   playbackSlider: {
-    width: DEVICE_WIDTH * .7
-    // marginRight: 10,
-    // marginLeft: 5
+    width: DEVICE_WIDTH * .6
   },
   round: {
     height: 70,
