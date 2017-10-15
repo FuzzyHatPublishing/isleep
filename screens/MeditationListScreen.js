@@ -14,6 +14,10 @@ class MeditationListScreen extends Component {
     this.setState({ meditations: meditationData });
   }
 
+  _getImage(meditation) {
+    return meditation.id == 1 ? require('../assets/images/sky-moon-cloud-min.jpg') : require('../assets/images/beach-meditation-min.jpg')
+  }
+
   render() {
     const { navigate } = this.props.navigation;
 
@@ -29,7 +33,7 @@ class MeditationListScreen extends Component {
               <View>
                 <Image
                 style={styles.imageStyle}
-                source={ require('../assets/images/sky-moon-cloud-min.jpg') } />
+                source={ this._getImage(meditation) } />
                 <View style={styles.textContainer}>
                   <Text style={styles.textStyle}>{meditation.title}</Text>
                 </View>
