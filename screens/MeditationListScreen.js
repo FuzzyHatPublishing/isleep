@@ -33,10 +33,11 @@ class MeditationListScreen extends Component {
               <View>
                 <Image
                 style={styles.imageStyle}
-                source={ this._getImage(meditation) } />
-                <View style={styles.textContainer}>
-                  <Text style={styles.textStyle}>{meditation.title}</Text>
-                </View>
+                source={ this._getImage(meditation) } >
+                  <View style={styles.textContainer}>
+                      <Text style={styles.textStyle}>{meditation.title}      {meditation.length}</Text>
+                  </View>
+                </Image>
               </View>
             </TouchableHighlight>
           ))
@@ -57,12 +58,18 @@ const styles = StyleSheet.create({
     width: null
   },
   textContainer: {
-    paddingBottom: 30,
-    paddingLeft: 10
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    alignContent: 'space-between',
+    paddingBottom: 5,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   textStyle: {
     color: '#fff',
-    fontSize: 20
+    fontWeight: 'bold',
+    fontSize: 16
   }
 });
 

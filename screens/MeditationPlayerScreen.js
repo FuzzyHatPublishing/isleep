@@ -244,6 +244,10 @@ class MeditationPlayerScreen extends Component {
     this.setState({modalVisible: visible});
   }
 
+  _getImage(meditation) {
+    return meditation.id == 1 ? require('../assets/images/sky-moon-cloud-min.jpg') : require('../assets/images/beach-meditation-min.jpg')
+  }
+  
   render() {
     const { goBack } = this.props.navigation;
     return(
@@ -251,6 +255,8 @@ class MeditationPlayerScreen extends Component {
         
         <Image
           source={ require('../assets/images/meditation-on-beach.jpg') }
+          source={ this._getImage(this.state.meditationTrack) }
+          
           style={styles.image}
           resizeMode='contain'
         />
@@ -298,6 +304,7 @@ class MeditationPlayerScreen extends Component {
               {this.state.isPlaying ? (
                 <MaterialIcons
                   name="pause"
+                  size={46}
                   color="#fff"
                 />
               ) : (
