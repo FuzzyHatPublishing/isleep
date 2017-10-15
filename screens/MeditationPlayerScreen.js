@@ -6,23 +6,19 @@ import React, { Component } from 'react';
 import {
   Dimensions,
   Image,
-  // Modal,
+  Modal,
   Platform,
   Slider,
   StyleSheet,
   Text,
   TouchableHighlight,
-  // TouchableOpacity,
+  TouchableOpacity,
   View
 } from 'react-native';
-// import { Ionicons } from '@expo/vector-icons';
 import { Icon } from 'react-native-elements';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import { Asset, Audio } from 'expo';
-
-// const ICON_PLAY_BUTTON = { name: 'ios-play' };
-// const ICON_PAUSE_BUTTON = { name: 'ios-pause' };
 
 const ICON_TRACK = require('../assets/images/line-white-thin.png');
 const ICON_THUMB = require('../assets/images/dot-sm.png');
@@ -54,13 +50,14 @@ class MeditationPlayerScreen extends Component {
     this.shouldPlayAtEndOfSeek = false;
     this.state = {
       meditationTrack: this.props.navigation.state.params.meditation,
-
       playbackInstanceName: LOADING_STRING,
       playbackInstancePosition: null,
       playbackInstanceDuration: null,
       shouldPlay: false,
       isPlaying: false,
-      isLoading: true
+      isLoading: true,
+      modalVisible: false,
+      closingMessage: ''
     };
 
   }
@@ -137,7 +134,12 @@ class MeditationPlayerScreen extends Component {
           // isBuffering: status.isBuffering,
         });
         if (status.didJustFinish) {
+          console.log(
+            `AUDIO UPDATE : Finished meditation`
+            );
           this.playbackInstance.unloadAsync()
+          this._getRandomClosingMessage();
+          this._setModalVisible(!this.state.modalVisible);
         }
       } else {
         if (status.error) {
@@ -232,7 +234,18 @@ class MeditationPlayerScreen extends Component {
     return '';
   }
 
+  _getRandomClosingMessage() {
+    let messages = require('../assets/data/closing_message_data');
+    let randomMessage = messages[Math.floor(Math.random()*messages.length)];
+    this.setState({closingMessage: randomMessage.message});
+  }
+
+  _setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
+
   render() {
+    const { goBack } = this.props.navigation;
     return(
       <View style={styles.container}>
         
@@ -285,18 +298,40 @@ class MeditationPlayerScreen extends Component {
               {this.state.isPlaying ? (
                 <MaterialIcons
                   name="pause"
-                  size={50}
-                  color="#56D5FA"
+                  color="#fff"
                 />
               ) : (
                 <MaterialIcons
                   name="play-arrow"
-                  size={50}
-                  color="#56D5FA"
+                  size={46}
+                  color="#fff"
                 />
               )}
             </View>
           </TouchableHighlight>
+        </View>
+        <View>
+          <Modal
+            animationType="fade"
+            transparent={false}
+            visible={this.state.modalVisible}
+            onRequestClose={() => {
+              console.log("On close go to Home screen")
+            }}
+            >
+            <TouchableOpacity
+              style={styles.container}
+              activeOpacity={1}
+              onPressOut={() => {
+                this._setModalVisible(false)
+                goBack();
+              }}
+            >
+              <View style={styles.modal}>
+                <Text style={styles.modalMessage}>{ this.state.closingMessage }</Text>
+              </View>
+            </TouchableOpacity>
+          </Modal>
         </View>
       </View>
     )
@@ -347,6 +382,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#fff',
     backgroundColor: BACKGROUND_COLOR
+  },
+   modal: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalMessage: {
+    fontSize: 22,
+    color: '#fff'
   }
 });
 
