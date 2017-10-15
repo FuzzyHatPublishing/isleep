@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Image, Platform, StyleSheet, Text, View } from 'react-native';
-import { List, ListItem } from 'react-native-elements';
+import { Image, Platform, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 
 class MeditationListScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -20,21 +19,24 @@ class MeditationListScreen extends Component {
 
     return (
       <View style={styles.container}>
-        <Image
-          source={ require('../assets/images/meditating_arms.png') }
-          style={styles.imageStyle}
-        />
-        <List style={styles.listStyle}>
-          {
-            this.state.meditations.map((meditation) => (
-              <ListItem
-                key={meditation.id}
-                title={meditation.title}
-                onPress={() => navigate('meditation', {meditation}) }
-              />
-            ))
-          }
-        </List>
+        {
+          this.state.meditations.map((meditation) => (
+            <TouchableHighlight
+              key={meditation.id}
+              underlayColor={'#181818'}
+              onPress={ () => navigate('meditation', {meditation}) }
+              >
+              <View>
+                <Image
+                style={styles.imageStyle}
+                source={ require('../assets/images/sky-moon-cloud-min.jpg') } />
+                <View style={styles.textContainer}>
+                  <Text style={styles.textStyle}>{meditation.title}</Text>
+                </View>
+              </View>
+            </TouchableHighlight>
+          ))
+        }
       </View>
     )
   }
@@ -43,11 +45,20 @@ class MeditationListScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'black',
+    paddingTop: 50
   },
   imageStyle: {
-    height: 300,
+    height: 200,
     width: null
+  },
+  textContainer: {
+    paddingBottom: 30,
+    paddingLeft: 10
+  },
+  textStyle: {
+    color: '#fff',
+    fontSize: 20
   }
 });
 

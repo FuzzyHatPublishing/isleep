@@ -6,35 +6,40 @@ import RootNavigation from '../navigation/RootNavigation';
 const PAGE_WIDTH = Dimensions.get('window').width;
 const PAGES = [
 	{
-		message: "1. Listen in a quiet place",
+		message: "The best solution to finding the proper rest you need.",
+		moreMessage: "Swipe to get started",
+		backgroundColor: "#233243"
+	},
+	{
+		message: "Listen in a quiet place",
 		moreMessage: "Important!",
-		backgroundColor: "#337ab7"
+		backgroundColor: "#7E8578"
 	},
 	{
-		message: "2. Get super comfey",
-		moreMessage: "Like, realllllly comfey.",
-		backgroundColor: "#75bba0"
+		message: "Get super comfey",
+		moreMessage: "Like, reaallyyy comfey.",
+		backgroundColor: "#C17918"
 	},
 	{
-		message: "3. Turn phone off",
-		moreMessage: "More best practices in the 'Guide'.",
-		backgroundColor: "#79002c"
+		message: "Turn phone off",
+		moreMessage: "More best practices in the 'app guide'",
+		backgroundColor: "#0B5F6A"
 	},
 	{
-		message: "4. Choose meditation",
-		moreMessage: "Meditations below.",
-		backgroundColor: "#ffa600"
-	},
+		message: "Choose meditation",
+		moreMessage: "Pick the meditation that works with your schedule.",
+		backgroundColor: "#695065"
+	}
 ]
 
 class TourScreen extends Component {
- 
+
 	state = {
     scroll: new Animated.Value(0),
   };
 
   render() {
-    
+
     const position = Animated.divide(this.state.scroll, PAGE_WIDTH);
     const backgroundColor = position.interpolate({
       inputRange: PAGES.map((_, i) => i),
@@ -43,7 +48,7 @@ class TourScreen extends Component {
 
     return (
 			<View style={styles.container}>
-				<Animated.View style={[ StyleSheet.absoluteFill, { backgroundColor, opacity: 0.8 } ]} />
+				<Animated.View style={[ StyleSheet.absoluteFill, { backgroundColor } ]} />
 
 				<Animated.ScrollView
 					horizontal
@@ -66,13 +71,12 @@ class TourScreen extends Component {
 					))}
 				</Animated.ScrollView>
           <View style={styles.button}>
-            <TouchableHighlight onPress={() => {this.props.handler()}}>          
-                <Text style={styles.buttonText}>
-                  Get Started
-                </Text>
+            <TouchableHighlight onPress={() => {this.props.handler()}}>
+              <Text style={styles.buttonText}>
+                Get Started
+              </Text>
            </TouchableHighlight>
         </View>
-        
 			</View>
 		);
 	}
@@ -83,7 +87,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   message: {
-    fontSize: PAGE_WIDTH / 12,
+    fontSize: PAGE_WIDTH/12,
     fontWeight: 'bold',
     color: '#fff',
     backgroundColor: 'transparent',
@@ -91,8 +95,7 @@ const styles = StyleSheet.create({
   },
 
   moreMessage: {
-    fontSize: PAGE_WIDTH / 20,
-    fontStyle: 'italic',
+    fontSize: PAGE_WIDTH/18,
     color: '#fff',
     backgroundColor: 'transparent',
     marginTop: 20,
@@ -137,7 +140,7 @@ const styles = StyleSheet.create({
 
 
 
-  
+
 });
 
 export default TourScreen;
