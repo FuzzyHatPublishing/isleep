@@ -32,7 +32,7 @@ export default class App extends React.Component {
   }
 
   handler(e) {
-    console.log("In handler in App.js")
+    // console.log("In handler in App.js")
     // e.preventDefault()
     this.setState({
       showTour: false
