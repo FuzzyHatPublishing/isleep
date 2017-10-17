@@ -6,26 +6,31 @@ import RootNavigation from '../navigation/RootNavigation';
 const PAGE_WIDTH = Dimensions.get('window').width;
 const PAGES = [
 	{
+		id: 1,
 		message: "The best solution to finding the proper rest you need.",
 		moreMessage: "Swipe to get started",
 		backgroundColor: "#233243"
 	},
 	{
+		id: 2,
 		message: "Listen in a quiet place",
 		moreMessage: "Important!",
 		backgroundColor: "#7E8578"
 	},
 	{
+		id: 3,
 		message: "Get super comfey",
 		moreMessage: "Like, reaallyyy comfey.",
 		backgroundColor: "#C17918"
 	},
 	{
+		id: 4,
 		message: "Turn phone off",
 		moreMessage: "More best practices in the 'app guide'",
 		backgroundColor: "#0B5F6A"
 	},
 	{
+		id: 5,
 		message: "Choose meditation",
 		moreMessage: "Pick the meditation that works with your schedule.",
 		backgroundColor: "#695065"
@@ -34,9 +39,37 @@ const PAGES = [
 
 class TourScreen extends Component {
 
-	state = {
-    scroll: new Animated.Value(0),
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+    	scroll: new Animated.Value(0),
+    	currentCard: 1
+    }
+   }
+
+  componentDidMount() {
+  	this.state.currentCard = 0
+  }
+
+_getImage() {
+	switch (this.state.currentCard) {
+		case 1:
+			return require('../assets/images/clouds/clouds-tour-5.png')
+			break;
+		case 2:
+			return require('../assets/images/clouds/clouds-tour-2.png')
+			break;
+		case 3:
+			return require('../assets/images/clouds/clouds-tour-3.png')
+			break;
+		case 4:
+			return require('../assets/images/clouds/clouds-tour-4.png')
+			break;
+		case 5:
+			return require('../assets/images/clouds/clouds-tour-5.png')
+			break;
+	}
+}
 
   render() {
 
@@ -68,7 +101,7 @@ class TourScreen extends Component {
 		        >
 						<Image 
 							style={styles.image}
-							source={ require('../assets/images/clouds/clouds-tour-5.png') } />
+							source={ this._getImage() } />
 					</View>
 					<Animated.ScrollView
 						horizontal
