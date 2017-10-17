@@ -64,10 +64,9 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-end',
-    // alignContent: 'space-between',
     paddingBottom: 5,
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   textRow: {
     flexDirection: 'row',
