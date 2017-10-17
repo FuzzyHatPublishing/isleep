@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Animated, Dimensions, StyleSheet, View, Text, TouchableHighlight } from 'react-native';
+import { Animated, Dimensions, Image, StyleSheet, View, Text, TouchableHighlight } from 'react-native';
 import { Constants } from 'expo';
 import RootNavigation from '../navigation/RootNavigation';
 
@@ -56,36 +56,48 @@ class TourScreen extends Component {
 
     return (
 			<View style={styles.container}>
-				<Animated.View style={[ StyleSheet.absoluteFill, { backgroundColor } ]} />
+					<Animated.View style={[ StyleSheet.absoluteFill, { backgroundColor } ]} />
+					 <View
+		          style={{
+		            position: 'absolute',
+		            top: 0,
+		            left: 0,
+		            width: '100%',
+		            height: '100%',
+		          }}
+		        >
+						<Image 
+							style={styles.image}
+							source={ require('../assets/images/clouds/clouds-tour-5.png') } />
+					</View>
+					<Animated.ScrollView
+						horizontal
+						pagingEnabled
+						showsHorizontalScrollIndicator={false}
+						scrollEventThrottle={16}
+						onScroll={Animated.event(
+							[ { nativeEvent: { contentOffset: { x: this.state.scroll } } } ],
+						)}>
 
-				<Animated.ScrollView
-					horizontal
-					pagingEnabled
-					showsHorizontalScrollIndicator={false}
-					scrollEventThrottle={16}
-					onScroll={Animated.event(
-						[ { nativeEvent: { contentOffset: { x: this.state.scroll } } } ],
-					)}>
-
-					{PAGES.map((page, i) => (
-						<View key={i} style={styles.page}>
-							<View style={[ styles.card ]}>
-								<Text style={styles.message}>{page.message}</Text>
-								<Text style={styles.moreMessage}>{page.moreMessage}</Text>
-								{renderIf(i===4,
-									<View style={styles.button}>
-										<TouchableHighlight onPress={() => {this.props.handler()}}>
-											<Text style={styles.buttonText}>
-												Get Started
-											</Text>
-										</TouchableHighlight>
-									</View>
-                )}
+						{PAGES.map((page, i) => (
+							<View key={i} style={styles.page}>
+								<View style={[ styles.card ]}>
+									<Text style={styles.message}>{page.message}</Text>
+									<Text style={styles.moreMessage}>{page.moreMessage}</Text>
+									{renderIf(i===4,
+										<View style={styles.button}>
+											<TouchableHighlight onPress={() => {this.props.handler()}}>
+												<Text style={styles.buttonText}>
+													Get Started
+												</Text>
+											</TouchableHighlight>
+										</View>
+	                )}
+								</View>
 							</View>
-						</View>
-					))}
-				</Animated.ScrollView>
+						))}
 
+					</Animated.ScrollView>
 			</View>
 		);
 	}
@@ -95,6 +107,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  image: {
+  	flex: 1,
+  	resizeMode: 'contain',
+  	top: 100
+  },
   message: {
     fontSize: PAGE_WIDTH/12,
     fontWeight: 'bold',
@@ -102,7 +119,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     textAlign: 'center'
   },
-
   moreMessage: {
     fontSize: PAGE_WIDTH/18,
     color: '#fff',
@@ -119,7 +135,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     margin: 12,
     marginTop: PAGE_WIDTH / 3,
-    left: 0,
+    left: 12,
     top: 0,
     right: 0,
     borderRadius: 8,
@@ -135,16 +151,16 @@ const styles = StyleSheet.create({
     marginTop: 300,
     alignSelf: 'center',
     borderRadius: 50,
-    paddingLeft: 20,
-    paddingRight: 20
+    // paddingLeft: 10,
+    // paddingRight: 10
   },
   buttonText: {
     margin: 15,
     marginLeft: 50,
     marginRight: 40,
     color: '#fff',
-    fontSize: 22,
-    fontVariant: ['small-caps'],
+    fontSize: PAGE_WIDTH/16,
+    // fontVariant: ['small-caps'],
   }
 });
 
