@@ -39,37 +39,29 @@ const PAGES = [
 
 class TourScreen extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-    	scroll: new Animated.Value(0),
-    	currentCard: 1
-    }
-   }
-
-  componentDidMount() {
-  	this.state.currentCard = 0
-  }
-
-_getImage() {
-	switch (this.state.currentCard) {
-		case 1:
-			return require('../assets/images/clouds/clouds-tour-5.png')
-			break;
-		case 2:
-			return require('../assets/images/clouds/clouds-tour-2.png')
-			break;
-		case 3:
-			return require('../assets/images/clouds/clouds-tour-3.png')
-			break;
-		case 4:
-			return require('../assets/images/clouds/clouds-tour-4.png')
-			break;
-		case 5:
-			return require('../assets/images/clouds/clouds-tour-5.png')
-			break;
+	state = {
+    scroll: new Animated.Value(0),
 	}
-}
+
+	_getImage(i) {
+		switch (i) {
+			case 0:
+				return require('../assets/images/clouds/clouds-tour-1.png')
+				break;
+			case 1:
+				return require('../assets/images/clouds/clouds-tour-2.png')
+				break;
+			case 2:
+				return require('../assets/images/clouds/clouds-tour-3.png')
+				break;
+			case 3:
+				return require('../assets/images/clouds/clouds-tour-4.png')
+				break;
+			case 4:
+				return require('../assets/images/clouds/clouds-tour-5.png')
+				break;
+		}
+	}
 
   render() {
 
@@ -90,19 +82,7 @@ _getImage() {
     return (
 			<View style={styles.container}>
 					<Animated.View style={[ StyleSheet.absoluteFill, { backgroundColor } ]} />
-					 <View
-		          style={{
-		            position: 'absolute',
-		            top: 0,
-		            left: 0,
-		            width: '100%',
-		            height: '100%',
-		          }}
-		        >
-						<Image 
-							style={styles.image}
-							source={ this._getImage() } />
-					</View>
+					 
 					<Animated.ScrollView
 						horizontal
 						pagingEnabled
@@ -110,10 +90,14 @@ _getImage() {
 						scrollEventThrottle={16}
 						onScroll={Animated.event(
 							[ { nativeEvent: { contentOffset: { x: this.state.scroll } } } ],
-						)}>
+						)}
+						>
 
 						{PAGES.map((page, i) => (
 							<View key={i} style={styles.page}>
+								<Image 
+								style={styles.image}
+								source={ this._getImage(i) } />
 								<View style={[ styles.card ]}>
 									<Text style={styles.message}>{page.message}</Text>
 									<Text style={styles.moreMessage}>{page.moreMessage}</Text>
@@ -129,7 +113,6 @@ _getImage() {
 								</View>
 							</View>
 						))}
-
 					</Animated.ScrollView>
 			</View>
 		);
