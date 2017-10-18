@@ -58,7 +58,7 @@ class TourScreen extends Component {
 				return require('../assets/images/clouds/tour-page-4.jpg')
 				break;
 			case 4:
-				return require('../assets/images/clouds/tour-page-5.jpg')
+				return require('../assets/images/clouds/tour-page-1.jpg')
 				break;
 		}
 	}
@@ -192,14 +192,12 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0, 0.5)',
+    backgroundColor: 'rgba(42, 24, 39, 0.6)',
     position: 'absolute',
     margin: 12,
     marginTop: 300,
     alignSelf: 'center',
     borderRadius: 50,
-    // paddingLeft: 10,
-    // paddingRight: 10
   },
   buttonText: {
     margin: 15,
@@ -207,7 +205,6 @@ const styles = StyleSheet.create({
     marginRight: 40,
     color: '#fff',
     fontSize: PAGE_WIDTH/16,
-    // fontVariant: ['small-caps'],
   }
 });
 
