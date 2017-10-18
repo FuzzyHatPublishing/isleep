@@ -46,19 +46,19 @@ class TourScreen extends Component {
 	_getImage(i) {
 		switch (i) {
 			case 0:
-				return require('../assets/images/clouds/clouds-tour-1.png')
+				return require('../assets/images/clouds/tour-page-1.jpg')
 				break;
 			case 1:
-				return require('../assets/images/clouds/clouds-tour-2.png')
+				return require('../assets/images/clouds/tour-page-2.jpg')
 				break;
 			case 2:
-				return require('../assets/images/clouds/clouds-tour-3.png')
+				return require('../assets/images/clouds/tour-page-3.jpg')
 				break;
 			case 3:
-				return require('../assets/images/clouds/clouds-tour-4.png')
+				return require('../assets/images/clouds/tour-page-4.jpg')
 				break;
 			case 4:
-				return require('../assets/images/clouds/clouds-tour-5.png')
+				return require('../assets/images/clouds/tour-page-5.jpg')
 				break;
 		}
 	}
@@ -100,6 +100,11 @@ class TourScreen extends Component {
 								source={ this._getImage(i) } />
 								<View style={[ styles.card ]}>
 									<Text style={styles.message}>{page.message}</Text>
+									{renderIf(i===0,
+										<Image 
+											style={styles.image}
+											source={ require('../assets/images/gesture.png') } />
+	                )}
 									<Text style={styles.moreMessage}>{page.moreMessage}</Text>
 									{renderIf(i===4,
 										<View style={styles.button}>
@@ -125,8 +130,8 @@ const styles = StyleSheet.create({
   },
   image: {
   	flex: 1,
-  	resizeMode: 'contain',
-  	top: 100
+  	// resizeMode: 'cover',
+    width: PAGE_WIDTH
   },
   message: {
     fontSize: PAGE_WIDTH/12,
@@ -138,6 +143,7 @@ const styles = StyleSheet.create({
   moreMessage: {
     fontSize: PAGE_WIDTH/18,
     color: '#fff',
+    fontWeight: 'bold',
     backgroundColor: 'transparent',
     marginTop: 20,
     lineHeight: 25,
@@ -145,7 +151,7 @@ const styles = StyleSheet.create({
   },
   page: {
     width: PAGE_WIDTH,
-    paddingTop: Constants.statusBarHeight + 48,
+    paddingTop: Constants.statusBarHeight,
   },
   card: {
     position: 'absolute',
