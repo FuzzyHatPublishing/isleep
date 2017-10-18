@@ -99,8 +99,11 @@ class TourScreen extends Component {
 								style={styles.image}
 								source={ this._getImage(i) } />
 								<View style={[ styles.card ]}>
-									<Text style={styles.moreMessage}>{page.moreMessage}</Text>
+									{renderIf(i===0,
+										<Text style={styles.header}>iSLEEP</Text>
+									)}
 									<Text style={styles.message}>{page.message}</Text>
+									<Text style={styles.moreMessage}>{page.moreMessage}</Text>
 									{renderIf(i===0,
 										<View>
 											<Image 
@@ -133,7 +136,6 @@ const styles = StyleSheet.create({
   },
   image: {
   	flex: 1,
-  	// resizeMode: 'cover',
     width: PAGE_WIDTH
   },
   gesture: {
@@ -141,6 +143,13 @@ const styles = StyleSheet.create({
   	marginTop: 20,
   	width: 57,
   	height: 78
+  },
+  header: {
+    fontSize: PAGE_WIDTH/10,
+    fontWeight: 'bold',
+    color: '#fff',
+    backgroundColor: 'transparent',
+    textAlign: 'center'
   },
   message: {
     fontSize: PAGE_WIDTH/12,
