@@ -7,8 +7,8 @@ const PAGE_WIDTH = Dimensions.get('window').width;
 const PAGES = [
 	{
 		id: 1,
-		message: "The best solution to finding the proper rest you need.",
-		moreMessage: "Swipe to get started",
+		message: "",
+		moreMessage: "The best solution to finding the proper rest you need.",
 		backgroundColor: "#233243"
 	},
 	{
@@ -99,13 +99,16 @@ class TourScreen extends Component {
 								style={styles.image}
 								source={ this._getImage(i) } />
 								<View style={[ styles.card ]}>
+									<Text style={styles.moreMessage}>{page.moreMessage}</Text>
 									<Text style={styles.message}>{page.message}</Text>
 									{renderIf(i===0,
-										<Image 
-											style={styles.image}
-											source={ require('../assets/images/gesture.png') } />
+										<View>
+											<Image 
+												style={styles.gesture}
+												source={ require('../assets/images/swipe-gesture.png') } />
+											<Text style={styles.swipeText}>Swipe to get started</Text>
+										</View>
 	                )}
-									<Text style={styles.moreMessage}>{page.moreMessage}</Text>
 									{renderIf(i===4,
 										<View style={styles.button}>
 											<TouchableHighlight onPress={() => {this.props.handler()}}>
@@ -133,6 +136,12 @@ const styles = StyleSheet.create({
   	// resizeMode: 'cover',
     width: PAGE_WIDTH
   },
+  gesture: {
+  	alignSelf: 'center',
+  	marginTop: 20,
+  	width: 57,
+  	height: 78
+  },
   message: {
     fontSize: PAGE_WIDTH/12,
     fontWeight: 'bold',
@@ -147,6 +156,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     marginTop: 20,
     lineHeight: 25,
+    textAlign: 'center'
+  },
+  swipeText: {
+    fontSize: PAGE_WIDTH/22,
+    fontWeight: 'bold',
+    color: '#fff',
+    backgroundColor: 'transparent',
     textAlign: 'center'
   },
   page: {
@@ -167,7 +183,7 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0, 0.3)',
+    backgroundColor: 'rgba(0,0,0, 0.5)',
     position: 'absolute',
     margin: 12,
     marginTop: 300,
