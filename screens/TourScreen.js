@@ -7,8 +7,8 @@ const PAGE_WIDTH = Dimensions.get('window').width;
 const PAGES = [
 	{
 		id: 1,
-		message: "The best solution to finding the proper rest you need.",
-		moreMessage: "Swipe to get started",
+		message: "",
+		moreMessage: "The best solution to finding the proper rest you need.",
 		backgroundColor: "#233243"
 	},
 	{
@@ -46,19 +46,19 @@ class TourScreen extends Component {
 	_getImage(i) {
 		switch (i) {
 			case 0:
-				return require('../assets/images/clouds/clouds-tour-1.png')
+				return require('../assets/images/clouds/tour-page-1.jpg')
 				break;
 			case 1:
-				return require('../assets/images/clouds/clouds-tour-2.png')
+				return require('../assets/images/clouds/tour-page-2.jpg')
 				break;
 			case 2:
-				return require('../assets/images/clouds/clouds-tour-3.png')
+				return require('../assets/images/clouds/tour-page-3.jpg')
 				break;
 			case 3:
-				return require('../assets/images/clouds/clouds-tour-4.png')
+				return require('../assets/images/clouds/tour-page-4.jpg')
 				break;
 			case 4:
-				return require('../assets/images/clouds/clouds-tour-5.png')
+				return require('../assets/images/clouds/tour-page-1.jpg')
 				break;
 		}
 	}
@@ -99,8 +99,19 @@ class TourScreen extends Component {
 								style={styles.image}
 								source={ this._getImage(i) } />
 								<View style={[ styles.card ]}>
+									{renderIf(i===0,
+										<Text style={styles.header}>iSLEEP</Text>
+									)}
 									<Text style={styles.message}>{page.message}</Text>
 									<Text style={styles.moreMessage}>{page.moreMessage}</Text>
+									{renderIf(i===0,
+										<View>
+											<Image 
+												style={styles.gesture}
+												source={ require('../assets/images/swipe-gesture.png') } />
+											<Text style={styles.swipeText}>Swipe to get started</Text>
+										</View>
+	                )}
 									{renderIf(i===4,
 										<View style={styles.button}>
 											<TouchableHighlight onPress={() => {this.props.handler()}}>
@@ -125,8 +136,20 @@ const styles = StyleSheet.create({
   },
   image: {
   	flex: 1,
-  	resizeMode: 'contain',
-  	top: 100
+    width: PAGE_WIDTH
+  },
+  gesture: {
+  	alignSelf: 'center',
+  	marginTop: 20,
+  	width: 57,
+  	height: 78
+  },
+  header: {
+    fontSize: PAGE_WIDTH/10,
+    fontWeight: 'bold',
+    color: '#fff',
+    backgroundColor: 'transparent',
+    textAlign: 'center'
   },
   message: {
     fontSize: PAGE_WIDTH/12,
@@ -138,14 +161,22 @@ const styles = StyleSheet.create({
   moreMessage: {
     fontSize: PAGE_WIDTH/18,
     color: '#fff',
+    fontWeight: 'bold',
     backgroundColor: 'transparent',
     marginTop: 20,
     lineHeight: 25,
     textAlign: 'center'
   },
+  swipeText: {
+    fontSize: PAGE_WIDTH/22,
+    fontWeight: 'bold',
+    color: '#fff',
+    backgroundColor: 'transparent',
+    textAlign: 'center'
+  },
   page: {
     width: PAGE_WIDTH,
-    paddingTop: Constants.statusBarHeight + 48,
+    paddingTop: Constants.statusBarHeight,
   },
   card: {
     position: 'absolute',
@@ -161,14 +192,12 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0, 0.3)',
+    backgroundColor: 'rgba(42, 24, 39, 0.6)',
     position: 'absolute',
     margin: 12,
     marginTop: 300,
     alignSelf: 'center',
     borderRadius: 50,
-    // paddingLeft: 10,
-    // paddingRight: 10
   },
   buttonText: {
     margin: 15,
@@ -176,7 +205,6 @@ const styles = StyleSheet.create({
     marginRight: 40,
     color: '#fff',
     fontSize: PAGE_WIDTH/16,
-    // fontVariant: ['small-caps'],
   }
 });
 
