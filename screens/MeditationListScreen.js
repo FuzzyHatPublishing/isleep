@@ -35,7 +35,10 @@ class MeditationListScreen extends Component {
                 style={styles.imageStyle}
                 source={ this._getImage(meditation) } >
                   <View style={styles.textContainer}>
-                      <Text style={styles.textStyle}>{meditation.title}      {meditation.length}</Text>
+                    <View style={styles.textRow}>
+                      <Text style={styles.textStyle}>{meditation.title}</Text>
+                      <Text style={styles.textStyle}>{meditation.length}</Text>
+                    </View>
                   </View>
                 </Image>
               </View>
@@ -61,10 +64,13 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-end',
-    alignContent: 'space-between',
     paddingBottom: 5,
     paddingLeft: 20,
     paddingRight: 20,
+  },
+  textRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   textStyle: {
     color: '#fff',
