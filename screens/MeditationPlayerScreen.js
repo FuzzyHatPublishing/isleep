@@ -174,6 +174,7 @@ class MeditationPlayerScreen extends Component {
         volume: status.volume,
       });
       if (status.didJustFinish) {
+        this.playbackInstance.stopAsync();
         this._finishedMeditation(true);
         this._getRandomClosingMessage();
       }
