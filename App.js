@@ -32,7 +32,6 @@ export default class App extends React.Component {
   }
 
   handler(e) {
-    // console.log("In handler in App.js")
     this.setState({
       showTour: false
     })
@@ -43,7 +42,7 @@ export default class App extends React.Component {
       return <AppLoading />;
     } else {
       if(this.state.firstLaunch == true && this.state.showTour == true) {
-        return <TourScreen handler = {this.handler} />;
+        return <TourScreen handler={this.handler} />;
       } else {
         return  <RootNavigation />;
       }

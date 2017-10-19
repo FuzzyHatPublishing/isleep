@@ -117,9 +117,24 @@ class MeditationPlayerScreen extends Component {
     }
   }
 
-  _onPlaybackStatusUpdate = status => { 
-    if (!status.isLoaded) {
-      // Update your UI for the unloaded state
+  _onPlaybackStatusUpdate = status => {
+    if (status.isLoaded) {
+      this.setState({
+        playbackInstancePosition: status.positionMillis,
+        playbackInstanceDuration: status.durationMillis,
+        shouldPlay: status.shouldPlay,
+        isPlaying: status.isPlaying,
+        isBuffering: status.isBuffering,
+        rate: status.rate,
+        muted: status.isMuted,
+        volume: status.volume,
+      });
+      if (status.didJustFinish) {
+        this.playbackInstance.stopAsync();
+        this._finishedMeditation(true);
+        this._getRandomClosingMessage();
+      }
+    } else {
       if (status.error) {
         console.log(`Encountered a fatal error during playback: ${status.error}`);
         // Send Expo team the error on Slack or the forums so we can help you debug!
