@@ -33,15 +33,15 @@ const LOADING_STRING = '... loading ...';
 
 class MeditationPlayerScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
-		title: 'iSleep',
-		headerLeft:
-			<Icon
-				name='navigate-before'
-				size={32}
-				onPress={ () => navigation.goBack() }
-			/>,
-		headerStyle: { marginTop: Platform.OS === 'android' ? 24: 0 }
-	});
+    title: 'iSleep',
+    headerLeft:
+      <Icon
+        name='navigate-before'
+        size={32}
+        onPress={ () => navigation.goBack() }
+      />,
+    headerStyle: { marginTop: Platform.OS === 'android' ? 24: 0 }
+  });
 
   constructor(props) {
     super(props);
@@ -117,24 +117,9 @@ class MeditationPlayerScreen extends Component {
     }
   }
 
-  _onPlaybackStatusUpdate = status => {
-    if (status.isLoaded) {
-      this.setState({
-        playbackInstancePosition: status.positionMillis,
-        playbackInstanceDuration: status.durationMillis,
-        shouldPlay: status.shouldPlay,
-        isPlaying: status.isPlaying,
-        isBuffering: status.isBuffering,
-        rate: status.rate,
-        muted: status.isMuted,
-        volume: status.volume,
-      });
-      if (status.didJustFinish) {
-        this.playbackInstance.stopAsync();
-        this._finishedMeditation(true);
-        this._getRandomClosingMessage();
-      }
-    } else {
+  _onPlaybackStatusUpdate = status => { 
+    if (!status.isLoaded) {
+      // Update your UI for the unloaded state
       if (status.error) {
         console.log(`Encountered a fatal error during playback: ${status.error}`);
         // Send Expo team the error on Slack or the forums so we can help you debug!
@@ -259,13 +244,17 @@ class MeditationPlayerScreen extends Component {
     this.setState({modalVisible: visible});
   }
 
+  _getImage(meditation) {
+    return meditation.id == 1 ? require('../assets/images/sky-moon-cloud-min.jpg') : require('../assets/images/beach-meditation-min.jpg')
+  }
+  
   render() {
     const { goBack } = this.props.navigation;
     return(
       <View style={styles.container}>
         
         <Image
-          source={ require('../assets/images/meditation-on-beach.jpg') }
+          source={ this._getImage(this.state.meditationTrack) }
           style={styles.image}
           resizeMode='contain'
         />
@@ -313,6 +302,7 @@ class MeditationPlayerScreen extends Component {
               {this.state.isPlaying ? (
                 <MaterialIcons
                   name="pause"
+                  size={46}
                   color="#fff"
                 />
               ) : (
@@ -359,8 +349,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingBottom: '10%',
     backgroundColor: BACKGROUND_COLOR
-    // alignSelf: 'stretch',
-    // justifyContent: 'space-between'
   },
   image: {
     flex: 1, 
