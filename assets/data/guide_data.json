@@ -2,6 +2,7 @@
   {
     "id": 1,
     "topic": "FAQs",
+    "color": "#69506560",
     "subjectCollection": [
       {
         "id": 1,
@@ -28,6 +29,7 @@
   {
     "id": 2,
     "topic": "Best Practices",
+    "color": "#45628460",
     "subjectCollection": [
       {
         "id": 1,
@@ -54,6 +56,7 @@
   {
     "id": 3,
     "topic": "Sugar sugar",
+    "color": "#788E7760",
     "subjectCollection": [
       {
         "id": 1,
@@ -80,6 +83,7 @@
   {
     "id": 4,
     "topic": "More caffeine",
+    "color": "#C1791860",
     "subjectCollection": [
       {
         "id": 1,
@@ -104,4 +108,3 @@
     ]
   },
 ]
-
