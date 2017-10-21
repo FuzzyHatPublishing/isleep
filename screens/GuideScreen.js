@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import {
+	Image,
 	View,
 	StyleSheet,
 	Text,
 	Platform,
 	Dimensions,
+	ScrollView,
 	TouchableHighlight
 } from 'react-native';
 import { Icon } from 'react-native-elements';
@@ -17,6 +19,23 @@ class GuideScreen extends Component {
 
 	state = { guideSubjects: [] };
 
+	_getImage(i) {
+	 	switch (i) {
+	 		case 0:
+	 			return require('../assets/images/guide-icons/question.png')
+	 			break;
+	 		case 1:
+	 			return require('../assets/images/guide-icons/checked.png')
+	 			break;
+	 		case 2:
+	 			return require('../assets/images/guide-icons/inclined-candy.png')
+	 			break;
+	 		case 3:
+				return require('../assets/images/guide-icons/coffee.png')
+				break;
+		}
+	 }
+
 	componentWillMount() {
 		let guideData = require('../assets/data/guide_data');
 		this.setState({ guideSubjects: guideData });
@@ -26,45 +45,63 @@ class GuideScreen extends Component {
 		const { navigate } = this.props.navigation;
 
 		return (
-			<View style={styles.grid}>
-				{
-					this.state.guideSubjects.map((subject) => (
-						<TouchableHighlight 
-							style={styles.box} 
-							key={subject.id}
-							underlayColor={'#a3a1a1'}
-							onPress={ () => navigate('subjectList', {subject}) }
-							>
-							<Text style={styles.topic}>{subject.topic}</Text>
-						</TouchableHighlight>
-					))
-				}
+			<View style={{backgroundColor:"black"}}>
+				<Image style={styles.bgImage} source={require('../assets/images/clouds/guide-clouds.png')} />
+				<ScrollView>
+					<View style={styles.container}>
+						{
+							this.state.guideSubjects.map((subject, i) => (
+								<TouchableHighlight
+									key={subject.id}
+									underlayColor={'#494949'}
+									onPress={ () => navigate('subjectList', {subject}) }
+									>
+									<View backgroundColor={subject.color} 							style={styles.box}>
+										<Text style={styles.topic}>{subject.topic}</Text>
+										<Image style={styles.icons} source={ this._getImage(i) } />
+									</View>
+								</TouchableHighlight>
+							))
+						}
+					</View>
+				</ScrollView>
 			</View>
 		);
 	}
 }
 
 const styles = StyleSheet.create({
-	grid: {
-		flex: 1,
-		backgroundColor: '#FAFAFA',
-		flexDirection: 'row',
-		flexWrap: 'wrap',
-		padding: 2
+	bgImage: {
+		position: 'absolute',
+		top: 0,
+		bottom: 0,
+		left: 0,
+		right: 0
 	},
 	box: {
-		margin: 2,
-		width: Dimensions.get('window').width / 2 -6,
+		marginTop: 8,
+		marginBottom: 8,
 		height: 200,
+		width: '80%',
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: '#FAFAFA',
-		borderWidth: 5,
-		borderColor: '#607D8B'
+		alignSelf: 'center',
+		borderRadius: 3
+	},
+	container: {
+		paddingTop: 8,
+		paddingBottom: 8,
+	},
+	icons: {
+		marginTop: 10,
+		height: 60,
+		width: 60
 	},
 	topic: {
-		fontSize: 20,
-		paddingBottom: 10
+		fontSize: 36,
+		paddingBottom: 10,
+		color: '#fff',
+		fontWeight: 'bold'
 	}
 })
 
