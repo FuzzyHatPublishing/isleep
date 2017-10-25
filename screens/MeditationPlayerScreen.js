@@ -102,6 +102,7 @@ class MeditationPlayerScreen extends Component {
 
  _updateScreenForLoading(isLoading) {
     if (isLoading) {
+      console.log("in updateScreenForLoading-if")
       this.setState({
         isPlaying: false,
         playbackInstanceName: LOADING_STRING,
@@ -110,6 +111,8 @@ class MeditationPlayerScreen extends Component {
         isLoading: true
       });
     } else {
+      console.log("in updateScreenForLoading-else")
+
       this.setState({
         playbackInstanceName: this.state.meditationTrack.title,
         isLoading: false
@@ -126,6 +129,8 @@ class MeditationPlayerScreen extends Component {
       }
     } else {
       if (status.isLoaded) {
+      console.log("in setOnPlaybackStatusUpdate-isLoaded")
+
         this.setState({
           playbackInstancePosition: status.positionMillis,
           playbackInstanceDuration: status.durationMillis,
@@ -235,12 +240,15 @@ class MeditationPlayerScreen extends Component {
   }
 
   _getRandomClosingMessage() {
+    console.log("in _getRandomClosingMessage")
+
     let messages = require('../assets/data/closing_message_data');
     let randomMessage = messages[Math.floor(Math.random()*messages.length)];
     this.setState({closingMessage: randomMessage.message});
   }
 
   _setModalVisible(visible) {
+    console.log(`MODAL UPDATE : _setModalVisible`)
     this.setState({modalVisible: visible});
   }
 
