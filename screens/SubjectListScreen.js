@@ -25,7 +25,7 @@ class SubjectListScreen extends Component {
 					onPress={ () => navigation.goBack() }
 				/>,
 			headerStyle: { marginTop: Platform.OS === 'android' ? 24 : 0, backgroundColor: subjectColor },
-			headerTitleStyle: { color: '#fff', fontSize: 24, fontWeight: 'bold' },
+			headerTitleStyle: { color: '#fff', fontSize: 22, fontWeight: 'bold', marginHorizontal: 0 },
 		}
 	};
 
@@ -39,7 +39,7 @@ class SubjectListScreen extends Component {
 
 	_renderHeader(section) {
     return (
-    	<View style={styles.header}>  
+    	<View style={styles.header} backgroundColor={section.colorHeader}>  
       	<Text style={styles.subject}>{section.subject}</Text>
     	</View>
     );
@@ -47,8 +47,8 @@ class SubjectListScreen extends Component {
 
   _renderContent(section) {
     return (
-      <View style={styles.content} >
-        <Text style={styles.details}>{section.details}</Text>
+      <View style={styles.content} backgroundColor={section.colorDetails}>
+      	<Text style={styles.details}>{section.details}</Text>
       </View>
     );
   }
@@ -56,12 +56,12 @@ class SubjectListScreen extends Component {
 	render() {
 		const backgroundColor = this.props.navigation.state.params.subject.color
 		return (
-			<View style={styles.contentContainerStyle} backgroundColor={backgroundColor}>
+			<View style={styles.contentContainerStyle}>
 				<Image style={styles.bgImage} source={require('../assets/images/clouds/guide-background-only.png')} />
 					<ScrollView>
 						<View style={styles.list}>
 							<Accordion
-								underlayColor={'#a3a1a1'}
+								underlayColor={'#b2b2b2'}
 				        sections={this.state.subjectCollection}
 				        renderHeader={ this._renderHeader}
 				        renderContent={this._renderContent}
@@ -86,10 +86,9 @@ const styles = StyleSheet.create({
 		right: 0
 	},
 	list: {
-		// marginTop: 12,
 		borderTopWidth: 1,
 		borderBottomWidth: 1,
-		borderBottomColor: '#cbd2d9'
+		borderBottomColor: '#808080'
 	},
 	title: {
 		textAlign: 'center',
@@ -97,12 +96,11 @@ const styles = StyleSheet.create({
 		fontSize: 22
 	},
 	header: {
-		backgroundColor: 'transparent',
 		paddingTop: 10,
 		paddingRight: 10,
-		paddingBottom: 10,
-		borderBottomColor: '#555',
-		borderBottomWidth: 1
+		paddingBottom: 10
+		// borderBottomColor: '#808080',
+		// borderBottomWidth: 1
 	},
 	subject: {
 		fontSize: 16,
@@ -116,7 +114,11 @@ const styles = StyleSheet.create({
 	},
 	details: {
 		fontSize: 14,
-		color: '#fff'
+		color: '#fff',
+		paddingLeft: 14,
+		paddingRight: 14,
+		paddingTop: 4,
+		paddingBottom: 4
 	}
 });
 

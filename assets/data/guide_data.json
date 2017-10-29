@@ -7,22 +7,30 @@
       {
         "id": 1,
         "subject": "Where should I do the practice?",
-        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan."
+        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan.",
+        "colorDetails": "rgba(105, 80, 101, .85)",
+        "colorHeader": "rgba(105, 80, 101, .6)"
       },
       {
         "id": 2,
         "subject": "How much rest does this do?",
-        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan."
+        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan.",
+        "colorDetails": "rgba(105, 80, 101, .85)",
+        "colorHeader": "rgba(105, 80, 101, .6)"
       },
       {
         "id": 3,
         "subject": "Will my life be changed forever?",
-        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan."
+        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan.",
+        "colorDetails": "rgba(105, 80, 101, .85)",
+        "colorHeader": "rgba(105, 80, 101, .6)"
       },
       {
         "id": 4,
         "subject": "Will my hair turn green?",
-        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan."
+        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan.",
+        "colorDetails": "rgba(105, 80, 101, .85)",
+        "colorHeader": "rgba(105, 80, 101, .6)"
       }
     ]
   },  
@@ -34,49 +42,65 @@
       {
         "id": 1,
         "subject": "Where should I do the practice?",
-        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan."
+        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan.",
+        "colorDetails": "rgba(69, 98, 132, .85)",
+        "colorHeader": "rgba(69, 98, 132, .6)"
       },
       {
         "id": 2,
         "subject": "How much rest does this do?",
-        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan."
+        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan.",
+        "colorDetails": "rgba(69, 98, 132, .85)",
+        "colorHeader": "rgba(69, 98, 132, .6)"
       },
       {
         "id": 3,
         "subject": "Will my life be changed forever?",
-        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan."
+        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan.",
+        "colorDetails": "rgba(69, 98, 132, .85)",
+        "colorHeader": "rgba(69, 98, 132, .6)"
       },
       {
         "id": 4,
         "subject": "Will my hair turn green?",
-        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan."
+        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan.",
+        "colorDetails": "rgba(69, 98, 132, .85)",
+        "colorHeader": "rgba(69, 98, 132, .6)"
       }
     ]
   },
   {
     "id": 3,
     "topic": "Benefits",
-    "color": "#788E7760",
+    "color": "#788E7760", 
     "subjectCollection": [
       {
         "id": 1,
         "subject": "Where should I do the practice?",
-        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan."
+        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan.",
+        "colorDetails": "rgba(120, 142, 119, .85)",
+        "colorHeader": "rgba(120, 142, 119, .6)"
       },
       {
         "id": 2,
         "subject": "How much rest does this do?",
-        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan."
+        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan.",
+        "colorDetails": "rgba(120, 142, 119, .85)",
+        "colorHeader": "rgba(120, 142, 119, .6)"
       },
       {
         "id": 3,
         "subject": "Will my life be changed forever?",
-        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan."
+        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan.",
+        "colorDetails": "rgba(120, 142, 119, .85)",
+        "colorHeader": "rgba(120, 142, 119, .6)"
       },
       {
         "id": 4,
         "subject": "Will my hair turn green?",
-        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan."
+        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan.",
+        "colorDetails": "rgba(120, 142, 119, .85)",
+        "colorHeader": "rgba(120, 142, 119, .6)"
       }
     ]
   },
@@ -88,22 +112,30 @@
       {
         "id": 1,
         "subject": "Where should I do the practice?",
-        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan."
+        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan.",
+        "colorDetails": "rgba(193, 121, 24, .85)",
+        "colorHeader": "rgba(193, 121, 24, .6)"
       },
       {
         "id": 2,
         "subject": "How much rest does this do?",
-        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan."
+        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan.",
+        "colorDetails": "rgba(193, 121, 24, .85)",
+        "colorHeader": "rgba(193, 121, 24, .6)"
       },
       {
         "id": 3,
         "subject": "Will my life be changed forever?",
-        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan."
+        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan.",
+        "colorDetails": "rgba(193, 121, 24, .85)",
+        "colorHeader": "rgba(193, 121, 24, .6)"
       },
       {
         "id": 4,
         "subject": "Will my hair turn green?",
-        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan."
+        "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan.",
+        "colorDetails": "rgba(193, 121, 24, .85)",
+        "colorHeader": "rgba(193, 121, 24, .6)"
       }
     ]
   },
