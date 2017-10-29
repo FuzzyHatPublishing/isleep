@@ -1,7 +1,7 @@
 {
   "name": "isleep",
   "version": "0.0.0",
-  "description": "Hello Expo!",
+  "description": "iSleep, an app to help you rest",
   "author": "Fuzzy Hat Publishing",
   "license": "MIT",
   "main": "node_modules/expo/AppEntry.js",
