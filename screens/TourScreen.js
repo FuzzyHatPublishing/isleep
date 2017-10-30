@@ -58,7 +58,7 @@ class TourScreen extends Component {
 				return require('../assets/images/clouds/tour-page-4.jpg')
 				break;
 			case 4:
-				return require('../assets/images/clouds/tour-page-1.jpg')
+				return require('../assets/images/clouds/tour-page-5.jpg')
 				break;
 		}
 	}
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
-    backgroundColor: 'rgba(42, 24, 39, 0.6)',
+    backgroundColor: 'rgba(42, 24, 39, 0.8)',
     position: 'absolute',
     margin: 12,
     marginTop: 300,
