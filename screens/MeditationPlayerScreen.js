@@ -285,7 +285,7 @@ class MeditationPlayerScreen extends Component {
             style={styles.playbackSlider}
             minimumTrackTintColor={'#555555'}
             trackImage={ICON_TRACK.module}
-            thumbImage={ICON_THUMB.module}
+            thumbImage={require('../assets/images/dot-white-12px.png')}
             value={this._getSeekSliderPosition()}
             onValueChange={this._onSeekSliderValueChange}
             onSlidingComplete={this._onSeekSliderSlidingComplete}
@@ -360,7 +360,7 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1, 
-    height: DEVICE_WIDTH * .5,
+    height: DEVICE_WIDTH * .6,
     width: DEVICE_WIDTH,
   },
   title: {
