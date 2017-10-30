@@ -38,9 +38,11 @@ class MeditationPlayerScreen extends Component {
       <Icon
         name='navigate-before'
         size={32}
+        color={'white'}
         onPress={ () => navigation.goBack() }
       />,
-    headerStyle: { marginTop: Platform.OS === 'android' ? 24: 0 }
+    headerStyle: { marginTop: Platform.OS === 'android' ? 24: 0, backgroundColor: "#000"  },
+    headerTitleStyle: { color: '#fff', fontSize: 22, fontWeight: 'bold', marginHorizontal: 8 }
   });
 
   constructor(props) {
