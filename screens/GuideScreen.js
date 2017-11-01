@@ -87,7 +87,11 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		alignSelf: 'center',
-		borderRadius: 3
+		borderRadius: 3,
+    shadowOpacity: 0.75,
+    shadowRadius: 10,
+    shadowColor: 'white',
+    shadowOffset: { height: 10, width: 10 }
 	},
 	container: {
 		paddingTop: 8,
