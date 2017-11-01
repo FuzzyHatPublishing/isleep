@@ -133,10 +133,6 @@ class MeditationPlayerScreen extends Component {
       }
     } else {
       if (status.isLoaded) {
-      // console.log("status.isLoaded")
-        this.playbackInstance.unloadAsync()
-        this._getRandomClosingMessage();
-        this._setModalVisible(!this.state.modalVisible);
         this.setState({
           playbackInstancePosition: status.positionMillis,
           playbackInstanceDuration: status.durationMillis,
@@ -177,7 +173,7 @@ class MeditationPlayerScreen extends Component {
       this.state.playbackInstancePosition != null &&
       this.state.playbackInstanceDuration != null
     ) {
-      if (this.state.playbackInstancePosition / this.state.playbackInstanceDuration == 1) {
+      if (Platform.OS === 'android' && this.state.playbackInstancePosition / this.state.playbackInstanceDuration == 1) {
         this.playbackInstance.unloadAsync()
       }
       else {
@@ -394,8 +390,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    alignSelf: 'stretch',
+    justifyContent: 'center',
+    // alignSelf: 'stretch',
     maxHeight: FONT_SIZE * 2
   },
   text: {
@@ -403,7 +399,8 @@ const styles = StyleSheet.create({
     fontSize: 12
   },
   playbackSlider: {
-    width: DEVICE_WIDTH * .6
+    width: DEVICE_WIDTH * .6,
+    marginHorizontal: 2
   },
   round: {
     height: 70,
