@@ -55,6 +55,7 @@ class GuideScreen extends Component {
 								<TouchableHighlight
 									key={subject.id}
 									underlayColor={'#494949'}
+									style={styles.touchable}
 									onPress={ () => navigate('subjectList', {subject}) }
 									>
 									<View backgroundColor={subject.colorGuide} style={styles.box}>
@@ -79,11 +80,19 @@ const styles = StyleSheet.create({
 		left: 0,
 		right: 0
 	},
+	touchable: {
+		height: 200,
+		width: 280,
+		marginBottom: 16,
+		alignItems: 'center',
+		alignSelf: 'center',
+		justifyContent: 'center'
+	},
 	box: {
 		marginTop: 8,
 		marginBottom: 8,
 		height: 200,
-		width: '80%',
+		width: 280,
 		justifyContent: 'center',
 		alignItems: 'center',
 		alignSelf: 'center',
@@ -95,6 +104,7 @@ const styles = StyleSheet.create({
     elevation: 2 
 	},
 	container: {
+		flex: 1,
 		paddingTop: 8,
 		paddingBottom: 8,
 	},
