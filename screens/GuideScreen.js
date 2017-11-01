@@ -15,7 +15,7 @@ class GuideScreen extends Component {
 	static navigationOptions = ({ navigation }) => ({
 		title: 'Guide',
 		headerStyle: { marginTop: Platform.OS === 'android' ? 24 : 0, backgroundColor: "#000" },
-		headerTitleStyle: { color: '#fff', fontSize: 22, fontWeight: 'bold', marginHorizontal: 8 }
+		headerTitleStyle: { color: '#fff', fontSize: 22, fontWeight: 'bold', marginHorizontal: 8, alignSelf: 'center' }
 	});
 
 	state = { guideSubjects: [] };
