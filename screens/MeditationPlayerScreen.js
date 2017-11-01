@@ -327,13 +327,13 @@ class MeditationPlayerScreen extends Component {
               {this.state.isPlaying ? (
                 <MaterialIcons
                   name="pause"
-                  size={46}
+                  size={42}
                   color="#fff"
                 />
               ) : (
                 <MaterialIcons
                   name="play-arrow"
-                  size={46}
+                  size={42}
                   color="#fff"
                 />
               )}
@@ -391,7 +391,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    // alignSelf: 'stretch',
     maxHeight: FONT_SIZE * 2
   },
   text: {
@@ -400,12 +399,12 @@ const styles = StyleSheet.create({
   },
   playbackSlider: {
     width: DEVICE_WIDTH * .6,
-    marginHorizontal: 2
+    marginHorizontal: 10
   },
   round: {
-    height: 70,
-    width: 70,
-    borderRadius: 35,
+    height: 60,
+    width: 60,
+    borderRadius: 30,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
