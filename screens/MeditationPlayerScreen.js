@@ -77,7 +77,9 @@ class MeditationPlayerScreen extends Component {
   }
 
   async _loadNewPlaybackInstance(playing) {
+    console.log('in _loadNewPlaybackInstance')
     if (this.playbackInstance != null) {
+      console.log('_loadNewPlaybackInstance is not null')
       await this.playbackInstance.unloadAsync();
       this.playbackInstance.setOnPlaybackStatusUpdate(null);
       this.playbackInstance = null;
@@ -131,8 +133,10 @@ class MeditationPlayerScreen extends Component {
       }
     } else {
       if (status.isLoaded) {
-      console.log("in setOnPlaybackStatusUpdate-isLoaded")
-
+      // console.log("status.isLoaded")
+        this.playbackInstance.unloadAsync()
+        this._getRandomClosingMessage();
+        this._setModalVisible(!this.state.modalVisible);
         this.setState({
           playbackInstancePosition: status.positionMillis,
           playbackInstanceDuration: status.durationMillis,
@@ -140,6 +144,7 @@ class MeditationPlayerScreen extends Component {
           isPlaying: status.isPlaying,
           // isBuffering: status.isBuffering,
         });
+
         if (status.didJustFinish) {
           console.log(
             `AUDIO UPDATE : Finished meditation`
@@ -172,16 +177,25 @@ class MeditationPlayerScreen extends Component {
       this.state.playbackInstancePosition != null &&
       this.state.playbackInstanceDuration != null
     ) {
-      return (
-        this.state.playbackInstancePosition /
-        this.state.playbackInstanceDuration
-      );
+      if (this.state.playbackInstancePosition / this.state.playbackInstanceDuration == 1) {
+        this.playbackInstance.unloadAsync()
+      }
+      else {
+        return (
+          this.state.playbackInstancePosition /
+          this.state.playbackInstanceDuration
+        );
+      }
     }
     return 0;
   };
 
   _onSeekSliderValueChange = value => {
+    console.log('in _onSeekSliderValueChange')
+
     if (this.playbackInstance != null && !this.isSeeking) {
+    console.log('in _onSeekSliderValueChange, in conditional')
+
       this.isSeeking = true;
       this.shouldPlayAtEndOfSeek = this.state.shouldPlay;
       this.playbackInstance.pauseAsync();
@@ -189,16 +203,20 @@ class MeditationPlayerScreen extends Component {
   };
 
   _onSeekSliderSlidingComplete = async value => {
-      if (this.playbackInstance != null) {
-        this.isSeeking = false;
-        const seekPosition = value * this.state.playbackInstanceDuration;
-        if (this.shouldPlayAtEndOfSeek) {
-          this.playbackInstance.playFromPositionAsync(seekPosition);
-        } else {
-          this.playbackInstance.setPositionAsync(seekPosition);
-        }
+      console.log('in _onSeekSliderSlidingComplete, this.playbackInstance must be null?')
+    if (this.playbackInstance != null) {
+
+      this.isSeeking = false;
+      const seekPosition = value * this.state.playbackInstanceDuration;
+      if (this.shouldPlayAtEndOfSeek) {
+        console.log('in _onSeekSliderSlidingComplete, this.shouldPlayAtEndOfSeek')
+
+        this.playbackInstance.playFromPositionAsync(seekPosition);
+      } else {
+        this.playbackInstance.setPositionAsync(seekPosition);
       }
-    };
+    }
+  };
 
   _getMMSSFromMillis(millis) {
     const totalSeconds = millis / 1000;
@@ -212,6 +230,7 @@ class MeditationPlayerScreen extends Component {
       }
       return string;
     };
+    // console.log('in _getMMSSFromMillis')
     return padWithZero(minutes) + ':' + padWithZero(seconds);
   }
 
@@ -363,7 +382,7 @@ const styles = StyleSheet.create({
   image: {
     flex: 1, 
     height: DEVICE_WIDTH * .6,
-    width: DEVICE_WIDTH,
+    width: DEVICE_WIDTH
   },
   title: {
     color: '#fff',
