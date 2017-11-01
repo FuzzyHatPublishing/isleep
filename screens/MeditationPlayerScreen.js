@@ -385,12 +385,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 20,
     paddingBottom: 10
+    // marginTop: -10
   },
   timestampRow: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 15,
     maxHeight: FONT_SIZE * 2
   },
   text: {
@@ -409,6 +411,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 1,
     borderColor: '#fff',
+    marginTop: 10,
     backgroundColor: BACKGROUND_COLOR
   },
    modal: {
