@@ -114,7 +114,7 @@ class TourScreen extends Component {
 	                )}
 									{renderIf(i===4,
 										<View style={styles.button}>
-											<TouchableHighlight onPress={() => {this.props.handler()}}>
+											<TouchableHighlight style={styles.touchable} onPress={() => {this.props.handler()}}>
 												<Text style={styles.buttonText}>
 													Get Started
 												</Text>
@@ -189,6 +189,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingTop: 16,
     paddingBottom: 300,
+  },
+  touchable: {
+    borderRadius: 50
+
   },
   button: {
     flex: 1,
