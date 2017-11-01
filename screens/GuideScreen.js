@@ -57,7 +57,7 @@ class GuideScreen extends Component {
 									underlayColor={'#494949'}
 									onPress={ () => navigate('subjectList', {subject}) }
 									>
-									<View backgroundColor={subject.color} style={styles.box}>
+									<View backgroundColor={subject.colorGuide} style={styles.box}>
 										<Text style={styles.topic}>{subject.topic}</Text>
 										<Image style={styles.icons} source={ this._getImage(i) } />
 									</View>
