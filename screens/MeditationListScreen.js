@@ -55,7 +55,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'black',
-    paddingTop: 50
+    justifyContent: 'space-between',
+    paddingTop: 50,
+    paddingBottom: 5
   },
   imageStyle: {
     height: 200,

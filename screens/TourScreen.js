@@ -26,7 +26,7 @@ const PAGES = [
 	{
 		id: 4,
 		message: "Turn phone off",
-		moreMessage: "More best practices in the 'app guide'",
+		moreMessage: "More best practices in the 'app guide'.",
 		backgroundColor: "#0B5F6A"
 	},
 	{
@@ -192,7 +192,6 @@ const styles = StyleSheet.create({
   },
   touchable: {
     borderRadius: 50
-
   },
   button: {
     flex: 1,
