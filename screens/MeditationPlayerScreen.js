@@ -38,9 +38,11 @@ class MeditationPlayerScreen extends Component {
       <Icon
         name='navigate-before'
         size={32}
+        color={'white'}
         onPress={ () => navigation.goBack() }
       />,
-    headerStyle: { marginTop: Platform.OS === 'android' ? 24: 0 }
+    headerStyle: { marginTop: Platform.OS === 'android' ? 24: 0, backgroundColor: "#000"  },
+    headerTitleStyle: { color: '#fff', fontSize: 22, fontWeight: 'bold', marginHorizontal: 8 }
   });
 
   constructor(props) {
@@ -75,7 +77,9 @@ class MeditationPlayerScreen extends Component {
   }
 
   async _loadNewPlaybackInstance(playing) {
+    console.log('in _loadNewPlaybackInstance')
     if (this.playbackInstance != null) {
+      console.log('_loadNewPlaybackInstance is not null')
       await this.playbackInstance.unloadAsync();
       this.playbackInstance.setOnPlaybackStatusUpdate(null);
       this.playbackInstance = null;
@@ -102,6 +106,7 @@ class MeditationPlayerScreen extends Component {
 
  _updateScreenForLoading(isLoading) {
     if (isLoading) {
+      console.log("in updateScreenForLoading-if")
       this.setState({
         isPlaying: false,
         playbackInstanceName: LOADING_STRING,
@@ -110,6 +115,8 @@ class MeditationPlayerScreen extends Component {
         isLoading: true
       });
     } else {
+      console.log("in updateScreenForLoading-else")
+
       this.setState({
         playbackInstanceName: this.state.meditationTrack.title,
         isLoading: false
@@ -133,6 +140,7 @@ class MeditationPlayerScreen extends Component {
           isPlaying: status.isPlaying,
           // isBuffering: status.isBuffering,
         });
+
         if (status.didJustFinish) {
           console.log(
             `AUDIO UPDATE : Finished meditation`
@@ -165,16 +173,25 @@ class MeditationPlayerScreen extends Component {
       this.state.playbackInstancePosition != null &&
       this.state.playbackInstanceDuration != null
     ) {
-      return (
-        this.state.playbackInstancePosition /
-        this.state.playbackInstanceDuration
-      );
+      if (Platform.OS === 'android' && this.state.playbackInstancePosition / this.state.playbackInstanceDuration == 1) {
+        this.playbackInstance.unloadAsync()
+      }
+      else {
+        return (
+          this.state.playbackInstancePosition /
+          this.state.playbackInstanceDuration
+        );
+      }
     }
     return 0;
   };
 
   _onSeekSliderValueChange = value => {
+    console.log('in _onSeekSliderValueChange')
+
     if (this.playbackInstance != null && !this.isSeeking) {
+    console.log('in _onSeekSliderValueChange, in conditional')
+
       this.isSeeking = true;
       this.shouldPlayAtEndOfSeek = this.state.shouldPlay;
       this.playbackInstance.pauseAsync();
@@ -182,16 +199,20 @@ class MeditationPlayerScreen extends Component {
   };
 
   _onSeekSliderSlidingComplete = async value => {
-      if (this.playbackInstance != null) {
-        this.isSeeking = false;
-        const seekPosition = value * this.state.playbackInstanceDuration;
-        if (this.shouldPlayAtEndOfSeek) {
-          this.playbackInstance.playFromPositionAsync(seekPosition);
-        } else {
-          this.playbackInstance.setPositionAsync(seekPosition);
-        }
+      console.log('in _onSeekSliderSlidingComplete, this.playbackInstance must be null?')
+    if (this.playbackInstance != null) {
+
+      this.isSeeking = false;
+      const seekPosition = value * this.state.playbackInstanceDuration;
+      if (this.shouldPlayAtEndOfSeek) {
+        console.log('in _onSeekSliderSlidingComplete, this.shouldPlayAtEndOfSeek')
+
+        this.playbackInstance.playFromPositionAsync(seekPosition);
+      } else {
+        this.playbackInstance.setPositionAsync(seekPosition);
       }
-    };
+    }
+  };
 
   _getMMSSFromMillis(millis) {
     const totalSeconds = millis / 1000;
@@ -205,6 +226,7 @@ class MeditationPlayerScreen extends Component {
       }
       return string;
     };
+    // console.log('in _getMMSSFromMillis')
     return padWithZero(minutes) + ':' + padWithZero(seconds);
   }
 
@@ -235,12 +257,15 @@ class MeditationPlayerScreen extends Component {
   }
 
   _getRandomClosingMessage() {
+    console.log("in _getRandomClosingMessage")
+
     let messages = require('../assets/data/closing_message_data');
     let randomMessage = messages[Math.floor(Math.random()*messages.length)];
     this.setState({closingMessage: randomMessage.message});
   }
 
   _setModalVisible(visible) {
+    console.log(`MODAL UPDATE : _setModalVisible`)
     this.setState({modalVisible: visible});
   }
 
@@ -277,7 +302,7 @@ class MeditationPlayerScreen extends Component {
             style={styles.playbackSlider}
             minimumTrackTintColor={'#555555'}
             trackImage={ICON_TRACK.module}
-            thumbImage={ICON_THUMB.module}
+            thumbImage={require('../assets/images/dot-white-12px.png')}
             value={this._getSeekSliderPosition()}
             onValueChange={this._onSeekSliderValueChange}
             onSlidingComplete={this._onSeekSliderSlidingComplete}
@@ -302,13 +327,13 @@ class MeditationPlayerScreen extends Component {
               {this.state.isPlaying ? (
                 <MaterialIcons
                   name="pause"
-                  size={46}
+                  size={42}
                   color="#fff"
                 />
               ) : (
                 <MaterialIcons
                   name="play-arrow"
-                  size={46}
+                  size={42}
                   color="#fff"
                 />
               )}
@@ -352,21 +377,22 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1, 
-    height: DEVICE_WIDTH * .5,
-    width: DEVICE_WIDTH,
+    height: DEVICE_WIDTH * .6,
+    width: DEVICE_WIDTH
   },
   title: {
     color: '#fff',
     fontWeight: 'bold',
     fontSize: 20,
     paddingBottom: 10
+    // marginTop: -10
   },
   timestampRow: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    alignSelf: 'stretch',
+    justifyContent: 'center',
+    marginTop: 15,
     maxHeight: FONT_SIZE * 2
   },
   text: {
@@ -374,16 +400,18 @@ const styles = StyleSheet.create({
     fontSize: 12
   },
   playbackSlider: {
-    width: DEVICE_WIDTH * .6
+    width: DEVICE_WIDTH * .6,
+    marginHorizontal: 10
   },
   round: {
-    height: 70,
-    width: 70,
-    borderRadius: 35,
+    height: 60,
+    width: 60,
+    borderRadius: 30,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
     borderColor: '#fff',
+    marginTop: 10,
     backgroundColor: BACKGROUND_COLOR
   },
    modal: {

@@ -13,8 +13,9 @@ import { Icon } from 'react-native-elements';
 
 class GuideScreen extends Component {
 	static navigationOptions = ({ navigation }) => ({
-		title: 'iSleep Guide',
-		headerStyle: { marginTop: Platform.OS === 'android' ? 24 : 0 }
+		title: 'Guide',
+		headerStyle: { marginTop: Platform.OS === 'android' ? 24 : 0, backgroundColor: "#000" },
+		headerTitleStyle: { color: '#fff', fontSize: 22, fontWeight: 'bold', marginHorizontal: 8 }
 	});
 
 	state = { guideSubjects: [] };

@@ -4,7 +4,8 @@ import { Image, Platform, StyleSheet, Text, TouchableHighlight, View } from 'rea
 class MeditationListScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
 		title: 'Meditations',
-		headerStyle: { marginTop: Platform.OS === 'android' ? 24: 0 }
+		headerStyle: { marginTop: Platform.OS === 'android' ? 24: 0, backgroundColor: "#000" },
+    headerTitleStyle: { color: '#fff', fontSize: 22, fontWeight: 'bold', marginHorizontal: 8 }
 	});
 
   state = { meditations: [] };
