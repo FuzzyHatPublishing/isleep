@@ -33,28 +33,30 @@ class SubjectListScreen extends Component {
 		super(props);
 		this.state = {
 			title: this.props.navigation.state.params.subject.topic,
-			subjectCollection: this.props.navigation.state.params.subject.subjectCollection
+			subjectCollection: this.props.navigation.state.params.subject.subjectCollection,
+			colorGuide: this.props.navigation.state.params.subject.colorGuide,
+			colorHeader: this.props.navigation.state.params.subject.colorHeader,
+			colorDetails: this.props.navigation.state.params.subject.colorDetails
 		}
 	}
 
-	_renderHeader(section) {
+	_renderHeader = (section) => {
     return (
-    	<View style={styles.header} backgroundColor={section.colorHeader}>  
+    	<View style={styles.header} backgroundColor={this.state.colorHeader}>  
       	<Text style={styles.subject}>{section.subject}</Text>
     	</View>
     );
-  }
+  };
 
-  _renderContent(section) {
+  _renderContent = (section) => {
     return (
-      <View style={styles.content} backgroundColor={section.colorDetails}>
+      <View style={styles.content} backgroundColor={this.state.colorDetails}>
       	<Text style={styles.details}>{section.details}</Text>
       </View>
     );
-  }
+  };
 
 	render() {
-		const backgroundColor = this.props.navigation.state.params.subject.color
 		return (
 			<View style={styles.contentContainerStyle}>
 				<Image style={styles.bgImage} source={require('../assets/images/clouds/guide-background-only.png')} />
@@ -99,8 +101,6 @@ const styles = StyleSheet.create({
 		paddingTop: 10,
 		paddingRight: 10,
 		paddingBottom: 10
-		// borderBottomColor: '#808080',
-		// borderBottomWidth: 1
 	},
 	subject: {
 		fontSize: 16,

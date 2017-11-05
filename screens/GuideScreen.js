@@ -55,9 +55,10 @@ class GuideScreen extends Component {
 								<TouchableHighlight
 									key={subject.id}
 									underlayColor={'#494949'}
+									style={styles.touchable}
 									onPress={ () => navigate('subjectList', {subject}) }
 									>
-									<View backgroundColor={subject.color} style={styles.box}>
+									<View backgroundColor={subject.colorGuide} style={styles.box}>
 										<Text style={styles.topic}>{subject.topic}</Text>
 										<Image style={styles.icons} source={ this._getImage(i) } />
 									</View>
@@ -79,17 +80,31 @@ const styles = StyleSheet.create({
 		left: 0,
 		right: 0
 	},
+	touchable: {
+		height: 200,
+		width: 280,
+		marginBottom: 16,
+		alignItems: 'center',
+		alignSelf: 'center',
+		justifyContent: 'center'
+	},
 	box: {
 		marginTop: 8,
 		marginBottom: 8,
 		height: 200,
-		width: '80%',
+		width: 280,
 		justifyContent: 'center',
 		alignItems: 'center',
 		alignSelf: 'center',
-		borderRadius: 3
+		borderRadius: 3,
+    shadowOpacity: 0.75,
+    shadowRadius: 10,
+    shadowColor: 'white',
+    shadowOffset: { height: 10, width: 10 },
+    elevation: 2 
 	},
 	container: {
+		flex: 1,
 		paddingTop: 8,
 		paddingBottom: 8,
 	},
