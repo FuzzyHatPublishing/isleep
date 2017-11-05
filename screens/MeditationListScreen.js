@@ -5,7 +5,7 @@ class MeditationListScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
 		title: 'Meditations',
 		headerStyle: { marginTop: Platform.OS === 'android' ? 24: 0, backgroundColor: "#000" },
-    headerTitleStyle: { color: '#fff', fontSize: 22, fontWeight: 'bold', marginHorizontal: 8 }
+    headerTitleStyle: { color: '#fff', fontSize: 22, fontWeight: 'bold', marginHorizontal: 8, alignSelf: 'center' }
 	});
 
   state = { meditations: [] };
@@ -55,7 +55,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'black',
-    paddingTop: 50
+    justifyContent: 'space-between',
+    paddingTop: 50,
+    paddingBottom: 5
   },
   imageStyle: {
     height: 200,
