@@ -24,7 +24,13 @@ export default TabNavigator(
     MeditationList: {
       screen: StackNavigator({
         meditationList: { screen: MeditationListScreen },
-        meditation: { screen: MeditationPlayerScreen }
+        meditation: { 
+          screen: MeditationPlayerScreen,
+          navigationOptions: ({ navigation }) => ({
+             title: 'iSleep',
+             tabBarVisible: false, 
+          })
+        } 
       },
       { headerMode: 'none' })
     },
