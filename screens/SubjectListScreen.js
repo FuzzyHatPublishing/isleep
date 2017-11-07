@@ -13,7 +13,7 @@ import Accordion from 'react-native-collapsible/Accordion';
 class SubjectListScreen extends Component {
 	static navigationOptions = ({ navigation }) => {
 		const { state: { params = {} } } = navigation;
-		const subjectColor = params.subject.color;
+		const subjectColor = params.subject.colorGuide;
 
 		return { 
 			title: params.subject.topic || 'iSleep Guide', 
@@ -25,7 +25,7 @@ class SubjectListScreen extends Component {
 					onPress={ () => navigation.goBack() }
 				/>,
 			headerStyle: { marginTop: Platform.OS === 'android' ? 24 : 0, backgroundColor: subjectColor },
-			headerTitleStyle: { color: '#fff', fontSize: 22, fontWeight: 'bold', marginHorizontal: 0 },
+			headerTitleStyle: { color: '#fff', fontSize: 22, fontWeight: 'bold', marginHorizontal: 0, alignSelf: 'center', marginLeft: Platform.OS === 'android' ? -42 : 0 },
 		}
 	};
 
