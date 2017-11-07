@@ -1,21 +1,41 @@
 import React, { Component } from 'react';
 import {
+	Image,
 	View,
 	StyleSheet,
 	Text,
 	Platform,
 	Dimensions,
+	ScrollView,
 	TouchableHighlight
 } from 'react-native';
 import { Icon } from 'react-native-elements';
 
 class GuideScreen extends Component {
 	static navigationOptions = ({ navigation }) => ({
-		title: 'iSleep Guide',
-		headerStyle: { marginTop: Platform.OS === 'android' ? 24 : 0 }
+		title: 'Guide',
+		headerStyle: { marginTop: Platform.OS === 'android' ? 24 : 0, backgroundColor: "#000" },
+		headerTitleStyle: { color: '#fff', fontSize: 22, fontWeight: 'bold', marginHorizontal: 8 }
 	});
 
 	state = { guideSubjects: [] };
+
+	_getImage(i) {
+	 	switch (i) {
+	 		case 0:
+	 			return require('../assets/images/guide-icons/question.png')
+	 			break;
+	 		case 1:
+	 			return require('../assets/images/guide-icons/checked.png')
+	 			break;
+	 		case 2:
+	 			return require('../assets/images/guide-icons/inclined-candy.png')
+	 			break;
+	 		case 3:
+				return require('../assets/images/guide-icons/coffee.png')
+				break;
+		}
+	 }
 
 	componentWillMount() {
 		let guideData = require('../assets/data/guide_data');
@@ -26,45 +46,78 @@ class GuideScreen extends Component {
 		const { navigate } = this.props.navigation;
 
 		return (
-			<View style={styles.grid}>
-				{
-					this.state.guideSubjects.map((subject) => (
-						<TouchableHighlight 
-							style={styles.box} 
-							key={subject.id}
-							underlayColor={'#a3a1a1'}
-							onPress={ () => navigate('subjectList', {subject}) }
-							>
-							<Text style={styles.topic}>{subject.topic}</Text>
-						</TouchableHighlight>
-					))
-				}
+			<View style={{backgroundColor:"black"}}>
+				<Image style={styles.bgImage} source={require('../assets/images/clouds/guide-clouds.png')} />
+				<ScrollView>
+					<View style={styles.container}>
+						{
+							this.state.guideSubjects.map((subject, i) => (
+								<TouchableHighlight
+									key={subject.id}
+									underlayColor={'#494949'}
+									style={styles.touchable}
+									onPress={ () => navigate('subjectList', {subject}) }
+									>
+									<View backgroundColor={subject.colorGuide} style={styles.box}>
+										<Text style={styles.topic}>{subject.topic}</Text>
+										<Image style={styles.icons} source={ this._getImage(i) } />
+									</View>
+								</TouchableHighlight>
+							))
+						}
+					</View>
+				</ScrollView>
 			</View>
 		);
 	}
 }
 
 const styles = StyleSheet.create({
-	grid: {
-		flex: 1,
-		backgroundColor: '#FAFAFA',
-		flexDirection: 'row',
-		flexWrap: 'wrap',
-		padding: 2
+	bgImage: {
+		position: 'absolute',
+		top: 0,
+		bottom: 0,
+		left: 0,
+		right: 0
+	},
+	touchable: {
+		height: 200,
+		width: 280,
+		marginBottom: 16,
+		alignItems: 'center',
+		alignSelf: 'center',
+		justifyContent: 'center'
 	},
 	box: {
-		margin: 2,
-		width: Dimensions.get('window').width / 2 -6,
+		marginTop: 8,
+		marginBottom: 8,
 		height: 200,
+		width: 280,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: '#FAFAFA',
-		borderWidth: 5,
-		borderColor: '#607D8B'
+		alignSelf: 'center',
+		borderRadius: 3,
+    shadowOpacity: 0.75,
+    shadowRadius: 10,
+    shadowColor: 'white',
+    shadowOffset: { height: 10, width: 10 },
+    elevation: 2 
+	},
+	container: {
+		flex: 1,
+		paddingTop: 8,
+		paddingBottom: 8,
+	},
+	icons: {
+		marginTop: 10,
+		height: 60,
+		width: 60
 	},
 	topic: {
-		fontSize: 20,
-		paddingBottom: 10
+		fontSize: 36,
+		paddingBottom: 10,
+		color: '#fff',
+		fontWeight: 'bold'
 	}
 })
 

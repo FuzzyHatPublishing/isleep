@@ -4,7 +4,7 @@
     "description": "An app to help you rest.",
     "slug": "isleep",
     "privacy": "public",
-    "sdkVersion": "20.0.0",
+    "sdkVersion": "21.0.0",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icons/app-icon-eye.png",
@@ -24,6 +24,6 @@
     },
     "packagerOpts": {
       "nonPersistent": true
-    }
+     }
   }
 }

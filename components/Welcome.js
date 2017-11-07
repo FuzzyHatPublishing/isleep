@@ -6,20 +6,19 @@ import {
   View,
 } from 'react-native';
 
-export default class Welcome extends React.Component {
-
+class Welcome extends React.Component {
 
   render() {
     return (
       <View style={styles.welcomeContainer}>
         <Image
-          source={ require('../assets/images/silhouette.jpg') }
+          source={ require('../assets/images/night-sky-min.jpg') }
           style={styles.welcomeImage}
         />
         <View style={styles.textContainer}>
-          <Text style={styles.welcomeText}>Welcome to your</Text>
-          <Text style={styles.welcomeText}>place of rest.</Text>
-          
+          <Text style={[styles.welcomeText, styles.headerOne]}>Welcome to iSleep</Text>
+          <Text style={[styles.welcomeText, styles.headerTwo]}>The new way to a beneficial</Text>
+          <Text style={[styles.welcomeText, styles.headerTwo]}> sleep journey</Text>
         </View>
       </View>
     );
@@ -27,8 +26,15 @@ export default class Welcome extends React.Component {
 }
 
 const styles = StyleSheet.create ({
+  headerOne: {
+    fontSize: 30,
+    paddingBottom: 15
+  },
+  headerTwo: {
+    fontSize: 20,
+  },
   textContainer: {
-    paddingBottom: 50
+    paddingBottom: 200
   },
   welcomeContainer: {
     flex: 1,
@@ -41,7 +47,8 @@ const styles = StyleSheet.create ({
   welcomeText: {
     // fontFamily: "Futura",
     textAlign: "center",
-    fontSize: 24,
-    paddingTop: 10
+    color: '#fff'
   }
 })
+
+export default Welcome;
