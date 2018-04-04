@@ -7,13 +7,13 @@
     "sdkVersion": "21.0.0",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icons/app-icon-eye.png",
+    "icon": "./assets/icons/app-icon.png",
     "notification": {
       "icon": "./assets/icons/notification-icon.png",
       "color": "#000000"
     },
     "loading": {
-      "icon": "./assets/icons/app-icon-eye.png",
+      "icon": "./assets/icons/app-icon.png",
       "hideExponentText": true
     },
     "packagerOpts": {
