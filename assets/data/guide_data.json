@@ -1,7 +1,10 @@
 [
-  {
+{
     "id": 1,
-    "topic": "FAQs",
+    "topic": "FAQ",
+    "colorGuide": "rgba(105, 80, 101, .6)",
+    "colorDetails": "rgba(105, 80, 101, .85)",
+    "colorHeader": "rgba(105, 80, 101, .6)",
     "subjectCollection": [
       {
         "id": 1,
@@ -24,10 +27,13 @@
         "details": "La croix messenger bag shoreditch whatever umami plaid marfa crucifix everyday carry meditation. Microdosing snackwave air plant banh mi yr hammock jean shorts craft beer put a bird on it locavore drinking vinegar twee plaid pop-up messenger bag. Pok pok pour-over semiotics mlkshk cred kitsch seitan truffaut ugh listicle health goth. Man bun shoreditch keffiyeh stumptown, tbh gochujang tumblr enamel pin. Tilde neutra copper mug migas. Tattooed ethical flannel fanny pack live-edge, four dollar toast 90's artisan."
       }
     ]
-  },
+  },  
   {
     "id": 2,
     "topic": "Best Practices",
+    "colorGuide": "rgba(69, 98, 132, .6)",
+    "colorDetails": "rgba(69, 98, 132, .85)",
+    "colorHeader": "rgba(69, 98, 132, .6)",
     "subjectCollection": [
       {
         "id": 1,
@@ -53,7 +59,10 @@
   },
   {
     "id": 3,
-    "topic": "Sugar sugar",
+    "topic": "Benefits",
+    "colorGuide": "rgba(120, 142, 119, .6)",
+    "colorDetails": "rgba(120, 142, 119, .85)",
+    "colorHeader": "rgba(120, 142, 119, .6)", 
     "subjectCollection": [
       {
         "id": 1,
@@ -79,7 +88,10 @@
   },
   {
     "id": 4,
-    "topic": "More caffeine",
+    "topic": "How It Works",
+    "colorGuide": "rgba(193, 121, 24, .6)",
+    "colorDetails": "rgba(193, 121, 24, .85)",
+    "colorHeader": "rgba(193, 121, 24, .6)",
     "subjectCollection": [
       {
         "id": 1,
@@ -104,4 +116,3 @@
     ]
   },
 ]
-

@@ -24,6 +24,6 @@
     },
     "packagerOpts": {
       "nonPersistent": true
-    }
+     }
   }
 }
