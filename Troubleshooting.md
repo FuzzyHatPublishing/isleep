@@ -24,6 +24,26 @@ so
 [Forum/solution](https://github.com/npm/npm/issues/17146)
 ````
 
+ENOENT may need to clear cache [Forum](https://github.com/facebook/react-native/issues/5054)
+````
+ rm -fr $TMPDIR/react-*
+ watchman watch-del-all
+ rm -fr $TMPDIR/npm*
+````
+
+May need to update versions React Native and Expo
+````
+in app.json
+"sdkVersion": "20.0.0",
+
+in package.json
+“expo”: “^21.0.0”,
+“react-native”: “https://github.com/expo/react-native/archive/sdk-21.0.2.tar.gz”,
+
+rm -r node_modules/expo/ node_modules/react-native/ && npm install
+
+````
+
 To clear AsyncStorage item (preferred over clear();)
 ````
 AsyncStorage.removeItem("alreadyLaunched")
