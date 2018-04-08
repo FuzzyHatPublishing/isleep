@@ -24,13 +24,13 @@ export default TabNavigator(
     MeditationList: {
       screen: StackNavigator({
         meditationList: { screen: MeditationListScreen },
-        meditation: { 
+        meditation: {
           screen: MeditationPlayerScreen,
           navigationOptions: ({ navigation }) => ({
              title: 'iSleep',
-             tabBarVisible: false, 
+             tabBarVisible: false,
           })
-        } 
+        }
       },
       { headerMode: 'none' })
     },
@@ -53,8 +53,8 @@ export default TabNavigator(
         switch (routeName) {
           case 'Home':
             iconName = Platform.OS === 'ios'
-              ? `ios-information-circle${focused ? '' : '-outline'}`
-              : 'md-information-circle';
+              ? `ios-home${focused ? '' : '-outline'}`
+              : 'md-home';
             break;
           case 'MeditationList':
             iconName = Platform.OS === 'ios'
@@ -74,7 +74,7 @@ export default TabNavigator(
         return (
           <Ionicons
             name={iconName}
-            size={28}
+            size={30}
             style={{ marginBottom: -3 }}
             color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
           />
