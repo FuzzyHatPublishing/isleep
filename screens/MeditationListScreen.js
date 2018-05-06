@@ -16,7 +16,7 @@ class MeditationListScreen extends Component {
   }
 
   _getImage(meditation) {
-    return meditation.id == 1 ? require('../assets/images/sky-moon-cloud-min.jpg') : require('../assets/images/beach-meditation-min.jpg')
+    return meditation.id == 1 ? require('../assets/images/sky-moon-cloud-min.jpg') : require('../assets/images/long-rest.jpg')
   }
 
   render() {

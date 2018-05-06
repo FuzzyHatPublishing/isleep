@@ -90,7 +90,7 @@ class MeditationPlayerScreen extends Component {
     };
 
     const source = this.state.meditationTrack.id == 1 ? require('../assets/sounds/test-audio.mp3') : require('../assets/sounds/test-audio-2.mp3');
-    
+
     try  {
       const { sound, status } = await Audio.Sound.create(
         source,
@@ -102,7 +102,7 @@ class MeditationPlayerScreen extends Component {
     } catch(e) {
       console.log("Problem creating sound object: ", e)
     }
-  } 
+  }
 
  _updateScreenForLoading(isLoading) {
     if (isLoading) {
@@ -124,7 +124,7 @@ class MeditationPlayerScreen extends Component {
     }
   }
 
-  _onPlaybackStatusUpdate = status => { 
+  _onPlaybackStatusUpdate = status => {
     if (!status.isLoaded) {
       // Update your UI for the unloaded state
       if (status.error) {
@@ -270,14 +270,14 @@ class MeditationPlayerScreen extends Component {
   }
 
   _getImage(meditation) {
-    return meditation.id == 1 ? require('../assets/images/sky-moon-cloud-min.jpg') : require('../assets/images/beach-meditation-min.jpg')
+    return meditation.id == 1 ? require('../assets/images/sky-moon-cloud-min.jpg') : require('../assets/images/long-rest.jpg')
   }
-  
+
   render() {
     const { goBack } = this.props.navigation;
     return(
       <View style={styles.container}>
-        
+
         <Image
           source={ this._getImage(this.state.meditationTrack) }
           style={styles.image}
@@ -376,7 +376,7 @@ const styles = StyleSheet.create({
     backgroundColor: BACKGROUND_COLOR
   },
   image: {
-    flex: 1, 
+    flex: 1,
     height: DEVICE_WIDTH * .6,
     width: DEVICE_WIDTH
   },
